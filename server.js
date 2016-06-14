@@ -1,56 +1,52 @@
 var express = require('express'),
-    logger = require('morgan'),
     mongoose = require('mongoose'),
-    bodyParser = require('body-parser');
+    passport = require('passport'),
+    localStrategy = require('passport-local').Strategy;
 
 
 var env = process.env.NODE_ENV = process.env.NODE_ENV || 'development';
 
 var app = express();
 
-app.set('views', __dirname + '/app/views');
-app.set('view engine', 'jade');
+var config = require('./app/config/config')[env];
 
-app.use(logger('dev'));
-app.use(bodyParser.urlencoded({extended: true}));
-app.use(bodyParser.json());
-app.use(express.static(__dirname + '/public'));
+require('./app/config/express')(app,config);
 
-if(env === 'development') {
-  mongoose.connect('mongodb://localhost/pluralsight');
-} else {
-  mongoose.connect('mongodb://willadmin:wills817@ds011278.mlab.com:11278/wills-test');
-}
+require('./app/config/mongoose')(config);
 
-var db = mongoose.connection;
+var User = mongoose.model('User');
 
-    db.on('error', console.error.bind(console, 'connection error...'));
-    db.once('open', function callback(){
-      console.log('App DB Connected');
+passport.use(new localStrategy(
+  function(username, password, done){
+    User.findOne({userName: username}).exec(function(err, user){
+      if(user && user.authenticate(password)){
+        return done(null, user);
+      } else {
+        return done(null, false);
+      }
     });
+  }
+));
 
-var messageSchema = new mongoose.Schema({
-  message: String
+passport.serializeUser(function(user, done){
+  if(user) {
+    done(null, user._id);
+  }
 });
 
-var Message = mongoose.model('Message', messageSchema);
-var mongoMessage;
-Message.findOne().exec(function(err, response) {
-  mongoMessage = response.message;
-});
-
-
-app.get('/partials/:partialPath', function(req, res){
-    res.render('partials/' + req.params.partialPath);
-});
-
-app.get('*', function(req, res){
-  res.render('index', {
-    mongoMessage : mongoMessage
+passport.deserializeUser(function(id, done){
+  User.findOne({ _id: id}).exec(function(err, user){
+    if(user){
+      return done(null, user);
+    } else {
+      return done(null, false);
+    }
   });
 });
 
-var port = process.env.PORT || 8080;
-app.listen(port);
 
-console.log('Server is running on port ' + port);
+require('./app/config/routes')(app);
+
+
+app.listen(config.port);
+console.log('Server is running on port ' + config.port);
