@@ -131,53 +131,49 @@ header {
 header h1 {
 	padding-top: 100px;
 }
-.banner {
+#home {
+  padding-top: 240px;
 	background: #2c3e50 url('../../img/banner-small.png') no-repeat;
-	max-height: 600px;
-	margin: 0;
+	min-height: 600px;
+	margin-top: -240px;
 	background-size: cover;
 	background-attachment: fixed;
 	background-position: 50% 50%;
+  h1 {
+  	font-size: 42px;
+  	color: #fff;
+  	line-height: 50px;
+  	font-weight: 700;
+  	text-transform: none;
+  	margin: 0 0 40px 0;
+  }
+  h3 {
+ 	color: #fff;
+ 	font-weight: 300;
+ 	margin: 0 0 60px 0;
+ }
+ p {
+ 	color: #f39c12;
+ }
+ .lead {
+ 	margin-bottom: 40px;
+ }
+ .btn-default {
+ 	border: 1px solid #fff;
+ 	background: rgba(255,255,255,0.05);
+ 	color: #fff;
+ 	text-transform: uppercase;
+ 	font-size: 16px;
+ 	padding: 16px 30px;
+ }
+ .btn-default:hover {
+ 	background: rgba(255,255,255, 0.1);
+ 	color: #fff;
+ 	border: 1px solid #fff;
+ }
+
 }
-.banner h3 {
-	color: #fff;
-	font-weight: 300;
-	margin: 0 0 60px 0;
-}
-.banner p {
-	color: #f39c12;
-}
-.banner h1 span {
-	color: #f39c12;
-	font-weight: 700;
-}
-.banner h1 {
-	font-size: 42px;
-	color: #fff;
-	line-height: 50px;
-	font-weight: 700;
-	text-transform: none;
-	margin: 0 0 40px 0;
-}
-.banner .lead {
-	margin-bottom: 40px;
-}
-.banner h3 span {
-	color: #fff;
-}
-.banner .btn-default {
-	border: 1px solid #fff;
-	background: rgba(255,255,255,0.05);
-	color: #fff;
-	text-transform: uppercase;
-	font-size: 16px;
-	padding: 16px 30px;
-}
-.banner .btn-default:hover {
-	background: rgba(255,255,255, 0.1);
-	color: #fff;
-	border: 1px solid #fff;
-}
+
 .container>.navbar-header, .container-fluid>.navbar-header, .container>.navbar-collapse, .container-fluid>.navbar-collapse {
 	margin: 0;
 }
@@ -645,7 +641,7 @@ footer {
 
 /*media queries*/
 @media (min-width: 480px) {
-	.banner h1 {
+	#home h1 {
 		font-size: 56px;
 		line-height: 30px;
 	}
@@ -672,14 +668,14 @@ footer {
 	.gallery-inner {
 		border-right: 1px solid #fff;
 	}
-	.banner {
-		background: #2c3e50 url(../../img/banner.png) no-repeat;
-		max-height: 600px;
-		margin: 0;
-		background-size: cover;
-		background-attachment: fixed;
-		background-position: 50% 50%;
-	}
+	// .banner {
+	// 	background: #2c3e50 url(../../img/banner.png) no-repeat;
+	// 	max-height: 600px;
+	// 	margin: 0;
+	// 	background-size: cover;
+	// 	background-attachment: fixed;
+	// 	background-position: 50% 50%;
+	// }
 	header h1 {
 		padding-top: 180px;
 	}

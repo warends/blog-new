@@ -16,7 +16,8 @@ module.exports = function(config){
     lastName: String,
     userName: String,
     salt: String,
-    hashed_pwd: String
+    hashed_pwd: String,
+    roles: [String]
   });
 
   userSchema.methods = {
@@ -31,14 +32,15 @@ module.exports = function(config){
     if(results.length === 0){
       var salt, hash;
       salt = createSalt();
-      hash = hashPwd(salt, 'will');
+      hash = hashPwd(salt, 'admin');
 
       User.create({
         firstName: 'Will',
         lastName: 'Arends',
         userName: 'willarends',
         salt: salt,
-        hashed_pwd: hash
+        hashed_pwd: hash,
+        roles: ['admin']
       });
     }
   });

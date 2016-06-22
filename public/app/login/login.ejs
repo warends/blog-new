@@ -13,13 +13,14 @@
         <button class="btn btn-primary" ng-click="signin(username, password)">Sign In</button>
       </form>
 
-      <div ng-show="identity.isAuthenticated()">
+      <div class="text-center" ng-show="identity.isAuthenticated()">
         <div class="btn-group">
           <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             {{identity.currentUser.firstName + " " + identity.currentUser.lastName}} <span class="caret"></span>
           </button>
           <ul class="dropdown-menu">
             <li><a href="" ng-click="signOut()">Sign Out</a></li>
+            <li ng-show="identity.currentUser.isAdmin()"><a href="/admin/users">Admin</a></li>
           </ul>
         </div>
 

@@ -1,4 +1,4 @@
-angular.module('willsBlog').factory('auth', function($http, identity, $q){
+angular.module('willsBlog').factory('mvAuth', function($http, identity, $q, mvUser){
 
   return {
 
@@ -10,7 +10,10 @@ angular.module('willsBlog').factory('auth', function($http, identity, $q){
         password: password
       }).then(function(response){
         if (response.data.success){
-          identity.currentUser = response.data.user;
+
+          var user = new mvUser();
+          angular.extend(user, response.data.user);
+          identity.currentUser = user;
           deferred.resolve(true);
 
         } else {
@@ -32,6 +35,14 @@ angular.module('willsBlog').factory('auth', function($http, identity, $q){
 
       return deferred.promise;
 
+    },
+
+    authorizeCurrentUserForRoute: function(role){
+      if (identity.isAuthorized('admin')){
+        return true;
+      } else {
+        return $q.reject('not authorized');
+      }
     }
 
   }// return

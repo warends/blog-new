@@ -1,4 +1,4 @@
-angular.module('willsBlog').controller('mainCtrl', function($scope){
+angular.module('willsBlog').controller('mainCtrl', function($scope, $location){
   $scope.services = [
     { name: 'Web Design',
     svg: 'design-logo',
@@ -16,4 +16,7 @@ angular.module('willsBlog').controller('mainCtrl', function($scope){
     more: 'Have a new product or feature you want to implement? Plans for continued support and maintenance are available.' }
 
   ]
+
+
+
 });

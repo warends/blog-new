@@ -1,9 +1,9 @@
-angular.module('willsBlog').controller('loginCtrl', function($scope, $http, identity, notifier, auth, $location){
+angular.module('willsBlog').controller('loginCtrl', function($scope, $http, identity, notifier, mvAuth, $location){
 
     $scope.identity = identity;
 
     $scope.signin = function(username, password){
-      auth.authenticateUser(username, password).then(function(success){
+      mvAuth.authenticateUser(username, password).then(function(success){
         if(success){
           notifier.notify('You have signed in');
         } else {
@@ -14,7 +14,7 @@ angular.module('willsBlog').controller('loginCtrl', function($scope, $http, iden
     }
 
     $scope.signOut = function(){
-      auth.logoutUser().then(function() {
+      mvAuth.logoutUser().then(function() {
         $scope.username = '';
         $scope.password = '';
         notifier.notify('You have logged out');

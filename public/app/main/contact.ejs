@@ -1,0 +1,52 @@
+<div class="contact" id="contact">
+
+    <div class="heading">
+      <div class="container">
+          <div class="row text-center">
+              <div class="col-md-6">
+                <h2>Let's Chat!</h2>
+              </div>
+          </div>
+      </div>
+    </div>
+
+
+
+    <div class="container contact-form">
+    <div class="row">
+      <form action="form-to-email.php" data-toggle="validator" role="form" method="post">
+
+          <div class="col-md-6">
+
+                <div class="form-group">
+                  <label for="name">Name:</label>
+                  <input type="text" name="name" class="form-control" id="user-name" placeholder="Name" data-error="Please write your name" required>
+                  <div class="help-block with-errors"></div>
+                </div>
+
+                <div class="form-group">
+                  <label for="company">Company:</label>
+                  <input type="text" name="company" class="form-control" id="user-company" placeholder="Company">
+                </div>
+
+                <div class="form-group">
+                  <label for="email-address">Email:</label>
+                  <input type="email" name="email" class="form-control required" id="user-email" placeholder="Email Address" data-error="Please leave your email" required>
+                  <div class="help-block with-errors"></div>
+                </div>
+          </div>
+
+          <div class="col-md-6 contact-form">
+                <div class="form-group">
+                  <label for="message">Message:</label>
+                  <textarea class="form-control required" name="message" id="user-message" rows="4" placeholder="Message" data-error="Whats on your mind?" required></textarea>
+                  <div class="help-block with-errors"></div>
+                </div>
+              <button type="submit" name="submit" class="btn btn-default">Submit</button>
+          </div>
+
+      </form>
+    </div>
+  </div>
+
+</div><!--end contact-->
