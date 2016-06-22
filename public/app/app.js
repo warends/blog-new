@@ -1,6 +1,16 @@
 angular.module('willsBlog', ['ngResource', 'ngRoute']);
 
 angular.module('willsBlog').config(function($routeProvider, $locationProvider){
+
+  var routeRoleChecks = {
+    admin: {auth: function(mvAuth){
+        return mvAuth.authorizeCurrentUserForRoute('admin');
+    }},
+    user: {auth: function(mvAuth){
+        return mvAuth.authorizeAutheticatedUserForRoute();
+    }}
+  }
+
     $locationProvider.html5Mode(true);
 
     $routeProvider
@@ -10,14 +20,21 @@ angular.module('willsBlog').config(function($routeProvider, $locationProvider){
     .when('/account', {
       templateUrl: '/partials/login/login',
       controller: 'loginCtrl'})
+    .when('/signup', {
+      templateUrl: '/partials/login/signup',
+      controller: 'signupCtrl'})
+    .when('/newPost', {
+      templateUrl: '/partials/posts/newPost',
+      controller: 'postCtrl'})
+    .when('/profile', {
+      templateUrl: '/partials/admin/profile',
+      controller: 'profileCtrl',
+      resolve: routeRoleChecks.user
+    })
     .when('/admin/users', {
       templateUrl: '/partials/admin/users-list',
       controller: 'userListCtrl',
-      resolve: {
-          auth: function(mvAuth){
-            return mvAuth.authorizeCurrentUserForRoute('admin')
-          }
-        }
+      resolve: routeRoleChecks.admin
     });
 
 });//end config

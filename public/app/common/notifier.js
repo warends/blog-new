@@ -5,6 +5,10 @@ angular.module('willsBlog').factory('notifier', function(Toastr){
     notify: function(message){
       Toastr.success(message);
       console.log(message);
+    },
+    error: function(message){
+      Toastr.error(message);
+      console.log(message);
     }
   }
 });
