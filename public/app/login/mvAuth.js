@@ -15,10 +15,8 @@ angular.module('willsBlog').factory('mvAuth', function($http, identity, $q, mvUs
           angular.extend(user, response.data.user);
           identity.currentUser = user;
           deferred.resolve(true);
-
         } else {
           deferred.resolve(false);
-
         }
       });
 
