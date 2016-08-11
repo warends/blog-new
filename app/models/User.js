@@ -30,7 +30,7 @@ function createDefaultUser(){
     if(results.length === 0){
       var salt, hash;
       salt = encryption.createSalt();
-      hash = encryption.hashPwd(salt, 'admin');
+      hash = encryption.hashPwd(salt, 'wills817');
 
       User.create({
         firstName: 'Will',

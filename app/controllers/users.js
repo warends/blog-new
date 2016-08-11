@@ -21,14 +21,12 @@ exports.createUser = function(req, res, next) {
       res.status(400);
       return res.send({reason: err.toString()});
     }
-
     req.logIn(user, function(err){
       if(err) {return next(err);}
       res.send(user);
     });
 
   });
-
 
 };
 
@@ -51,5 +49,6 @@ exports.updateUser = function(req, res, next){
       res.status(400);
       return res.send({reason: err.toString()});
     }
-  })
-}
+      res.send(req.user);
+  });
+};

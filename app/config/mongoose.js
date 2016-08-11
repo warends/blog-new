@@ -1,5 +1,6 @@
 var mongoose = require('mongoose'),
     userModel = require('../models/User');
+    postModel = require('../models/Post');
 
 module.exports = function(config){
 
@@ -13,5 +14,6 @@ module.exports = function(config){
 
 
       userModel.createDefaultUser();
+      postModel.createDefaultPost();
 
 }

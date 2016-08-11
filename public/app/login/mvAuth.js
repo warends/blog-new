@@ -64,13 +64,13 @@ angular.module('willsBlog').factory('mvAuth', function($http, identity, $q, mvUs
 
        return deferred.promise;
     },
-    UpdateCurrentUser: function(newUserData){
+    updateCurrentUser: function(newUserData){
         var deferred = $q.defer();
         var clone = angular.copy(identity.currentUser);
         angular.extend(clone, newUserData);
         clone.$update().then(function(){
           identity.currentUser = clone;
-          deferred.resove();
+          deferred.resolve();
         }, function(response){
           deferred.reject(response.data.reason);
         });

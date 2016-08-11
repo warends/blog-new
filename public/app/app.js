@@ -23,6 +23,9 @@ angular.module('willsBlog').config(function($routeProvider, $locationProvider){
     .when('/signup', {
       templateUrl: '/partials/login/signup',
       controller: 'signupCtrl'})
+    .when('/blog', {
+      templateUrl: '/partials/blog/blog-list',
+      controller: 'blogListCtrl'})
     .when('/newPost', {
       templateUrl: '/partials/posts/newPost',
       controller: 'postCtrl'})
@@ -30,6 +33,10 @@ angular.module('willsBlog').config(function($routeProvider, $locationProvider){
       templateUrl: '/partials/admin/profile',
       controller: 'profileCtrl',
       resolve: routeRoleChecks.user
+    })
+    .when('/posts/:id', {
+      templateUrl: '/partials/blog/post-detail',
+      controller: 'postDetailCtrl'
     })
     .when('/admin/users', {
       templateUrl: '/partials/admin/users-list',

@@ -14,7 +14,7 @@ angular.module('willsBlog').controller('profileCtrl', function($scope, mvAuth, i
        newUserData.password = $scope.password;
       }
 
-      mvAuth.UpdateCurrentUser(newUserData)
+      mvAuth.updateCurrentUser(newUserData)
         .then(function(){
           notifier.notify('Your information has been updated');
         }, function(reason){
