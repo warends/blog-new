@@ -1,0 +1,124 @@
+
+/*LOGO*/
+.navbar-brand {
+	padding: 0;
+	margin: 0px;
+	background: url('../../img/WAD_Logo.png') no-repeat;
+	width: 240px;
+	height: 41px;
+	text-indent: -9999px;
+}
+
+/*NAV*/
+
+.navbar {
+	border: none;
+	background: none;
+	padding: 40px 0 60px 0;
+}
+.navbar-default .navbar-nav>li>a {
+	font-family: 'smoolthanregular', Helvetica, Arial;
+	font-size: 16px;
+	font-weight: 600;
+	text-transform: uppercase;
+	color: #f39c12;
+	padding: 11px 0;
+	text-align: center;
+}
+.navbar-default .navbar-nav>li>a:hover, .navbar-default .navbar-nav>li>a:focus{
+	color: #fff;
+}
+
+.navbar-toggle {
+	border: none;
+	margin-top:0;
+	margin-right: 0;
+	text-align: center;
+	width: 32px;
+	height: 32px;
+}
+.navbar-default .navbar-toggle .icon-bar{
+	background-color: #fff;
+}
+.navbar-default .navbar-toggle:hover, .navbar-default .navbar-toggle:focus {
+	background: none;
+}
+.navbar-default .navbar-collapse {
+	border: none;
+	background: rgba(44,62,80,0.8);
+	border-radius: 2px;
+	box-shadow: none;
+}
+.navbar-default .navbar-nav>.active>a, .navbar-default .navbar-nav>.active>a:hover, .navbar-default .navbar-nav>.active>a:focus {
+	border: none;
+	background: none;
+	box-shadow: none;
+	color: #fff;
+}
+.navbar.sticky {
+	background-color: rgba(44,62,80,0.8);
+	padding: 10px 0;
+	transition: all 0.4s ease;
+}
+.navbar-brand.sticky {
+	background: url(../../img/WAD_Logo.png) no-repeat;
+	height: 41px;
+	width: 220px;
+	margin: 0;
+}
+
+
+/*BANNER*/
+
+header {
+	//padding: 60px 0 180px 0;
+}
+header h1 {
+	padding-top: 100px;
+}
+#home {
+  padding-top: 240px;
+	background: #2c3e50 url('../../img/banner-small.png') no-repeat;
+	min-height: 600px;
+	margin-top: -100px;
+	background-size: cover;
+	background-attachment: fixed;
+	background-position: 50% 50%;
+  h1 {
+  	font-size: 42px;
+  	color: #fff;
+  	line-height: 50px;
+  	font-weight: 700;
+  	text-transform: none;
+  	margin: 0 0 40px 0;
+  }
+  h3 {
+ 	color: #fff;
+ 	font-weight: 300;
+ 	margin: 0 0 60px 0;
+ }
+ p {
+ 	color: #f39c12;
+ }
+ .lead {
+ 	margin-bottom: 40px;
+ }
+ .btn-default {
+ 	border: 1px solid #fff;
+ 	background: rgba(255,255,255,0.05);
+ 	color: #fff;
+ 	text-transform: uppercase;
+ 	font-size: 16px;
+ 	padding: 16px 30px;
+ }
+ .btn-default:hover {
+ 	background: rgba(255,255,255, 0.1);
+ 	color: #fff;
+ 	border: 1px solid #fff;
+ }
+
+}
+
+.container>.navbar-header, .container-fluid>.navbar-header, .container>.navbar-collapse, .container-fluid>.navbar-collapse {
+	margin: 0;
+}
