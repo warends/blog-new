@@ -1,6 +1,7 @@
 var auth = require('./auth'),
     users = require('../controllers/users'),
     posts = require('../controllers/posts'),
+    contact = require('../controllers/contact'),
     mongoose = require('mongoose');
 
 module.exports = function(app){
@@ -23,6 +24,8 @@ module.exports = function(app){
   });
 
   app.post('/login', auth.authenticate);
+
+  app.post('/contact-form', contact.sendMail);
 
   app.post('/logout', function (req, res) {
     req.logout();

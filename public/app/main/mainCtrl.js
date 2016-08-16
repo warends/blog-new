@@ -1,4 +1,4 @@
-angular.module('willsBlog').controller('mainCtrl', function($scope, $location, mvCachedPost){
+angular.module('willsBlog').controller('mainCtrl', function($scope, $location, mvCachedPost, $http, notifier){
   $scope.services = [
     { name: 'Web Design',
     svg: 'design-logo',
@@ -18,5 +18,24 @@ angular.module('willsBlog').controller('mainCtrl', function($scope, $location, m
   ];
 
   $scope.posts = mvCachedPost.query();
+
+  $scope.sendMail = function(){
+    var data =({
+      contactName : this.contactName,
+      contactCompany : this.contactCompany,
+      contactEmail : this.contactEmail,
+      contactMessage : this.contactMessage
+    });
+
+    $http.post('/contact-form', data)
+      .success(function(data, status, headers, config){
+        notifier.notify('Thank you for your message ' + data.contactName);
+      })
+      .error(function(data, status, headers, config){
+        notifier.notify('There was an error processing your request. Please try again');
+      });
+
+
+  }
 
 });
