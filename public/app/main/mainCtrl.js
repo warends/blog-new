@@ -1,4 +1,4 @@
-angular.module('willsBlog').controller('mainCtrl', function($scope, $location, mvCachedPost, $http, notifier){
+angular.module('willsBlog').controller('mainCtrl', function($scope, $location, mvCachedPost, $http, notifier, TwitterService){
   $scope.services = [
     { name: 'Web Design',
     svg: 'design-logo',
@@ -34,8 +34,23 @@ angular.module('willsBlog').controller('mainCtrl', function($scope, $location, m
       .error(function(data, status, headers, config){
         notifier.notify('There was an error processing your request. Please try again');
       });
-
-
   }
+
+  $scope.getUser = function(username){
+		// console.log("username entered ", username);
+		TwitterService.getUser(username)
+		    .then(function(data){
+		        $scope.twitterErrors = undefined;
+	        	$scope.tweets = JSON.parse(data.result.userData);
+						console.log($scope.tweets);
+		    })
+		    .catch(function(error){
+		        console.error('there was an error retrieving data: ', error);
+		        $scope.twitterErrors = error.error;
+		    })
+	}
+
+  $scope.getUser();
+
 
 });

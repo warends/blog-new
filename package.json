@@ -26,7 +26,8 @@
     "nodemailer": "^2.5.0",
     "passport": "^0.3.2",
     "passport-local": "^1.0.0",
-    "twitter": "^1.4.0"
+    "twitter": "^1.4.0",
+    "twitter-js-client": "0.0.5"
   },
   "devDependencies": {
     "gulp": "^3.9.1",

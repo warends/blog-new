@@ -2,6 +2,7 @@ var auth = require('./auth'),
     users = require('../controllers/users'),
     posts = require('../controllers/posts'),
     contact = require('../controllers/contact'),
+    twitter = require('./twitter'),
     mongoose = require('mongoose');
 
 module.exports = function(app){
@@ -26,6 +27,8 @@ module.exports = function(app){
   app.post('/login', auth.authenticate);
 
   app.post('/contact-form', contact.sendMail);
+
+  app.post('/twitter/user', twitter.getUserData);
 
   app.post('/logout', function (req, res) {
     req.logout();
