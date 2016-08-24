@@ -1,14 +1,14 @@
 <div class="container">
   <div class="row">
     <div class="col-sm-12">
-      <form name="signupForm">
+      <form name="newPostForm">
         <div class="form-group">
           <label for="title">Title:</label>
           <input type="text" name="title" ng-model="title" class="form-control" required/>
         </div>
         <div class="form-group">
           <label for="categories">Categories:</label>
-          <input type="text" name="categories" ng-model="categories" class="form-control" required/>
+          <input type="text" name="categories" ng-model="categories" class="form-control"/>
         </div>
         <div class="form-group">
           <label for="headerImage">Header Image</label>
@@ -16,7 +16,11 @@
           <p class="help-block">Example block-level help text here.</p>
         </div>
         <div class="form-group">
-          <label for="username">Body:</label>
+          <label for="excerpt">Excerpt:</label>
+          <textarea rows="4" name="body" ng-model="excerpt" class="form-control" required/></textarea>
+        </div>
+        <div class="form-group">
+          <label for="body">Body:</label>
           <textarea rows="8" name="body" ng-model="body" class="form-control" required/></textarea>
         </div>
         <div class="form-group">
@@ -24,7 +28,7 @@
           <input type="text" name="author" ng-model="author" class="form-control" required/>
         </div>
         <div class="form-group">
-          <button class="btn btn-primary" ng-click="signup()" ng-disabled="signupForm.$invalid">Submit</button>
+          <button class="btn btn-primary" ng-click="createNewPost()" ng-disabled="newPostForm.$invalid">Submit</button>
           <a href="/"><button class="btn btn-danger" ng-click="cancel()">Cancel</button></a>
         </div>
       </form>

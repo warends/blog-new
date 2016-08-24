@@ -1,6 +1,6 @@
 angular.module('willsBlog', ['ngResource', 'ngRoute']);
 
-angular.module('willsBlog').config(function($routeProvider, $locationProvider){
+angular.module('willsBlog').config(['$routeProvider', '$locationProvider', function($routeProvider, $locationProvider){
 
   var routeRoleChecks = {
     admin: {auth: function(mvAuth){
@@ -16,19 +16,25 @@ angular.module('willsBlog').config(function($routeProvider, $locationProvider){
     $routeProvider
     .when('/', {
       templateUrl: '/partials/main/main',
-      controller: 'mainCtrl'})
+      controller: 'mainCtrl'
+    })
     .when('/account', {
       templateUrl: '/partials/login/login',
-      controller: 'loginCtrl'})
+      controller: 'loginCtrl'
+    })
     .when('/signup', {
       templateUrl: '/partials/login/signup',
-      controller: 'signupCtrl'})
+      controller: 'signupCtrl'
+    })
     .when('/blog', {
       templateUrl: '/partials/blog/blog-list',
-      controller: 'blogListCtrl'})
-    .when('/newPost', {
-      templateUrl: '/partials/posts/newPost',
-      controller: 'postCtrl'})
+      controller: 'blogListCtrl'
+    })
+    .when('/admin/new-post', {
+      templateUrl: '/partials/blog/new-post',
+      controller: 'postEditCtrl',
+      resolve: routeRoleChecks.admin
+    })
     .when('/profile', {
       templateUrl: '/partials/admin/profile',
       controller: 'profileCtrl',
@@ -44,7 +50,7 @@ angular.module('willsBlog').config(function($routeProvider, $locationProvider){
       resolve: routeRoleChecks.admin
     });
 
-});//end config
+}]);//end config
 
 angular.module('willsBlog').run(function($rootScope, $location){
   $rootScope.$on('$routeChangeError', function(evt, current, previous, rejection) {

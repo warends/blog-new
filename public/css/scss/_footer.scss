@@ -1,9 +1,21 @@
 /*footer*/
 
 footer {
-	padding: 60px 0;
 	font-size: 13px;
+	.copywrite {
+		height: 100px;
+		p{
+			position: relative;
+			top: 50%;
+			transform: translateY(-50%);
+		}
+	}
 }
+
+	.timeline-Header {
+		display: none;
+	}
+
 .icon-sprite.sprite-ig {
 	background-position: -120px -40px;
 }

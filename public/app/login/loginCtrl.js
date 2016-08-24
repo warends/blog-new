@@ -1,4 +1,4 @@
-angular.module('willsBlog').controller('loginCtrl', function($scope, $http, identity, notifier, mvAuth, $location){
+angular.module('willsBlog').controller('loginCtrl', ['$scope', '$http', 'identity', 'notifier', 'mvAuth', '$location', function($scope, $http, identity, notifier, mvAuth, $location){
 
     $scope.identity = identity;
 
@@ -21,4 +21,4 @@ angular.module('willsBlog').controller('loginCtrl', function($scope, $http, iden
         $location.path('/');
       });
     }
-});
+}]);

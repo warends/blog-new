@@ -1,4 +1,4 @@
-angular.module('willsBlog').controller('mainCtrl', function($scope, $location, mvCachedPost, $http, notifier, TwitterService){
+angular.module('willsBlog').controller('mainCtrl', ['$scope', '$location', 'mvCachedPost', 'notifier' ,'TwitterService', function($scope, $location, mvCachedPost, notifier, TwitterService){
   $scope.services = [
     { name: 'Web Design',
     svg: 'design-logo',
@@ -42,7 +42,7 @@ angular.module('willsBlog').controller('mainCtrl', function($scope, $location, m
 		    .then(function(data){
 		        $scope.twitterErrors = undefined;
 	        	$scope.tweets = JSON.parse(data.result.userData);
-						console.log($scope.tweets);
+						// console.log($scope.tweets);
 		    })
 		    .catch(function(error){
 		        console.error('there was an error retrieving data: ', error);
@@ -53,4 +53,4 @@ angular.module('willsBlog').controller('mainCtrl', function($scope, $location, m
   $scope.getUser();
 
 
-});
+}]);

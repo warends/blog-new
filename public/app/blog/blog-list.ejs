@@ -2,9 +2,9 @@
   <div class="row col-xs-12">
     <div class="title">New Posts</div>
   </div>
-  <div class="row" ng-repeat="post in posts | filter:searchText | orderBy:sortOrder">
+  <div class="row">
 
-    <div class="col-sm-8">
+    <div class="col-sm-8" ng-repeat="post in posts | filter:searchText | orderBy:sortOrder">
       <h2><a href ="/posts/{{post._id}}">{{post.title}}</a></h2>
       <h5>{{post.categories}}</h5>
       <h6>{{post.postedDate | date}}</h6>

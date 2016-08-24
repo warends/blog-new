@@ -1,4 +1,4 @@
-angular.module('willsBlog').factory('mvCachedPost', function(mvPost){
+angular.module('willsBlog').factory('mvCachedPost', ['mvPost', function(mvPost){
   var postList;
 
   return {
@@ -11,4 +11,4 @@ angular.module('willsBlog').factory('mvCachedPost', function(mvPost){
     }
   }
 
-});
+}]);

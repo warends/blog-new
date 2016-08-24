@@ -6298,8 +6298,15 @@ header h1 {
 
 /*CONTACT*/
 .blurb {
-  background: #2c3e50;
-  padding: 60px 0; }
+  background: #2c3e50; }
+  .blurb .row {
+    height: 360px; }
+  .blurb .headshot, .blurb .bio {
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%); }
+  .blurb .twitter {
+    padding: 30px 0; }
 
 .blurb h6 {
   color: #95a5a6;
@@ -6318,8 +6325,16 @@ header h1 {
 
 /*footer*/
 footer {
-  padding: 60px 0;
   font-size: 13px; }
+  footer .copywrite {
+    height: 100px; }
+    footer .copywrite p {
+      position: relative;
+      top: 50%;
+      transform: translateY(-50%); }
+
+.timeline-Header {
+  display: none; }
 
 .icon-sprite.sprite-ig {
   background-position: -120px -40px; }

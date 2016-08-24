@@ -1,4 +1,4 @@
-angular.module('willsBlog').controller('signupCtrl', function($scope, mvAuth, notifier, $location){
+angular.module('willsBlog').controller('signupCtrl', ['$scope', 'mvAuth', 'notifier', '$location', function($scope, mvAuth, notifier, $location){
     $scope.signup = function(){
 
       var newUserData = {
@@ -15,10 +15,10 @@ angular.module('willsBlog').controller('signupCtrl', function($scope, mvAuth, no
         notifier.error(reason);
       });
 
-    }
+    };
 
     $scope.cancel = function(){
       $location.path('/');
-    }
+    };
 
-});
+}]);

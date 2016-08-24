@@ -1,4 +1,4 @@
-angular.module('willsBlog').controller('blogListCtrl', function($scope, mvCachedPost){
+angular.module('willsBlog').controller('blogListCtrl', ['$scope', 'mvCachedPost', function($scope, mvCachedPost){
   $scope.posts = mvCachedPost.query();
 
   $scope.sortOptions= [
@@ -6,4 +6,4 @@ angular.module('willsBlog').controller('blogListCtrl', function($scope, mvCached
     {value: 'Published', text: 'Published Date'}];
 
   $scope.sortOrder = $scope.sortOptions[0].value;
-});
+}]);

@@ -18,6 +18,7 @@ module.exports = function(app){
   app.put('/api/users', users.updateUser);
 
   app.get('/api/posts', posts.getPosts);
+  app.post('/api/posts', posts.createPost);
   app.get('/api/posts/:id', posts.getPostById);
 
   app.get('/partials/*', function(req, res){

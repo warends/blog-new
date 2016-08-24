@@ -1,4 +1,4 @@
-angular.module('willsBlog').factory('identity', function($window, mvUser){
+angular.module('willsBlog').factory('identity', ['$window', 'mvUser', function($window, mvUser){
 
   var currentUser;
   if(!!$window.bootstrappedUserObject) {
@@ -17,4 +17,4 @@ angular.module('willsBlog').factory('identity', function($window, mvUser){
 
   }
 
-});
+}]);

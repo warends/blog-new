@@ -12,3 +12,16 @@ exports.getPostById = function(req, res){
 
   });
 };
+
+exports.createPost = function(req, res, next) {
+
+  var postData = req.body;
+  Post.create(postData, function(err, post){
+    if(err) {
+      res.status(400);
+      return res.send({reason: err.toString()});
+    }
+    //res.send(post);
+  });
+
+};

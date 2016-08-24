@@ -1,4 +1,4 @@
-angular.module('willsBlog').factory('TwitterService', function($http, $q){
+angular.module('willsBlog').factory('TwitterService', ['$http', '$q', function($http, $q){
 
   var getUser = function(username){
     var d = $q.defer();
@@ -16,4 +16,4 @@ angular.module('willsBlog').factory('TwitterService', function($http, $q){
     return {
       getUser : getUser
     }
-});
+}]);
