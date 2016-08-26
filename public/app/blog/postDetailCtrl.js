@@ -1,4 +1,5 @@
 angular.module('willsBlog').controller('postDetailCtrl', ['$scope', 'mvCachedPost', '$routeParams', function($scope, mvCachedPost, $routeParams){
+  
   mvCachedPost.query().$promise.then(function(collection){
     collection.forEach(function(post){
       if(post._id === $routeParams.id){

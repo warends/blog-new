@@ -1,5 +1,7 @@
-angular.module('willsBlog').controller('blogListCtrl', ['$scope', 'mvCachedPost', function($scope, mvCachedPost){
+angular.module('willsBlog').controller('blogListCtrl', ['$scope', 'mvCachedPost', 'identity', function($scope, mvCachedPost, identity){
   $scope.posts = mvCachedPost.query();
+
+  $scope.identity = identity;
 
   $scope.sortOptions= [
     {value: 'Title', text: 'Sort by Title'},

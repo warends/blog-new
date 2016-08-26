@@ -1,4 +1,4 @@
-angular.module('willsBlog').controller('postEditCtrl', ['$scope', 'notifier', 'mvPost', '$q', '$location', function($scope, notifier, mvPost, $q, $location){
+angular.module('willsBlog').controller('newPostCtrl', ['$scope', 'notifier', 'mvPost', '$q', '$location', function($scope, notifier, mvPost, $q, $location){
 
     $scope.createNewPost = function(){
 

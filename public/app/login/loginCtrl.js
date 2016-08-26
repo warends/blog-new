@@ -2,7 +2,7 @@ angular.module('willsBlog').controller('loginCtrl', ['$scope', '$http', 'identit
 
     $scope.identity = identity;
 
-    $scope.signin = function(username, password){
+    $scope.signIn = function(username, password){
       mvAuth.authenticateUser(username, password).then(function(success){
         if(success){
           notifier.notify('You have signed in');

@@ -9,6 +9,7 @@
       <h5>{{post.categories}}</h5>
       <h6>{{post.postedDate | date}}</h6>
       <p>{{post.excerpt}}</p>
+      <p ng-show="identity.currentUser.isAdmin()"><a href="/edit/posts/{{post._id}}">Edit</a></p>
     </div>
 
     <div class="col-sm-4">

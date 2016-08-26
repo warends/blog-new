@@ -64,6 +64,7 @@ angular.module('willsBlog').factory('mvAuth', ['$http', 'identity', '$q', 'mvUse
 
        return deferred.promise;
     },
+
     updateCurrentUser: function(newUserData){
         var deferred = $q.defer();
         var clone = angular.copy(identity.currentUser);

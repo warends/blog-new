@@ -1,4 +1,4 @@
-angular.module('willsBlog', ['ngResource', 'ngRoute']);
+angular.module('willsBlog', ['ngResource', 'ngRoute', 'ui.bootstrap']);
 
 angular.module('willsBlog').config(['$routeProvider', '$locationProvider', function($routeProvider, $locationProvider){
 
@@ -32,7 +32,7 @@ angular.module('willsBlog').config(['$routeProvider', '$locationProvider', funct
     })
     .when('/admin/new-post', {
       templateUrl: '/partials/blog/new-post',
-      controller: 'postEditCtrl',
+      controller: 'newPostCtrl',
       resolve: routeRoleChecks.admin
     })
     .when('/profile', {
@@ -43,6 +43,11 @@ angular.module('willsBlog').config(['$routeProvider', '$locationProvider', funct
     .when('/posts/:id', {
       templateUrl: '/partials/blog/post-detail',
       controller: 'postDetailCtrl'
+    })
+    .when('/edit/posts/:id', {
+      templateUrl: '/partials/blog/edit-post',
+      controller: 'editPostCtrl',
+      resolve: routeRoleChecks.admin
     })
     .when('/admin/users', {
       templateUrl: '/partials/admin/users-list',
