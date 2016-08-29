@@ -2,7 +2,7 @@
 
 <header class="banner">
 
-    <nav class="navbar sticky navbar-default navbar-fixed-top" role="navigation">
+    <nav class="navbar sticky navbar-default navbar-fixed-top" role="navigation" ng-controller="navCtrl">
         <div class="container">
 
   <!-- Brand and toggle get grouped for better mobile display -->
@@ -21,11 +21,11 @@
 
         <ul class="nav navbar-nav navbar-right">
           <li class="active"><a href="/">Home</a></li>
-          <li><a href="#about">About</a></li>
-          <li><a href="#work">Projects</a></li>
-          <li><a href="#services">Services</a></li>
+          <li><a ng-click="linkTo('/#about')">About</a></li>
+          <li><a ng-click="linkTo('/#work')">Projects</a></li>
+          <li><a ng-click="linkTo('/#services')">Services</a></li>
           <li><a href="/blog">Blog</a></li>
-          <li><a href="#contact">Contact</a></li>
+          <li><a ng-click="linkTo('/#contact')">Contact</a></li>
         </ul>
       </div><!-- /.navbar-collapse -->
     </div> <!--/.container-fluid -->

@@ -57,10 +57,12 @@ angular.module('willsBlog').config(['$routeProvider', '$locationProvider', funct
 
 }]);//end config
 
-angular.module('willsBlog').run(function($rootScope, $location){
+angular.module('willsBlog').run(function($rootScope, $location, $anchorScroll, $routeParams){
+
   $rootScope.$on('$routeChangeError', function(evt, current, previous, rejection) {
       if(rejection === 'not authorized') {
         $location.path('/');
       }
   });
+
 });
