@@ -24,10 +24,12 @@
 
                 </div>
                 <div class="btn-trigger btn-group">
-                    <a href="http://willarendsdesign.com/img/gallery/adiplayer_mockup.jpg" data-toggle="lightbox" data-gallery="hiddenimages" class="btn svg web-link">Link</a>
-
+                    <a ng-click="toggleAdi()" class="btn svg web-link">Link</a>
                 </div>
               </div><!-- end caption -->
+              <global-modal show='adiShow'>
+                <img class="img-responsive" src="img/gallery/adiplayer_mockup.jpg" />
+              </global-modal>
           </div>
 
         </div><!--end gallery-Inner-->
@@ -42,10 +44,13 @@
 
               </div>
               <div class="btn-trigger btn-group">
-                  <a href="http://willarendsdesign.com/img/gallery/crown-offroad-mockup.jpg" data-toggle="lightbox" data-gallery="hiddenimages" class="btn svg web-link">Link</a>
+                  <a ng-click="toggleCrown()" class="btn svg web-link">Link</a>
 
               </div>
             </div><!-- end caption -->
+            <global-modal show='crownShow'>
+              <img class="img-responsive" src="img/gallery/crown-offroad-mockup.jpg" />
+            </global-modal>
           </div>
         </div><!--end gallery-Inner-->
 
@@ -59,10 +64,13 @@
 
               </div>
               <div class="btn-trigger btn-group">
-                  <a href="img/gallery/broadband.jpg" data-toggle="lightbox" data-gallery="hiddenimages" class="btn svg web-link">Link</a>
+                  <a ng-click="toggleBroad()" class="btn svg web-link">Link</a>
 
               </div>
             </div><!-- end caption -->
+            <global-modal show='broadShow'>
+              <img class="img-responsive" src="img/gallery/broadband.jpg" />
+            </global-modal>
           </div>
         </div><!--end gallery-Inner-->
 
@@ -75,10 +83,13 @@
 
               </div>
               <div class="btn-trigger btn-group">
-                  <a href="http://willarendsdesign.com/img/gallery/greater-boston.jpg" data-toggle="lightbox" data-gallery="hiddenimages" class="btn svg web-link">Link</a>
+                  <a ng-click="toggleGB()" class="btn svg web-link">Link</a>
 
               </div>
             </div><!-- end caption -->
+            <global-modal show='gbShow'>
+              <img class="img-responsive" src="img/gallery/greater-boston.jpg" />
+            </global-modal>
           </div>
         </div><!--end gallery-Inner-->
 

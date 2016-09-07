@@ -16,15 +16,16 @@ angular.module('willsBlog').factory('mvPost', ['$resource', '$q', function($reso
     return deferred.promise;
   }
 
-  PostResource.updateCurrentPost = function(newPostData){
-    var deferred = $q.defer();
-    newPostData.$update().then(function(){
-      deferred.resolve();
-    }, function(response){
-      deferred.reject(response.data.reason);
-    });
-    return deferred.promise;
-  }
+  // PostResource.prototype.updateCurrentPost = function(newPostData){
+  //   var dfd = $q.defer();
+  //   var editedPost = newPostData;
+  //   editedPost.$update().then(function(){
+  //     dfd.resolve();
+  //   }, function(response){
+  //     dfd.reject(response.data.reason);
+  //   });
+  //   return dfd.promise;
+  // }
 
   return PostResource;
 }]);

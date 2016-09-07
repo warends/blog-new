@@ -19,6 +19,14 @@
 	margin-bottom: 60px;
 
 }
+.more-details {
+	height: 100px;
+  transition: height .7s;
+  overflow: hidden;
+	&.hidden-stuff{
+		height: 0px;
+	}
+}
 .svg {
 	height: 40px;
 	width: 40px;
@@ -43,7 +51,6 @@
 }
 
 .more-services {
-	display: none;
 	padding-top: 20px;
 }
 
@@ -67,7 +74,6 @@
 .gallery-inner img{
 	margin: 0 auto;
 	padding: 0;
-	opacity: 0.6;
 }
 .gallery-inner .caption h4 {
 	color: #fff;

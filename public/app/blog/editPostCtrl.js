@@ -1,4 +1,4 @@
-angular.module('willsBlog').controller('editPostCtrl', ['$scope', 'notifier', 'mvPost', '$q', '$location', function($scope, notifier, mvPost, $q, $location){
+angular.module('willsBlog').controller('editPostCtrl', ['$scope', 'notifier', 'mvPost', 'mvSavePost', '$q', '$location', '$routeParams', function($scope, notifier, mvPost, mvSavePost, $q, $location, $routeParams){
 
   $scope.post = mvPost.get({ _id: $routeParams.id });
 
@@ -12,7 +12,9 @@ angular.module('willsBlog').controller('editPostCtrl', ['$scope', 'notifier', 'm
       author: $scope.post.author
     }
 
-    mvPost.updateCurrentPost(newPostData)
+    console.log(newPostData);
+
+    mvSavePost.updateCurrentPost(newPostData)
       .then(function(){
         notifier.notify('Your post has been updated');
       }, function(response){

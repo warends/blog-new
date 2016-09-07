@@ -20,7 +20,7 @@ module.exports = function(app){
   app.get('/api/posts', posts.getPosts);
   app.post('/api/posts', posts.createPost);
   app.get('/api/posts/:id', posts.getPostById);
-  app.get('/api/edit/posts/:id', posts.getPostById);
+  app.put('/api/posts/:id', posts.updatePost);
 
   app.get('/partials/*', function(req, res){
       res.render('../../public/app/' + req.params[0]);

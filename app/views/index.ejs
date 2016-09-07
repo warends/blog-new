@@ -39,14 +39,52 @@
 </section>
 
 
-<footer>
+<footer ng-controller="loginCtrl">
   <div class="container">
     <div class="row">
           <div class="col-md-6">
             <div class="copywrite">
-            <p>&copy; 2015 Will Arends Design. All Rights Reserved | <a href="/account">Account</a> | <a href="/signup">Signup</a> </p>
+            <p>&copy; 2015 Will Arends Design. All Rights Reserved | <a ng-click="toggleModal()">Account</a> | <a href="/signup">Signup</a> </p>
             </div>
           </div>
     </div>
   </div>
+
+  <global-modal show='modalShown' width='500px' height='40%'>
+    <h3 class="text-center">Sign In</h3>
+    <form id="sign-in" ng-hide="identity.isAuthenticated()">
+      <div class="form-group">
+        <input class="form-control" placeholder="Username" ng-model="username" />
+      </div>
+
+      <div class="form-group">
+        <input class="form-control" placeholder="Password" ng-model="password" type="password" />
+      </div>
+      <button class="btn btn-primary pull-right" ng-click="signIn(username, password)">Sign In</button>
+    </form>
+  </global-modal>
+
+  <!-- <div>
+    <script type="text/ng-template" id="myModalContent.html">
+
+        <div class="modal-header">
+            <h3 class="modal-title" id="modal-title">Login</h3>
+        </div>
+
+        <div class="modal-body" id="modal-body">
+          <form>
+            <div class="form-group">
+              <input class="form-control" placeholder="Username" ng-model="username" />
+            </div>
+
+            <div class="form-group">
+              <input class="form-control" placeholder="Password" ng-model="password" type="password" />
+            </div>
+            <button class="btn btn-primary" ng-click="signIn(username, password)">Sign In</button>
+          </form>
+        </div>
+
+    </script>
+  </div> -->
+
 </footer>

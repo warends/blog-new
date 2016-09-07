@@ -48,9 +48,30 @@ angular.module('willsBlog').controller('mainCtrl', ['$scope', '$location', 'mvCa
 		        console.error('there was an error retrieving data: ', error);
 		        $scope.twitterErrors = error.error;
 		    })
-	}
+	};
 
-  $scope.getUser();
+  $scope.adiShow = false;
+  $scope.toggleAdi = function() {
+    $scope.adiShow = !$scope.adiShow;
+  };
+
+  $scope.crownShow = false;
+  $scope.toggleCrown = function() {
+    $scope.crownShow = !$scope.crownShow;
+  };
+
+  $scope.broadShow = false;
+  $scope.toggleBroad = function() {
+    $scope.broadShow = !$scope.broadShow;
+  };
+
+  $scope.gbShow = false;
+  $scope.toggleGB = function() {
+    $scope.gbShow = !$scope.gbShow;
+  };
+
+  //$scope.getUser();
+
 
 
 }]);

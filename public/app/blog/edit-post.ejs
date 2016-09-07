@@ -1,10 +1,10 @@
 <div class="container">
   <div class="row">
     <div class="col-sm-12">
-      <form name="newPostForm">
+      <form name="editPostForm">
         <div class="form-group">
           <label for="title">Title:</label>
-          <input type="text" name="title" ng-model="post.title" class="form-control" required/>
+          <input type="text" name="title" ng-model="post.title" class="form-control" />
         </div>
         <div class="form-group">
           <label for="categories">Categories:</label>
@@ -17,18 +17,18 @@
         </div>
         <div class="form-group">
           <label for="excerpt">Excerpt:</label>
-          <textarea rows="4" name="body" ng-model="post.excerpt" class="form-control" required/></textarea>
+          <textarea rows="4" name="body" ng-model="post.excerpt" class="form-control" /></textarea>
         </div>
         <div class="form-group">
           <label for="body">Body:</label>
-          <textarea rows="8" name="body" ng-model="post.body" class="form-control" required/></textarea>
+          <textarea rows="8" name="body" ng-model="post.body" class="form-control" /></textarea>
         </div>
         <div class="form-group">
           <label for="author">Author:</label>
-          <input type="text" name="author" ng-model="post.author" class="form-control" required/>
+          <input type="text" name="author" ng-model="post.author" class="form-control" />
         </div>
         <div class="form-group">
-          <button class="btn btn-primary" ng-click="updatePost()" ng-disabled="newPostForm.$invalid">Submit</button>
+          <button class="btn btn-primary" ng-click="updatePost()" ng-disabled="editPostForm.$invalid">Submit</button>
           <a href="/"><button class="btn btn-danger" ng-click="cancel()">Cancel</button></a>
         </div>
       </form>
