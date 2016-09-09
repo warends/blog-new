@@ -1,1 +1,20 @@
+//   Media Queries
+//   EXAMPLE: use the large breakpoint media query
+//     @include mq($L) {}
+@mixin mq($media-query) {
+  @media ($media-query) { @content; }
+}
+
+$breakpoint-s: 768px;
+$breakpoint-m: 992px;
+$breakpoint-l: 1200px;
+
+
+// Media Queries
+$S: 'min-width:'+ $breakpoint-s;
+$M: 'min-width:'+ $breakpoint-m;
+$L: 'min-width:'+ $breakpoint-l;
+
+
 $blue: #3498db;
+$light-grey: #edf1f4;

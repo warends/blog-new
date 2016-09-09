@@ -54,3 +54,18 @@ a:hover, a:focus {
 section.content {
   padding-top: 100px;
 }
+.padded {
+  padding: 1em;
+}
+.padded-vertical{
+  padding: 1em 0;
+}
+.padded-horizontal{
+  padding: 0 1em;
+}
+.padded-2x{
+  padding: 2em;
+}
+.padded-vert-2x{
+  padding: 2em 0;
+}

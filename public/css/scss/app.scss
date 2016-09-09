@@ -207,7 +207,7 @@
 		margin-top: 120px;
 	}
 	.heading {
-		padding: 120px 0;
+		padding: 3em 0;
 	}
 	.testimonial .heading {
 		padding-bottom: 60px;
@@ -225,7 +225,7 @@
 	}
 	#carousel-creative .carousel-indicators {
 		text-align: right;
-		margin-bottom: 144px;
+		margin-top: 144px;
 	}
 	#carousel-creative .item {
 		padding-top: 0;
@@ -242,13 +242,10 @@
 	#carousel-testimonials .carousel-indicators li.active {
 		opacity: 1;
 	}
-	#carousel-testimonials blockquote {
-		margin-top: 40px;
-	}
 	#carousel-testimonials blockquote p {
 		padding: 61px 30px 0 30px;
 	}
 	.testimonial, .call-to-action {
-		padding-bottom: 120px;
+		padding-bottom: 2em;
 	}
 }
