@@ -3,7 +3,7 @@
     <div class="col-xs-12 post-detials">
       <h1>{{post.title}}</h1>
       <h6>{{post.postedDate | date}}</h6>
-      <h6 ng-repeat="cat in categories">{{cat}}</h6>
+      <h5 class="categories" ng-repeat="cat in post.categories">{{cat}},</h5>
     </div>
   </div>
   <div class="row">

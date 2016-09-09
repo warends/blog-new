@@ -1,4 +1,4 @@
-angular.module('willsBlog', ['ngResource', 'ngRoute', 'ui.bootstrap']);
+angular.module('willsBlog', ['ngResource', ,'ngAnimate', 'ngRoute', 'ui.bootstrap']);
 
 angular.module('willsBlog').config(['$routeProvider', '$locationProvider', function($routeProvider, $locationProvider){
 

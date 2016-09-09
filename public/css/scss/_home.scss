@@ -27,6 +27,10 @@
 		height: 0px;
 	}
 }
+
+.carousel-inner {
+ 	position: absolute;
+}
 .svg {
 	height: 40px;
 	width: 40px;
@@ -141,6 +145,9 @@
 .creative-process {
 	margin: 0 0 60px 0;
 }
+.carousel {
+	margin-bottom: 200px;
+}
 .carousel-indicators {
 	position: absolute;
 	bottom: 100%;
@@ -157,7 +164,7 @@
 	display: inline-block;
 	width: auto;
 	height: auto;
-	margin: 0 0 0 -6px;
+	margin: 0;
 	text-indent: 0;
 	cursor: pointer;
 	background-color: #000;
@@ -193,7 +200,6 @@
 	border-color: #3498db;
 	color: #3498db;
 	background: transparent;
-	margin: 0 0 0 -6px;
 	position: relative;
 	z-index: 10;
 }

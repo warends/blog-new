@@ -50,9 +50,9 @@ angular.module('willsBlog').controller('mainCtrl', ['$scope', '$location', 'mvCa
 		    })
 	};
 
-  $scope.adiShow = false;
-  $scope.toggleAdi = function() {
-    $scope.adiShow = !$scope.adiShow;
+  $scope.tenShow = false;
+  $scope.toggleTen = function() {
+    $scope.tenShow = !$scope.tenShow;
   };
 
   $scope.crownShow = false;
