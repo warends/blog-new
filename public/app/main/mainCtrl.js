@@ -1,14 +1,32 @@
 angular.module('willsBlog').controller('mainCtrl', ['$scope', '$location', 'mvCachedPost', 'notifier' ,'TwitterService', function($scope, $location, mvCachedPost, notifier, TwitterService){
+
+  if($location.path() === '/'){
+    const nav = angular.element('.navbar-brand');
+    const bannerLogo = angular.element('.square-logo');
+    const contact = angular.element('.contact-link');
+    $(window).scroll(function(){
+      if($(this).scrollTop() > 40){
+        nav.addClass('show-logo').removeClass('hide-logo');
+        bannerLogo.addClass("hide-logo").removeClass('show-logo');
+        contact.addClass("hide-logo").removeClass('show-logo');
+      } else {
+        nav.removeClass('show-logo').addClass('hide-logo');
+        bannerLogo.removeClass("hide-logo").addClass('show-logo');
+        contact.removeClass("hide-logo").addClass('show-logo');
+      }
+    });
+  }
+
   $scope.services = [
+    { name: 'Development',
+    svg: 'dev-logo',
+    description: 'Customized and reusable code using the most up to date HTML5, CSS3 and Javascript framworks. Options range from static sites, content managed sites, and ecommerce stores.',
+    more: 'Development Skills include HTML5, CSS, Javascript, Angular, Backbone, Node, Express, Boostrap and more.' },
+
     { name: 'Web Design',
     svg: 'design-logo',
     description: 'Creating an excellent user experience through clean, simple and thoroughly crafted design. Collaboration with clients during design process ensures a superb finished project.',
     more: 'Services include wire frames, photoshop mockups, logo design, and company branding.' },
-
-    { name: 'Development',
-    svg: 'dev-logo',
-    description: 'Customized and reusable code using the most up to date HTML5, CSS3 and Javascript. Options range from static sites, content managed sites, and ecommerce stores.',
-    more: 'Development Skills include HTML5, CSS, Sass, Javascript, Jquery, Boostrap, WordPress, Magento and more.' },
 
     { name: 'Support',
     svg: 'sup-logo',
@@ -37,7 +55,6 @@ angular.module('willsBlog').controller('mainCtrl', ['$scope', '$location', 'mvCa
   }
 
   $scope.getUser = function(username){
-		// console.log("username entered ", username);
 		TwitterService.getUser(username)
 		    .then(function(data){
 		        $scope.twitterErrors = undefined;

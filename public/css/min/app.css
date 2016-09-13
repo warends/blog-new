@@ -5816,13 +5816,36 @@ button.close {
 
 @font-face {
   font-family: 'smoolthanregular';
-  src: url("../fonts/Smoolthan/smoolthan_regular-webfont.eot");
-  src: url("../fonts/Smoolthan/smoolthan_regular-webfont.eot?#iefix") format("embedded-opentype"), url("../fonts/Smoolthan/smoolthan_regular-webfont.woff2") format("woff2"), url("../fonts/Smoolthan/smoolthan_regular-webfont.woff") format("woff"), url("../fonts/Smoolthan/smoolthan_regular-webfont.ttf") format("truetype"), url("../fonts/Smoolthan/smoolthan_regular-webfont.svg#smoolthanregular") format("svg");
+  src: url("../fonts/Smoolthan/smoolthan_regular-webfont.woff2") format("woff2"), url("../fonts/Smoolthan/smoolthan_regular-webfont.woff") format("woff");
+  font-weight: normal;
+  font-style: normal; }
+
+@font-face {
+  font-family: 'threeReg';
+  src: url("../fonts/Three/three_regular-webfont.woff2") format("woff2"), url("../fonts/Three/three_regular-webfont.woff") format("woff");
+  font-weight: normal;
+  font-style: normal; }
+
+@font-face {
+  font-family: 'threeLight';
+  src: url("../fonts/Three/three_light-webfont.woff2") format("woff2"), url("../fonts/Three/three_light-webfont.woff") format("woff");
+  font-weight: normal;
+  font-style: normal; }
+
+@font-face {
+  font-family: 'threeBlack';
+  src: url("../fonts/Three/three_black-webfont.woff2") format("woff2"), url("../fonts/Three/three_black-webfont.woff") format("woff");
+  font-weight: normal;
+  font-style: normal; }
+
+@font-face {
+  font-family: 'arizonia';
+  src: url("../fonts/Arizona/arizonia-regular-webfont.woff2") format("woff2"), url("../fonts/Arizona/arizonia-regular-webfont.woff") format("woff");
   font-weight: normal;
   font-style: normal; }
 
 body {
-  font-family: 'Raleway', Helvetica, Arial;
+  font-family: 'threeReg', Helvetica, Arial;
   font-size: 16px;
   color: #666;
   font-weight: 400;
@@ -5835,7 +5858,7 @@ p {
 h1, h2, h3, h4, h5, h6 {
   color: #333;
   text-transform: uppercase;
-  font-family: 'smoolthanregular', Helvetica, Arial;
+  font-family: 'threeBlack', Helvetica, Arial;
   font-weight: 700; }
 
 a {
@@ -5847,16 +5870,16 @@ a:hover, a:focus {
 
 .btn-default {
   border-radius: 2px;
-  border: 1px solid #bdc3c7;
+  border: 1px solid none;
   font-size: 14px;
   font-weight: 700;
-  color: #95a5a6;
+  color: #3498db;
   padding: 11px 20px; }
 
 .btn-default:hover {
-  background: #fff;
+  background: #f39c12;
   color: #3498db;
-  border: 1px solid #3498db; }
+  border: none; }
 
 .btn:active {
   box-shadow: none; }
@@ -5882,10 +5905,12 @@ section.content {
 /*LOGO*/
 .navbar-brand {
   padding: 0;
-  margin: 0px;
-  background: url("../../img/WAD_Logo.png") no-repeat;
-  width: 240px;
+  margin: 0;
+  background: url("../../img/logos/WAD_Logo.png") no-repeat;
+  width: 192px;
   height: 41px;
+  background-size: contain;
+  opacity: 0;
   text-indent: -9999px; }
 
 /*NAV*/
@@ -5895,7 +5920,7 @@ section.content {
   padding: 40px 0 60px 0; }
 
 .navbar-default .navbar-nav > li > a {
-  font-family: 'smoolthanregular', Helvetica, Arial;
+  font-family: 'threeReg', Helvetica, Arial;
   font-size: 16px;
   font-weight: 600;
   text-transform: uppercase;
@@ -5937,57 +5962,81 @@ section.content {
   padding: 10px 0;
   transition: all 0.4s ease; }
 
-.navbar-brand.sticky {
-  background: url(../../img/WAD_Logo.png) no-repeat;
-  height: 41px;
-  width: 220px;
-  margin: 0; }
-
 /*BANNER*/
 header h1 {
   padding-top: 100px; }
 
 #home {
+  position: relative;
   padding-top: 240px;
-  background: #2c3e50 url("../../img/banner-small.png") no-repeat;
+  background: url("../../img/banner/SideBySide_Dark.jpg") no-repeat;
+  background: url("../../img/banner/Banner_Square-1.jpg") no-repeat;
   min-height: 600px;
-  margin-top: -100px;
+  margin-top: -40px;
   background-size: cover;
   background-attachment: fixed;
   background-position: 50% 50%; }
+  #home .square-logo {
+    position: absolute;
+    background: url("../../img/logos/WAD_Square_Logo_Trans.png") center center no-repeat;
+    background-size: contain;
+    left: 20%;
+    top: 6%;
+    width: 250px;
+    height: 250px; }
   #home h1 {
-    font-size: 42px;
-    color: #fff;
-    line-height: 50px;
-    font-weight: 700;
+    position: absolute;
     text-transform: none;
-    margin: 0 0 40px 0; }
-  #home h3 {
-    color: #fff;
-    font-weight: 300;
-    margin: 0 0 60px 0; }
-  #home p {
-    color: #f39c12; }
-  #home .lead {
-    margin-bottom: 40px; }
+    font-family: 'arizonia', Serif;
+    top: 83%;
+    left: 5%;
+    font-size: 46px;
+    color: #fff; }
+  #home .contact-link {
+    position: absolute;
+    top: 70%;
+    right: 12%;
+    transform: rotate(8deg);
+    font-family: 'arizonia', Serif;
+    font-size: 46px;
+    color: #566473; }
+    #home .contact-link:hover {
+      text-decoration: none; }
   #home .btn-default {
-    border: 1px solid #fff;
-    background: rgba(255, 255, 255, 0.05);
+    margin-top: 100px;
+    border: none;
+    background: #3498db;
     color: #fff;
     text-transform: uppercase;
-    font-size: 16px;
+    font-size: 18px;
     padding: 16px 30px; }
   #home .btn-default:hover {
-    background: rgba(255, 255, 255, 0.1);
-    color: #fff;
-    border: 1px solid #fff; }
+    background: #f39c12;
+    color: #fff; }
 
 .container > .navbar-header, .container-fluid > .navbar-header, .container > .navbar-collapse, .container-fluid > .navbar-collapse {
   margin: 0; }
 
+.hide-logo {
+  animation: fadeLogo 0.5s linear forwards; }
+
+.show-logo {
+  animation: showLogo 0.5s linear forwards; }
+
+@keyframes fadeLogo {
+  from {
+    opacity: 1; }
+  to {
+    opacity: 0; } }
+
+@keyframes showLogo {
+  from {
+    opacity: 0; }
+  to {
+    opacity: 1; } }
+
 /*SERVICES*/
 .services {
-  padding: 60px 0;
   border-bottom: 1px solid #e3e3e3; }
 
 .services h4 {
@@ -6095,7 +6144,7 @@ header h1 {
 .gallery-inner .caption .btn-trigger .web-link {
   background: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB2ZXJzaW9uPSIxLjEiIHg9IjBweCIgeT0iMHB4IiB2aWV3Qm94PSIwIDAgNTEyIDUxMiIgZW5hYmxlLWJhY2tncm91bmQ9Im5ldyAwIDAgNTEyIDUxMiIgeG1sOnNwYWNlPSJwcmVzZXJ2ZSI+PHN0eWxlPi5waWN7ZmlsbDojZmZmO308L3N0eWxlPjxwYXRoIGNsYXNzPSJwaWMiIGQ9Ik0xOTMuNjcgMjQzLjg3N2MwLTE0LjE3NSAxMS40OTItMjUuNjY4IDI1LjY2OS0yNS42NjhjMTQuMTc0IDAgMjUuNyAxMS41IDI1LjcgMjUuNyBjMCAxNC4xNzctMTEuNDkyIDI1LjY2OC0yNS42NjYgMjUuNjY4QzIwNS4xNjIgMjY5LjUgMTkzLjcgMjU4LjEgMTkzLjcgMjQzLjg3N3ogTTMyMy44NjIgMjQ0LjY5OWwtNDIuNTUgNjAuNSBsLTIzLjEyMy0yMy44MzRsLTY1LjI0NiA3NC4xMzRoMjAzLjk0OEwzMjMuODYyIDI0NC42OTl6IE0zOTUuMzgxIDE1OC4wNDVWOTIuNDgxSDUwdjI2MS40NjVoNjUuNjEydjY1LjU3Mkg0NjJWMTU4LjA0NUgzOTUuMzgxeiBNODMuNjI5IDMyMC4zMTdWMTI2LjExMmgyNzguMTIydjMxLjkzNEgxMTUuNjEydjE2Mi4yNzJIODMuNjI5eiBNNDI4LjM3MSAzODUuODg4aC0yNzkuMTNWMTkxLjY3NWgyNzkuMTNWMzg1Ljg4OHoiLz48L3N2Zz4=);
   position: absolute;
-  right: 45%; }
+  right: 50%; }
 
 .gallery-inner .caption .btn-trigger .more-info {
   background: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB2ZXJzaW9uPSIxLjEiIHg9IjBweCIgeT0iMHB4IiB2aWV3Qm94PSIwIDAgNTEyIDUxMiIgZW5hYmxlLWJhY2tncm91bmQ9Im5ldyAwIDAgNTEyIDUxMiIgeG1sOnNwYWNlPSJwcmVzZXJ2ZSI+PHN0eWxlPi5saW5re2ZpbGw6I2ZmZjt9PC9zdHlsZT48cGF0aCBjbGFzcz0ibGluayIgZD0iTTE1Ni4yMjYgMTk5LjY3OWM3LjU0MS03LjU0IDE1LjkwMi0xMy43NTcgMjQuNzk0LTE4LjY1OWM0OS41NTYtMjcuMzE4IDExMy4xMTctMTIuNzg4IDE0NSAzNS41IGwtMzguNTQ3IDM4LjU0N2MtMTEuMDU5LTI1LjIyNy0zOC41LTM5LjU2NS02NS44MTMtMzMuNDU2Yy0xMC4yODIgMi4zLTIwLjA1NCA3LjQyNy0yOC4wMzkgMTUuNDEzbC03My44OTggNzMuOSBjLTIyLjQzMyAyMi40MzMtMjIuNDMyIDU4LjkgMCA4MS4zNjljMjIuNDMzIDIyLjQgNTguOSAyMi40IDgxLjQgMGwyMi43OC0yMi43NzkgYzIwLjcxIDguMiA0Mi45IDExLjUgNjQuOSA5Ljg2M2wtNTAuMjc4IDUwLjI3OGMtNDMuMTA1IDQzLjEwNS0xMTIuOTkxIDQzLjEwNS0xNTYuMDk2IDAgYy00My4xMDUtNDMuMTA0LTQzLjEwNi0xMTIuOTkxLTAuMDAxLTE1Ni4wOTZMMTU2LjIyNiAxOTkuNjc5eiBNMjczLjU3NCA4Mi4zM2wtNTAuMjc4IDUwLjMgYzIxLjkyOC0xLjY0MyA0NC4yIDEuNiA2NC45IDkuODY1bDIyLjc3OS0yMi43OGMyMi40MzQtMjIuNDM0IDU4LjkzNi0yMi40MzQgODEuNCAwYzIyLjQzNCAyMi40IDIyLjQgNTguOSAwIDgxLjQgbC03My44OTcgNzMuODk1Yy0yMi41MDEgMjIuNTAxLTU5LjA2MSAyMi4zMTEtODEuMzY4IDBjLTUuMjAyLTUuMjAxLTkuNjk0LTExLjY3OC0xMi40ODQtMTguMDRsLTM4LjU0NiAzOC41IGM0LjA0OSA2LjEgOC4zIDExLjUgMTMuNyAxNi44NThjMTMuOTQ5IDEzLjkgMzEuNyAyNC4zIDUyLjEgMjkuMjUxYzI2LjQ2NiA2LjQgNTQuOCAyLjggNzkuMTg1LTEwLjU5MiBjOC44OTItNC45MDMgMTcuMjU0LTExLjExOSAyNC43OTQtMTguNjU5bDczLjg5Ni03My44OTVjNDMuMTA1LTQzLjEwNSA0My4xMDUtMTEyLjk5MSAwLjAwMS0xNTYuMDk3IEMzODYuNTY2IDM5LjIgMzE2LjcgMzkuMiAyNzMuNiA4Mi4zM3oiLz48L3N2Zz4=);
@@ -6348,9 +6397,7 @@ header h1 {
   margin: 0 0 30px 0; }
 
 .blurb p {
-  color: #fff;
-  font-weight: 400;
-  font-size: 14px; }
+  color: #fff; }
 
 .blurb a {
   color: #fff;
@@ -6358,7 +6405,7 @@ header h1 {
 
 /*footer*/
 footer {
-  font-size: 13px; }
+  font-size: 14px; }
   footer .copywrite {
     height: 100px; }
     footer .copywrite p {
@@ -6627,66 +6674,8 @@ button.toast-close-button {
   margin-right: 10px;
   color: #3498db; }
 
-/*!
- * Lightbox for Bootstrap 3 by @ashleydw
- * https://github.com/ashleydw/lightbox
- *
- * License: https://github.com/ashleydw/lightbox/blob/master/LICENSE
- */
-.ekko-lightbox-container {
-  position: relative; }
-
-.ekko-lightbox-nav-overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  z-index: 100;
-  width: 100%;
-  height: 100%; }
-
-.ekko-lightbox-nav-overlay a {
-  z-index: 100;
-  display: block;
-  width: 49%;
-  height: 100%;
-  padding-top: 45%;
-  font-size: 30px;
-  color: #fff;
-  text-shadow: 2px 2px 4px #000;
-  opacity: 0;
-  filter: dropshadow(color=#000000, offx=2, offy=2);
-  -webkit-transition: opacity 0.5s;
-  -moz-transition: opacity 0.5s;
-  -o-transition: opacity 0.5s;
-  transition: opacity 0.5s; }
-
-.ekko-lightbox-nav-overlay a:empty {
-  width: 49%; }
-
-.ekko-lightbox a:hover {
-  text-decoration: none;
-  opacity: 1; }
-
-.ekko-lightbox .glyphicon-chevron-left {
-  left: 0;
-  float: left;
-  padding-left: 15px;
-  text-align: left; }
-
-.ekko-lightbox .glyphicon-chevron-right {
-  right: 0;
-  float: right;
-  padding-right: 15px;
-  text-align: right; }
-
-.ekko-lightbox .modal-footer {
-  text-align: left; }
-
 /*media queries*/
 @media (min-width: 480px) {
-  #home h1 {
-    font-size: 56px;
-    line-height: 30px; }
   .headshot {
     margin-bottom: 20px; } }
 
@@ -6707,12 +6696,6 @@ button.toast-close-button {
     background-position: 300px 0; } }
 
 @media (min-width: 992px) {
-  .navbar-brand {
-    margin-top: -15px;
-    background: url(../../img/WAD_Logo_LG.png) no-repeat;
-    width: 350px;
-    height: 65px;
-    text-indent: -9999px; }
   .navbar-default .navbar-nav > li {
     margin-left: 40px; }
   header p {
@@ -6771,8 +6754,6 @@ button.toast-close-button {
     padding: 3em 0; }
   .testimonial .heading {
     padding-bottom: 60px; }
-  .services {
-    padding: 0; }
   .services .col-md-4 {
     padding-top: 60px;
     padding-bottom: 60px; }

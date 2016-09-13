@@ -1,18 +1,44 @@
 @font-face {
     font-family: 'smoolthanregular';
-    src: url('../fonts/Smoolthan/smoolthan_regular-webfont.eot');
-    src: url('../fonts/Smoolthan/smoolthan_regular-webfont.eot?#iefix') format('embedded-opentype'),
-         url('../fonts/Smoolthan/smoolthan_regular-webfont.woff2') format('woff2'),
-         url('../fonts/Smoolthan/smoolthan_regular-webfont.woff') format('woff'),
-         url('../fonts/Smoolthan/smoolthan_regular-webfont.ttf') format('truetype'),
-         url('../fonts/Smoolthan/smoolthan_regular-webfont.svg#smoolthanregular') format('svg');
+    src: url('../fonts/Smoolthan/smoolthan_regular-webfont.woff2') format('woff2'),
+         url('../fonts/Smoolthan/smoolthan_regular-webfont.woff') format('woff');
     font-weight: normal;
     font-style: normal;
 
 }
+@font-face {
+    font-family: 'threeReg';
+    src: url('../fonts/Three/three_regular-webfont.woff2') format('woff2'),
+         url('../fonts/Three/three_regular-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+@font-face {
+    font-family: 'threeLight';
+    src: url('../fonts/Three/three_light-webfont.woff2') format('woff2'),
+         url('../fonts/Three/three_light-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+@font-face {
+    font-family: 'threeBlack';
+    src: url('../fonts/Three/three_black-webfont.woff2') format('woff2'),
+         url('../fonts/Three/three_black-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'arizonia';
+    src: url('../fonts/Arizona/arizonia-regular-webfont.woff2') format('woff2'),
+         url('../fonts/Arizona/arizonia-regular-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
 
 body {
-	font-family: 'Raleway', Helvetica, Arial;
+	font-family: 'threeReg', Helvetica, Arial;
 	font-size: 16px;
 	color: #666;
 	font-weight: 400;
@@ -25,7 +51,7 @@ p {
 h1, h2, h3, h4, h5, h6 {
 	color: #333;
 	text-transform: uppercase;
-	font-family: 'smoolthanregular', Helvetica, Arial;
+	font-family: 'threeBlack', Helvetica, Arial;
 	font-weight: 700;
 }
 a {
@@ -37,16 +63,16 @@ a:hover, a:focus {
 }
 .btn-default {
 	border-radius: 2px;
-	border: 1px solid #bdc3c7;
+	border: 1px solid none;
 	font-size: 14px;
 	font-weight: 700;
-	color: #95a5a6;
+	color: $blue;
 	padding: 11px 20px;
 }
 .btn-default:hover{
-	background: #fff;
+	background: $orange;
 	color: #3498db;
-	border: 1px solid #3498db;
+	border: none;
 }
 .btn:active {
 	box-shadow: none;

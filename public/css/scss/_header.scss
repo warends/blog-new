@@ -2,10 +2,12 @@
 /*LOGO*/
 .navbar-brand {
 	padding: 0;
-	margin: 0px;
-	background: url('../../img/WAD_Logo.png') no-repeat;
-	width: 240px;
+	margin: 0;
+	background: url('../../img/logos/WAD_Logo.png') no-repeat;
+	width: 192px;
 	height: 41px;
+	background-size: contain;
+	opacity: 0;
 	text-indent: -9999px;
 }
 
@@ -17,7 +19,7 @@
 	padding: 40px 0 60px 0;
 }
 .navbar-default .navbar-nav>li>a {
-	font-family: 'smoolthanregular', Helvetica, Arial;
+	font-family: 'threeReg', Helvetica, Arial;
 	font-size: 16px;
 	font-weight: 600;
 	text-transform: uppercase;
@@ -60,12 +62,7 @@
 	padding: 10px 0;
 	transition: all 0.4s ease;
 }
-.navbar-brand.sticky {
-	background: url(../../img/WAD_Logo.png) no-repeat;
-	height: 41px;
-	width: 220px;
-	margin: 0;
-}
+
 
 
 /*BANNER*/
@@ -77,48 +74,75 @@ header h1 {
 	padding-top: 100px;
 }
 #home {
+	position: relative;
   padding-top: 240px;
-	background: #2c3e50 url('../../img/banner-small.png') no-repeat;
+	background: url('../../img/banner/SideBySide_Dark.jpg') no-repeat;
+	background: url('../../img/banner/Banner_Square-1.jpg') no-repeat;
 	min-height: 600px;
-	margin-top: -100px;
+	margin-top: -40px;
 	background-size: cover;
 	background-attachment: fixed;
 	background-position: 50% 50%;
+	.square-logo{
+		position: absolute;
+		background: url('../../img/logos/WAD_Square_Logo_Trans.png') center center no-repeat;
+		background-size: contain;
+		left: 20%;
+		top: 6%;
+		width: 250px;
+		height: 250px;
+	}
   h1 {
-  	font-size: 42px;
-  	color: #fff;
-  	line-height: 50px;
-  	font-weight: 700;
-  	text-transform: none;
-  	margin: 0 0 40px 0;
+		position: absolute;
+		text-transform: none;
+		font-family: 'arizonia', Serif;
+		top: 83%;
+		left: 5%;
+		font-size: 46px;
+	 	color: #fff;
   }
-  h3 {
- 	color: #fff;
- 	font-weight: 300;
- 	margin: 0 0 60px 0;
- }
- p {
- 	color: #f39c12;
- }
- .lead {
- 	margin-bottom: 40px;
- }
+	.contact-link {
+		position: absolute;
+		top: 70%;
+		right: 12%;
+		transform: rotate(8deg);
+		font-family: 'arizonia', Serif;
+		font-size: 46px;
+		color: $grey-blue;
+		&:hover{
+			text-decoration: none;
+		}
+	}
  .btn-default {
- 	border: 1px solid #fff;
- 	background: rgba(255,255,255,0.05);
+	margin-top: 100px;
+ 	border: none;
+ 	background: $blue;
  	color: #fff;
  	text-transform: uppercase;
- 	font-size: 16px;
+ 	font-size: 18px;
  	padding: 16px 30px;
  }
  .btn-default:hover {
- 	background: rgba(255,255,255, 0.1);
+ 	background: $orange;
  	color: #fff;
- 	border: 1px solid #fff;
  }
-
 }
 
 .container>.navbar-header, .container-fluid>.navbar-header, .container>.navbar-collapse, .container-fluid>.navbar-collapse {
 	margin: 0;
+}
+.hide-logo{
+	animation: fadeLogo 0.5s linear forwards;
+}
+.show-logo{
+	animation: showLogo 0.5s linear forwards;
+}
+
+@keyframes fadeLogo {
+	from{ opacity: 1;}
+	to {opacity: 0;}
+}
+@keyframes showLogo {
+	from{ opacity: 0;}
+	to {opacity: 1;}
 }

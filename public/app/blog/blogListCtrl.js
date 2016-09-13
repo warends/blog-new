@@ -1,4 +1,4 @@
-angular.module('willsBlog').controller('blogListCtrl', ['$scope', 'mvCachedPost', 'identity', function($scope, mvCachedPost, identity){
+angular.module('willsBlog').controller('blogListCtrl', ['$scope', 'mvCachedPost', 'identity', '$location', function($scope, mvCachedPost, identity, $location){
   $scope.posts = mvCachedPost.query();
 
   $scope.identity = identity;
