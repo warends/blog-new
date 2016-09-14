@@ -7,7 +7,7 @@
 	width: 192px;
 	height: 41px;
 	background-size: contain;
-	opacity: 0;
+	display: none;
 	text-indent: -9999px;
 }
 
@@ -58,6 +58,7 @@
 	color: #fff;
 }
 .navbar.sticky {
+	height: 61px;
 	background-color: rgba(44,62,80,0.8);
 	padding: 10px 0;
 	transition: all 0.4s ease;
@@ -75,53 +76,90 @@ header h1 {
 }
 #home {
 	position: relative;
-  padding-top: 240px;
-	background: url('../../img/banner/SideBySide_Dark.jpg') no-repeat;
-	background: url('../../img/banner/Banner_Square-1.jpg') no-repeat;
-	min-height: 600px;
+	background: url('../../img/banner/Banner-Square-Mobile.jpg') no-repeat fixed 50% top;
+	padding-top: 5%;
+	min-height: 300px;
+	background-size: 100% 300px;
 	margin-top: -40px;
-	background-size: cover;
-	background-attachment: fixed;
-	background-position: 50% 50%;
+	@include mq($S){
+		background: url('../../img/banner/Banner_Square-1.jpg') no-repeat fixed 50% top;
+		background-size: contain;
+		min-height: 600px;
+		margin-top: -40px;
+	}
+
+	.col-xs-4{
+		height: 100px;
+	}
+
 	.square-logo{
 		position: absolute;
 		background: url('../../img/logos/WAD_Square_Logo_Trans.png') center center no-repeat;
 		background-size: contain;
-		left: 20%;
-		top: 6%;
-		width: 250px;
-		height: 250px;
+		left: 25%;
+		top: -15%;
+		width: 100px;
+		height: 100px;
+		@include mq($S){
+			left: 165px;
+			top: 35px;
+			width: 150px;
+			height: 150px;
+		}
+		@include mq($M){
+			left: 20%;
+			top: 10%;
+			width: 225px;
+			height: 225px;
+		}
+		@media screen and (min-width: 1300px){
+			left: 35%;
+			top: 15%;
+			width: 250px;
+			height: 250px;
+		}
 	}
   h1 {
-		position: absolute;
+		//position: absolute;
 		text-transform: none;
 		font-family: 'arizonia', Serif;
 		top: 83%;
 		left: 5%;
 		font-size: 46px;
 	 	color: #fff;
+		text-indent: -9999px
   }
 	.contact-link {
 		position: absolute;
-		top: 70%;
+		top: 71%;
 		right: 12%;
 		transform: rotate(8deg);
 		font-family: 'arizonia', Serif;
 		font-size: 46px;
 		color: $grey-blue;
+		line-height: 1;
 		&:hover{
+			border: 2px solid $orange;
+			border-radius: 4px;
+			background: $orange;
+			color: white;
 			text-decoration: none;
 		}
 	}
  .btn-default {
-	margin-top: 100px;
+	margin-top: 60px;
  	border: none;
  	background: $blue;
  	color: #fff;
  	text-transform: uppercase;
- 	font-size: 18px;
- 	padding: 16px 30px;
+ 	font-size: 14px;
+ 	padding: 10px;
+	@include mq($S){
+		font-size: 16px;
+		padding: 16px 30px;
+	}
  }
+
  .btn-default:hover {
  	background: $orange;
  	color: #fff;

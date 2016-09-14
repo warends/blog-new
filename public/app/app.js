@@ -1,4 +1,4 @@
-angular.module('willsBlog', ['ngResource', ,'ngAnimate', 'ngRoute', 'ui.bootstrap']);
+angular.module('willsBlog', ['ngResource', ,'ngAnimate', 'ngRoute','ngSanitize', 'ui.bootstrap']);
 
 angular.module('willsBlog').config(['$routeProvider', '$locationProvider', function($routeProvider, $locationProvider){
 
@@ -40,7 +40,7 @@ angular.module('willsBlog').config(['$routeProvider', '$locationProvider', funct
       controller: 'profileCtrl',
       resolve: routeRoleChecks.user
     })
-    .when('/posts/:id', {
+    .when('/posts/:slug', {
       templateUrl: '/partials/blog/post-detail',
       controller: 'postDetailCtrl'
     })

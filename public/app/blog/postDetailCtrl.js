@@ -1,8 +1,10 @@
 angular.module('willsBlog').controller('postDetailCtrl', ['$scope', 'mvCachedPost', '$routeParams', function($scope, mvCachedPost, $routeParams){
-  
+
+  window.scrollTo(0,0);
+
   mvCachedPost.query().$promise.then(function(collection){
     collection.forEach(function(post){
-      if(post._id === $routeParams.id){
+      if(post.slug === $routeParams.slug){
         $scope.post = post;
       }
     });

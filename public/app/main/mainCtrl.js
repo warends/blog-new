@@ -6,15 +6,17 @@ angular.module('willsBlog').controller('mainCtrl', ['$scope', '$location', 'mvCa
     const contact = angular.element('.contact-link');
     $(window).scroll(function(){
       if($(this).scrollTop() > 40){
-        nav.addClass('show-logo').removeClass('hide-logo');
-        bannerLogo.addClass("hide-logo").removeClass('show-logo');
-        contact.addClass("hide-logo").removeClass('show-logo');
+        nav.fadeIn();
+        bannerLogo.fadeOut();
+        contact.fadeOut();
       } else {
-        nav.removeClass('show-logo').addClass('hide-logo');
-        bannerLogo.removeClass("hide-logo").addClass('show-logo');
-        contact.removeClass("hide-logo").addClass('show-logo');
+        nav.fadeOut();
+        bannerLogo.fadeIn();
+        contact.fadeIn();
       }
     });
+  } else {
+    nav.show();
   }
 
   $scope.services = [

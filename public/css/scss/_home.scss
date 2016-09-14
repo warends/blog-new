@@ -1,3 +1,4 @@
+
 /*SERVICES*/
 .services {
 	border-bottom: 1px solid #e3e3e3;
@@ -65,7 +66,7 @@
 }
 .heading h1 {
 	background: url(../../../img/heading.png) no-repeat;
-	background-position: center bottom;
+	background-position: left bottom;
 	padding: 0 0 20px 0;
 }
 .control-right {
@@ -138,7 +139,11 @@
 
 /*BLOG LATEST*/
 #blog-latest {
+	margin-top: 250px;
 	padding-bottom: 2em;
+	@include mq($S){
+		margin-top: 0;
+	}
 }
 
 /*CREATIVE PROCESS*/
@@ -148,6 +153,9 @@
 .creative-process {
 	background: $light-grey;
 	margin: 0;
+	.carousel-inner{
+		background-color: #edf1f4;
+	}
 }
 .carousel {
 	margin-bottom: 400px;
@@ -365,28 +373,34 @@
 .blurb {
 	background: #2c3e50;
 	.row {
-		height: 360px
+		height: 900px;
+		@include mq($S){
+			height: 360px;
+		}
 	}
 	.headshot, .bio {
-		position: relative;
-		top: 50%;
-		transform: translateY(-50%);
+		@include mq($S){
+			position: relative;
+			top: 50%;
+			transform: translateY(-50%);
+		}
 	}
 	.twitter {
-		padding: 30px 0;
+		padding-top: 30px;
+		padding-bottom: 30px;
 	}
-
-}
-.blurb h6 {
-	color: #95a5a6;
-	font-weight: 700;
-	font-size: 12px;
-	margin: 0 0 30px 0;
-}
-.blurb p{
-	color: #fff;
-}
-.blurb a {
-	color: #fff;
-	font-size: 14px;
+	p{
+		background: #2c3e50;
+		color: #fff;
+		padding-bottom: 1em;
+		@include mq(S){
+			padding-bottom: 0;
+		}
+	}
+	h6 {
+		color: #95a5a6;
+		font-weight: 700;
+		font-size: 12px;
+		margin: 0 0 30px 0;
+	}
 }

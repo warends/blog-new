@@ -6,10 +6,9 @@ exports.getPosts = function(req, res){
   })
 };
 
-exports.getPostById = function(req, res){
-  Post.findOne({_id:req.params.id}).exec(function(err, post){
+exports.getPostBySlug = function(req, res){
+  Post.findOne({slug:req.params.slug}).exec(function(err, post){
     res.send(post);
-
   });
 };
 
