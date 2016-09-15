@@ -7,15 +7,12 @@ angular.module('willsBlog').controller('loginCtrl', ['$scope', '$http', 'identit
         if(success){
           notifier.notify('You have signed in');
           $location.url('/account');
-          $scope.modalShown = false;
+          $scope.actShown = false;
         } else {
           notifier.notify('Username/Password Incorrect');
         }
       });
-
     };
-
-    // $scope.animationsEnabled = true;
 
     $scope.signOut = function(){
       mvAuth.logoutUser().then(function() {
@@ -26,20 +23,36 @@ angular.module('willsBlog').controller('loginCtrl', ['$scope', '$http', 'identit
       });
     };
 
-    // $scope.open = function (size) {
-    //   var modalInstance = $uibModal.open({
-    //     animation: $scope.animationsEnabled,
-    //     ariaLabelledBy: 'modal-title',
-    //     ariaDescribedBy: 'modal-body',
-    //     templateUrl: 'myModalContent.html',
-    //     size: size,
-    //     controller: 'loginCtrl'
-    //   });
-    // };
+    $scope.signup = function(){
+      var newUserData = {
+        username: $scope.username,
+        firstName: $scope.fName,
+        lastName: $scope.lName,
+        password: $scope.password
+      };
+      mvAuth.createUser(newUserData)
+        .then(function(){
+          notifier.notify('User account created');
+          $location.path('/');
+      }, function(reason){
+        notifier.error(reason);
+      });
+    };
 
-    $scope.modalShown = false;
-    $scope.toggleModal = function() {
-      $scope.modalShown = !$scope.modalShown;
+    $scope.cancel = function(){
+      $location.path('/');
+    };
+
+    $scope.actShown = false;
+    $scope.toggleAccount = function() {
+      $scope.actShown = !$scope.actShown;
+      console.log($scope.actShown);
+    };
+
+    $scope.signupShown = false;
+    $scope.toggleSignup = function() {
+      $scope.signupShown = !$scope.signupShown;
+      console.log($scope.signupShown);
     };
 
 

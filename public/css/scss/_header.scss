@@ -76,16 +76,31 @@ header h1 {
 }
 #home {
 	position: relative;
-	background: url('../../img/banner/Banner-Square-Mobile.jpg') no-repeat fixed 50% top;
+	background: url('../../img/banner/Banner-Square-Mobile.jpg') no-repeat fixed 50% 0%;
 	padding-top: 5%;
 	min-height: 300px;
-	background-size: 100% 300px;
+	background-size: 600px;
 	margin-top: -40px;
+	@media screen and (min-width: 558px){
+		background-size: 800px;
+	}
 	@include mq($S){
-		background: url('../../img/banner/Banner_Square-1.jpg') no-repeat fixed 50% top;
-		background-size: contain;
+		background: url('../../img/banner/Banner_Square-1.jpg') no-repeat fixed 50% 0%;
+		background-size: 1000px;
 		min-height: 600px;
 		margin-top: -40px;
+	}
+	@include mq($M){
+		background-size: 1250px;
+	}
+	@include mq($L){
+		background-size: 1400px;
+	}
+	@media screen and (min-width: 1398px){
+		background-size: 1600px;
+	}
+	@media screen and (min-width: 1598px){
+		background-size: 2000px;
 	}
 
 	.col-xs-4{
@@ -93,30 +108,44 @@ header h1 {
 	}
 
 	.square-logo{
-		position: absolute;
+		position: relative;
 		background: url('../../img/logos/WAD_Square_Logo_Trans.png') center center no-repeat;
 		background-size: contain;
-		left: 25%;
-		top: -15%;
+		left: 0px;
+		top: 15px;
 		width: 100px;
 		height: 100px;
-		@include mq($S){
-			left: 165px;
-			top: 35px;
+		@media screen and (min-width: 558px){
+			left: 20px;
+			top: 20px;
 			width: 150px;
 			height: 150px;
 		}
+		@include mq($S){
+			left: 80px;
+			top: 35px;
+		}
 		@include mq($M){
-			left: 20%;
-			top: 10%;
+			left: 100px;
+			top: 30px;
 			width: 225px;
 			height: 225px;
 		}
-		@media screen and (min-width: 1300px){
-			left: 35%;
-			top: 15%;
+		@include mq($L){
+			left: 185px;
+			top: 25px;
 			width: 250px;
 			height: 250px;
+		}
+		@media screen and (min-width: 1398px){
+			top: 50px;
+			left: 110px;
+		}
+		@media screen and (min-width: 1598px){
+			top: 80px;
+			left: 50px;
+			height: 300px;
+			width: 300px;
 		}
 	}
   h1 {
@@ -147,7 +176,7 @@ header h1 {
 		}
 	}
  .btn-default {
-	margin-top: 60px;
+	margin-top: 110px;
  	border: none;
  	background: $blue;
  	color: #fff;
@@ -155,8 +184,12 @@ header h1 {
  	font-size: 14px;
  	padding: 10px;
 	@include mq($S){
+		margin-top: 32%;
 		font-size: 16px;
 		padding: 16px 30px;
+	}
+	@include mq($L){
+		margin-top: 30%;
 	}
  }
 

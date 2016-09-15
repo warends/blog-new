@@ -2,6 +2,9 @@ angular.module('willsBlog').controller('postDetailCtrl', ['$scope', 'mvCachedPos
 
   window.scrollTo(0,0);
 
+  const nav = angular.element('.navbar-brand');
+  nav.show();
+
   mvCachedPost.query().$promise.then(function(collection){
     collection.forEach(function(post){
       if(post.slug === $routeParams.slug){

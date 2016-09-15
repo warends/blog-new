@@ -13,7 +13,7 @@
   /* A centered div above the overlay with a box shadow. */
   z-index:10000;
   position: fixed;
-  width: 50%; /* Default */
+  width: 90%; /* Default */
   border-radius: 4px;
 
   /* Center the dialog */
@@ -25,6 +25,12 @@
 
   background-color: #fff;
   box-shadow: 4px 4px 80px #000;
+  @include mq($S){
+    width: 75%;
+  }
+  @include mq($M){
+    width: 50%;
+  }
 }
 .ng-modal-dialog-content {
   padding:10px;

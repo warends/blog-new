@@ -1,23 +1,21 @@
 angular.module('willsBlog').controller('mainCtrl', ['$scope', '$location', 'mvCachedPost', 'notifier' ,'TwitterService', function($scope, $location, mvCachedPost, notifier, TwitterService){
 
-  if($location.path() === '/'){
-    const nav = angular.element('.navbar-brand');
-    const bannerLogo = angular.element('.square-logo');
-    const contact = angular.element('.contact-link');
-    $(window).scroll(function(){
-      if($(this).scrollTop() > 40){
-        nav.fadeIn();
-        bannerLogo.fadeOut();
-        contact.fadeOut();
-      } else {
-        nav.fadeOut();
-        bannerLogo.fadeIn();
-        contact.fadeIn();
-      }
-    });
-  } else {
-    nav.show();
-  }
+  const nav = angular.element('.navbar-brand');
+  nav.hide();
+  const bannerLogo = angular.element('.square-logo');
+  const contact = angular.element('.contact-link');
+  $(window).scroll(function(){
+    if($(this).scrollTop() > 40){
+      nav.fadeIn();
+      bannerLogo.fadeOut();
+      contact.fadeOut();
+    } else {
+      nav.fadeOut();
+      bannerLogo.fadeIn();
+      contact.fadeIn();
+    }
+  });
+
 
   $scope.services = [
     { name: 'Development',
@@ -68,26 +66,6 @@ angular.module('willsBlog').controller('mainCtrl', ['$scope', '$location', 'mvCa
 		        $scope.twitterErrors = error.error;
 		    })
 	};
-
-  $scope.tenShow = false;
-  $scope.toggleTen = function() {
-    $scope.tenShow = !$scope.tenShow;
-  };
-
-  $scope.crownShow = false;
-  $scope.toggleCrown = function() {
-    $scope.crownShow = !$scope.crownShow;
-  };
-
-  $scope.broadShow = false;
-  $scope.toggleBroad = function() {
-    $scope.broadShow = !$scope.broadShow;
-  };
-
-  $scope.gbShow = false;
-  $scope.toggleGB = function() {
-    $scope.gbShow = !$scope.gbShow;
-  };
 
   //$scope.getUser();
 

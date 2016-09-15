@@ -15,6 +15,7 @@ angular.module('willsBlog').directive('globalModal', function(){
 
       scope.hideModal = function(){
         scope.show = false;
+        console.log(this.show);
       };
     },
     templateUrl: '/partials/common/modal'
