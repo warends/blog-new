@@ -5972,8 +5972,7 @@ header h1 {
 
 #home {
   position: relative;
-  background: url("../../img/banner/Banner-Square-Mobile.jpg") no-repeat fixed 50% 0%;
-  padding-top: 5%;
+  background: url("../../img/banner/banner-mobile.jpg") no-repeat fixed 50% 0%;
   min-height: 300px;
   background-size: 600px;
   margin-top: -40px; }
@@ -5982,7 +5981,7 @@ header h1 {
       background-size: 800px; } }
   @media (min-width: 768px) {
     #home {
-      background: url("../../img/banner/Banner_Square-1.jpg") no-repeat fixed 50% 0%;
+      background: url("../../img/banner/Banner_Square.jpg") no-repeat fixed 50% 0%;
       background-size: 1000px;
       min-height: 600px;
       margin-top: -40px; } }
@@ -5998,6 +5997,11 @@ header h1 {
   @media screen and (min-width: 1598px) {
     #home {
       background-size: 2000px; } }
+  #home .container {
+    height: 300px; }
+    @media (min-width: 768px) {
+      #home .container {
+        height: 600px; } }
   #home .col-xs-4 {
     height: 100px; }
   #home .square-logo {
@@ -6064,7 +6068,8 @@ header h1 {
       color: white;
       text-decoration: none; }
   #home .btn-default {
-    margin-top: 110px;
+    position: relative;
+    top: 240px;
     border: none;
     background: #3498db;
     color: #fff;
@@ -6073,12 +6078,8 @@ header h1 {
     padding: 10px; }
     @media (min-width: 768px) {
       #home .btn-default {
-        margin-top: 32%;
-        font-size: 16px;
-        padding: 16px 30px; } }
-    @media (min-width: 1200px) {
-      #home .btn-default {
-        margin-top: 30%; } }
+        top: 520px;
+        font-size: 18px; } }
   #home .btn-default:hover {
     background: #f39c12;
     color: #fff; }

@@ -5,7 +5,7 @@
         <div class="svg {{service.svg}}"></div>
           <h4>{{service.name}}</h4>
           <p>{{service.description}}</p>
-          <a class="more design" ng-mouseover="showDetails = !showDetails" ng-mouseout="showDetails = !showDetails">More</a>
+          <a class="more design" ng-click="showDetails = !showDetails">More</a>
           <div class="more-details" ng-class="{'hidden-stuff': !showDetails }">
             <p>{{service.more}}</p>
           </div>
