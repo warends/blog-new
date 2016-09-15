@@ -6757,6 +6757,12 @@ button.toast-close-button {
 .search select {
   margin: 1em 0; }
 
+.post-content p {
+  font-size: 16px; }
+  @media (min-width: 768px) {
+    .post-content p {
+      font-size: 18px; } }
+
 .categories {
   display: inline-block;
   margin-right: 10px;

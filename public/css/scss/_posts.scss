@@ -3,6 +3,14 @@
     margin: 1em 0;
   }
 }
+.post-content {
+  p{
+    font-size: 16px;
+  @include mq($S){
+    font-size: 18px;
+  }
+  }
+}
 
 .categories {
   display: inline-block;
