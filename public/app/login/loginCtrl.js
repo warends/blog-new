@@ -45,8 +45,12 @@ angular.module('willsBlog').controller('loginCtrl', ['$scope', '$http', 'identit
 
     $scope.actShown = false;
     $scope.toggleAccount = function() {
-      $scope.actShown = !$scope.actShown;
-      console.log($scope.actShown);
+      if(identity.isAuthenticated()){
+        $location.path('/account');
+      } else {
+        $scope.actShown = !$scope.actShown;
+        console.log($scope.actShown);
+      }
     };
 
     $scope.signupShown = false;
