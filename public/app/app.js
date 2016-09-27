@@ -44,7 +44,7 @@ angular.module('willsBlog').config(['$routeProvider', '$locationProvider', funct
       templateUrl: '/partials/blog/post-detail',
       controller: 'postDetailCtrl'
     })
-    .when('/edit/posts/:id', {
+    .when('/edit/posts/:slug', {
       templateUrl: '/partials/blog/edit-post',
       controller: 'editPostCtrl',
       resolve: routeRoleChecks.admin

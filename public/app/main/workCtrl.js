@@ -22,5 +22,4 @@ angular.module('willsBlog').controller('workCtrl', ['$scope', function($scope){
     $scope.adiShow = !$scope.adiShow;
   };
 
-
 }]);
