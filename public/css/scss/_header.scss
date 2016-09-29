@@ -3,9 +3,9 @@
 .navbar-brand {
 	padding: 0;
 	margin: 0;
-	background: url('../../img/logos/WAD_Logo.png') no-repeat;
+	background: url('../../img/logos/wad-logo-horz-light.png') no-repeat;
 	width: 192px;
-	height: 41px;
+	height: 48px;
 	background-size: contain;
 	display: none;
 	text-indent: -9999px;
@@ -19,7 +19,7 @@
 	padding: 40px 0 60px 0;
 }
 .navbar-default .navbar-nav>li>a {
-	font-family: 'threeReg', Helvetica, Arial;
+	font-family: 'cloud-bold', Helvetica, Arial;
 	font-size: 16px;
 	font-weight: 600;
 	text-transform: uppercase;
@@ -156,7 +156,6 @@ header h1 {
   h1 {
 		//position: absolute;
 		text-transform: none;
-		font-family: 'arizonia', Serif;
 		top: 83%;
 		left: 5%;
 		font-size: 46px;
@@ -168,7 +167,6 @@ header h1 {
 		top: 71%;
 		right: 12%;
 		transform: rotate(8deg);
-		font-family: 'arizonia', Serif;
 		font-size: 46px;
 		color: $grey-blue;
 		line-height: 1;
@@ -183,12 +181,6 @@ header h1 {
  .btn-default {
 	position: relative;
 	top: 240px;
- 	border: none;
- 	background: $blue;
- 	color: #fff;
- 	text-transform: uppercase;
- 	font-size: 14px;
- 	padding: 10px;
 	@include mq($S){
 		top: 520px;
 		font-size: 18px;

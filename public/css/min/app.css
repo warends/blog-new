@@ -5815,51 +5815,31 @@ button.close {
     display: none !important; } }
 
 @font-face {
-  font-family: 'smoolthanregular';
-  src: url("../fonts/Smoolthan/smoolthan_regular-webfont.woff2") format("woff2"), url("../fonts/Smoolthan/smoolthan_regular-webfont.woff") format("woff");
+  font-family: 'cloud-bold';
+  src: url("../fonts/cloud/cloud-bold-webfont.woff2") format("woff2"), url("../fonts/cloud/cloud-bold-webfont.woff") format("woff");
   font-weight: normal;
   font-style: normal; }
 
 @font-face {
-  font-family: 'threeReg';
-  src: url("../fonts/Three/three_regular-webfont.woff2") format("woff2"), url("../fonts/Three/three_regular-webfont.woff") format("woff");
-  font-weight: normal;
-  font-style: normal; }
-
-@font-face {
-  font-family: 'threeLight';
-  src: url("../fonts/Three/three_light-webfont.woff2") format("woff2"), url("../fonts/Three/three_light-webfont.woff") format("woff");
-  font-weight: normal;
-  font-style: normal; }
-
-@font-face {
-  font-family: 'threeBlack';
-  src: url("../fonts/Three/three_black-webfont.woff2") format("woff2"), url("../fonts/Three/three_black-webfont.woff") format("woff");
-  font-weight: normal;
-  font-style: normal; }
-
-@font-face {
-  font-family: 'arizonia';
-  src: url("../fonts/Arizona/arizonia-regular-webfont.woff2") format("woff2"), url("../fonts/Arizona/arizonia-regular-webfont.woff") format("woff");
+  font-family: 'cloud-light';
+  src: url("../fonts/cloud/cloud-light-webfont.woff2") format("woff2"), url("../fonts/cloud/cloud-light-webfont.woff") format("woff");
   font-weight: normal;
   font-style: normal; }
 
 body {
-  font-family: 'threeReg', Helvetica, Arial;
+  font-family: 'cloud-light', Helvetica, Arial;
   font-size: 16px;
-  color: #666;
-  font-weight: 400;
+  color: #333;
   letter-spacing: 1px;
   -webkit-font-smoothing: antialiased; }
 
 p {
-  line-height: 30px;
-  font-weight: 400; }
+  line-height: 30px; }
 
 h1, h2, h3, h4, h5, h6 {
   color: #333;
   text-transform: uppercase;
-  font-family: 'threeBlack', Helvetica, Arial;
+  font-family: 'cloud-bold', Helvetica, Arial;
   font-weight: 700; }
 
 a {
@@ -5870,16 +5850,17 @@ a:hover, a:focus {
   color: #308ac6; }
 
 .btn-default {
+  border: none;
+  background: #3498db;
+  color: #fff;
   border-radius: 2px;
-  border: 1px solid none;
+  text-transform: uppercase;
   font-size: 14px;
-  font-weight: 700;
-  color: #3498db;
-  padding: 11px 20px; }
+  padding: 10px; }
 
 .btn-default:hover {
   background: #f39c12;
-  color: #3498db;
+  color: #fff;
   border: none; }
 
 .btn:active {
@@ -5906,13 +5887,16 @@ section.content {
 .padded-vert-2x {
   padding: 2em 0; }
 
+[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+  display: none !important; }
+
 /*LOGO*/
 .navbar-brand {
   padding: 0;
   margin: 0;
-  background: url("../../img/logos/WAD_Logo.png") no-repeat;
+  background: url("../../img/logos/wad-logo-horz-light.png") no-repeat;
   width: 192px;
-  height: 41px;
+  height: 48px;
   background-size: contain;
   display: none;
   text-indent: -9999px; }
@@ -5924,7 +5908,7 @@ section.content {
   padding: 40px 0 60px 0; }
 
 .navbar-default .navbar-nav > li > a {
-  font-family: 'threeReg', Helvetica, Arial;
+  font-family: 'cloud-bold', Helvetica, Arial;
   font-size: 16px;
   font-weight: 600;
   text-transform: uppercase;
@@ -6047,7 +6031,6 @@ header h1 {
         width: 300px; } }
   #home h1 {
     text-transform: none;
-    font-family: 'arizonia', Serif;
     top: 83%;
     left: 5%;
     font-size: 46px;
@@ -6058,7 +6041,6 @@ header h1 {
     top: 71%;
     right: 12%;
     transform: rotate(8deg);
-    font-family: 'arizonia', Serif;
     font-size: 46px;
     color: #566473;
     line-height: 1; }
@@ -6070,13 +6052,7 @@ header h1 {
       text-decoration: none; }
   #home .btn-default {
     position: relative;
-    top: 240px;
-    border: none;
-    background: #3498db;
-    color: #fff;
-    text-transform: uppercase;
-    font-size: 14px;
-    padding: 10px; }
+    top: 240px; }
     @media (min-width: 768px) {
       #home .btn-default {
         top: 520px;
@@ -6114,7 +6090,7 @@ header h1 {
   margin-bottom: 30px; }
 
 .services p {
-  margin-bottom: 40px; }
+  margin-bottom: 1em; }
 
 .services .more {
   text-transform: uppercase;
@@ -6484,6 +6460,9 @@ header h1 {
     font-size: 12px;
     margin: 0 0 30px 0; }
 
+#contact .btn-default:hover {
+  background: #2C3E50; }
+
 /*footer*/
 footer {
   font-size: 14px; }
@@ -6497,20 +6476,14 @@ footer {
 .timeline-Header {
   display: none; }
 
-.icon-sprite.sprite-ig {
-  background-position: -120px -40px; }
-
-.icon-sprite.sprite-ig:hover {
-  background-position: -120px top; }
-
 .icon-sprite.sprite-fb {
-  background-position: left -40px; }
+  background-position: left -41px; }
 
 .icon-sprite.sprite-fb:hover {
   background-position: left top; }
 
 .icon-sprite.sprite-tw {
-  background-position: -40px -40px; }
+  background-position: -40px -41px; }
 
 .icon-sprite.sprite-tw:hover {
   background-position: -40px top; }
