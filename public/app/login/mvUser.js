@@ -1,4 +1,4 @@
-angular.module('willsBlog').factory('mvUser', ['$resource', function($resource){
+willsBlog.factory('mvUser', ['$resource', function($resource){
 
   var UserResource = $resource('/api/users/:id', {_id : '@id'}, {
     update: {method: 'PUT', isArray: false}

@@ -1,6 +1,6 @@
-angular.module('willsBlog').value('Toastr', toastr);
+willsBlog.value('Toastr', toastr);
 
-angular.module('willsBlog').factory('notifier', ['Toastr', function(Toastr){
+willsBlog.factory('notifier', ['Toastr', function(Toastr){
   return {
     notify: function(message){
       Toastr.success(message);

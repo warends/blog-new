@@ -1,4 +1,4 @@
-angular.module('willsBlog').controller('workCtrl', ['$scope', function($scope){
+willsBlog.controller('workCtrl', ['$scope', function($scope){
 
   $scope.tendrilShown = false;
   $scope.toggleTendril = function() {

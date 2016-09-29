@@ -1,4 +1,4 @@
-angular.module('willsBlog').factory('mvPost', ['$resource', '$q', function($resource, $q){
+willsBlog.factory('mvPost', ['$resource', '$q', function($resource, $q){
 
   var PostResource = $resource('/api/posts/:slug', {_slug: '@slug'}, {
     update: {method: 'PUT', isArray: false}
