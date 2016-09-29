@@ -5850,6 +5850,7 @@ a:hover, a:focus {
   color: #308ac6; }
 
 .btn-default {
+  font-family: 'cloud-bold', Helvetica, Arial;
   border: none;
   background: #3498db;
   color: #fff;
