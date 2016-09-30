@@ -1,6 +1,6 @@
 var willsBlog = angular.module('willsBlog', ['ngResource', ,'ngAnimate', 'ngRoute','ngSanitize', 'ui.bootstrap']);
 
-angular.module('willsBlog').config(['$routeProvider', '$locationProvider', function($routeProvider, $locationProvider){
+willsBlog.config(['$routeProvider', '$locationProvider', function($routeProvider, $locationProvider){
 
   var routeRoleChecks = {
     admin: {auth: function(mvAuth){
