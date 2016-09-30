@@ -1,4 +1,4 @@
-willsBlog.factory('mvSavePost', ['$q', 'mvPost', function($q, mvPost){
+angular.module('willsBlog').factory('mvSavePost', ['$q', 'mvPost', function($q, mvPost){
 
   return {
 

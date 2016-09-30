@@ -1,4 +1,4 @@
-willsBlog.controller('postDetailCtrl', ['$scope', 'mvCachedPost', '$routeParams', function($scope, mvCachedPost, $routeParams){
+angular.module('willsBlog').controller('postDetailCtrl', ['$scope', 'mvCachedPost', '$routeParams', function($scope, mvCachedPost, $routeParams){
 
   window.scrollTo(0,0);
 

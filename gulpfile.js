@@ -6,11 +6,19 @@
 var gulp = require('gulp'),
     nodemon = require('gulp-nodemon'),
     sass = require('gulp-sass'),
-    jshint = require('gulp-jshint');
+    jshint = require('gulp-jshint'),
+    concat = require('gulp-concat'),
+    sourcemaps = require('gulp-sourcemaps'),
+    uglify = require('gulp-uglify');
 
-gulp.task('lint', function () {
-  gulp.src(['public/app/**/*.js', 'app/**/*.js'])
-    .pipe(jshint());
+
+gulp.task('js', function () {
+  gulp.src(['public/app.js', 'public/app/**/*.js'])
+    .pipe(jshint())
+    .pipe(concat('main.js'))
+    .pipe(uglify())
+    .pipe(sourcemaps.write())
+    .pipe(gulp.dest('public/dist'))
 });
 
 gulp.task('sass', function () {
@@ -20,7 +28,7 @@ gulp.task('sass', function () {
 });
 
 gulp.task('watch', function() {
-  gulp.watch(['public/app/**/*.js', 'app/**/*.js'], ['lint']);
+  gulp.watch(['public/app/**/*.js', 'app/**/*.js'], ['js']);
   gulp.watch('public/css/scss/**/*.scss', ['sass']);
 });
 

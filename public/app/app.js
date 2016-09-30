@@ -1,6 +1,6 @@
-var willsBlog = angular.module('willsBlog', ['ngResource', ,'ngAnimate', 'ngRoute','ngSanitize', 'ui.bootstrap']);
+angular.module('willsBlog', ['ngResource', ,'ngAnimate', 'ngRoute','ngSanitize', 'ui.bootstrap']);
 
-willsBlog.config(['$routeProvider', '$locationProvider', function($routeProvider, $locationProvider){
+angular.module('willsBlog').config(['$routeProvider', '$locationProvider', function($routeProvider, $locationProvider){
 
   var routeRoleChecks = {
     admin: {auth: function(mvAuth){
@@ -57,7 +57,7 @@ willsBlog.config(['$routeProvider', '$locationProvider', function($routeProvider
 
 }]);//end config
 
-willsBlog.run(function($rootScope, $location, $anchorScroll, $routeParams){
+angular.module('willsBlog').run(['$rootScope', '$location', '$routeParams', function($rootScope, $location, $routeParams){
 
   $rootScope.$on('$routeChangeError', function(evt, current, previous, rejection) {
       if(rejection === 'not authorized') {
@@ -65,4 +65,4 @@ willsBlog.run(function($rootScope, $location, $anchorScroll, $routeParams){
       }
   });
 
-});
+}]);

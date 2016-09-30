@@ -1,4 +1,4 @@
-willsBlog.factory('TwitterService', ['$http', '$q', function($http, $q){
+angular.module('willsBlog').factory('TwitterService', ['$http', '$q', function($http, $q){
 
   var getUser = function(username){
     var d = $q.defer();

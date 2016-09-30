@@ -1,4 +1,4 @@
-willsBlog.controller('profileCtrl', ['$scope', 'mvAuth', 'identity', 'notifier', function($scope, mvAuth, identity, notifier){
+angular.module('willsBlog').controller('profileCtrl', ['$scope', 'mvAuth', 'identity', 'notifier', function($scope, mvAuth, identity, notifier){
   $scope.username = identity.currentUser.username;
   $scope.fName = identity.currentUser.firstName;
   $scope.lName = identity.currentUser.lastName;

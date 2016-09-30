@@ -1,4 +1,4 @@
-willsBlog.directive('globalModal', function(){
+angular.module('willsBlog').directive('globalModal', function(){
   return{
     restrict: 'E',
     scope: {
