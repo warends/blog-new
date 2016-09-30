@@ -1,4 +1,4 @@
-willsBlog.controller('carouselCtrl', ['$scope', function($scope){
+angular.module('willsBlog').controller('carouselCtrl', ['$scope', function($scope){
   $scope.slides = [
     { name: 'Mobile',
     svg: 'mobile-svg',
