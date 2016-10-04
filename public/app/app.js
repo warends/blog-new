@@ -57,7 +57,7 @@ angular.module('willsBlog').config(['$routeProvider', '$locationProvider', funct
 
 }]);//end config
 
-angular.module('willsBlog').run(['$rootScope', '$location', '$routeParams', function($rootScope, $location, $routeParams){
+angular.module('willsBlog').run(['$rootScope', '$location', '$routeParams', '$anchorScroll', function($rootScope, $location, $routeParams, $anchorScroll){
 
   $rootScope.$on('$routeChangeError', function(evt, current, previous, rejection) {
       if(rejection === 'not authorized') {

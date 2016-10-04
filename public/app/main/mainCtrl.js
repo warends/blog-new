@@ -1,20 +1,20 @@
 angular.module('willsBlog').controller('mainCtrl', ['$scope', '$location', 'mvCachedPost', 'notifier' ,'TwitterService', function($scope, $location, mvCachedPost, notifier, TwitterService){
 
 
-  var width = window.innerWidth;
-  var scroll;
-  var scroll = (width <= 765) ? 100 : 300;
-  const nav = angular.element('.navbar-brand');
-  nav.hide();
+  // var width = window.innerWidth;
+  // var scroll;
+  // var scroll = (width <= 765) ? 100 : 300;
+  // const nav = angular.element('.navbar-brand');
+  // nav.hide();
   //const bannerLogo = angular.element('.square-logo');
   //const contact = angular.element('.contact-link');
-  $(window).scroll(function(){
-    if($(this).scrollTop() > scroll){
-      nav.fadeIn();
-    } else {
-      nav.fadeOut();
-    }
-  });
+  // $(window).scroll(function(){
+  //   if($(this).scrollTop() > scroll){
+  //     nav.fadeIn();
+  //   } else {
+  //     nav.fadeOut();
+  //   }
+  // });
 
 
   $scope.services = [
