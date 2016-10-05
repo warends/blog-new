@@ -1,4 +1,4 @@
-angular.module('willsBlog', ['ngResource', ,'ngAnimate', 'ngRoute','ngSanitize', 'ui.bootstrap']);
+angular.module('willsBlog', ['ngResource','ngAnimate','ngRoute','ngSanitize','ui.bootstrap']);
 
 angular.module('willsBlog').config(['$routeProvider', '$locationProvider', function($routeProvider, $locationProvider){
 
@@ -56,6 +56,7 @@ angular.module('willsBlog').config(['$routeProvider', '$locationProvider', funct
     });
 
 }]);//end config
+
 
 angular.module('willsBlog').run(['$rootScope', '$location', '$routeParams', '$anchorScroll', function($rootScope, $location, $routeParams, $anchorScroll){
 

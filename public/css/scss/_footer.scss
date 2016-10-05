@@ -1,6 +1,10 @@
 /*footer*/
 
+footer, section#content:after{
+	height: 100px;
+}
 footer {
+	background-color: $light-grey;
 	font-size: 14px;
 	.copywrite {
 		height: 100px;

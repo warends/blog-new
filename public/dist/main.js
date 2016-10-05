@@ -1,1 +1,670 @@
-angular.module("willsBlog",["ngResource",,"ngAnimate","ngRoute","ngSanitize","ui.bootstrap"]),angular.module("willsBlog").config(["$routeProvider","$locationProvider",function(e,t){var o={admin:{auth:function(e){return e.authorizeCurrentUserForRoute("admin")}},user:{auth:function(e){return e.authorizeAutheticatedUserForRoute()}}};t.html5Mode(!0),e.when("/",{templateUrl:"/partials/main/main",controller:"mainCtrl"}).when("/account",{templateUrl:"/partials/login/login",controller:"loginCtrl"}).when("/signup",{templateUrl:"/partials/login/signup",controller:"signupCtrl"}).when("/blog",{templateUrl:"/partials/blog/blog-list",controller:"blogListCtrl"}).when("/admin/new-post",{templateUrl:"/partials/blog/new-post",controller:"newPostCtrl",resolve:o.admin}).when("/profile",{templateUrl:"/partials/admin/profile",controller:"profileCtrl",resolve:o.user}).when("/posts/:slug",{templateUrl:"/partials/blog/post-detail",controller:"postDetailCtrl"}).when("/edit/posts/:slug",{templateUrl:"/partials/blog/edit-post",controller:"editPostCtrl",resolve:o.admin}).when("/admin/users",{templateUrl:"/partials/admin/users-list",controller:"userListCtrl",resolve:o.admin})}]),angular.module("willsBlog").run(["$rootScope","$location","$routeParams","$anchorScroll",function(e,t,o,n){e.$on("$routeChangeError",function(e,o,n,r){"not authorized"===r&&t.path("/")})}]),angular.module("willsBlog").controller("profileCtrl",["$scope","mvAuth","identity","notifier",function(e,t,o,n){e.username=o.currentUser.username,e.fName=o.currentUser.firstName,e.lName=o.currentUser.lastName,e.update=function(){var o={username:e.username,firstName:e.fName,lastName:e.lName};e.password&&e.password.length>0&&(o.password=e.password),t.updateCurrentUser(o).then(function(){n.notify("Your information has been updated")},function(e){n.error(e)})}}]),angular.module("willsBlog").controller("userListCtrl",["$scope","mvUser",function(e,t){e.users=t.query()}]),angular.module("willsBlog").controller("blogListCtrl",["$scope","mvCachedPost","identity","$location",function(e,t,o,n){e.posts=t.query();const r=angular.element(".navbar-brand");r.show(),e.identity=o,e.sortOptions=[{value:"title",text:"Sort by Title"},{value:"published",text:"Published Date"}],e.sortOrder=e.sortOptions[0].value}]),angular.module("willsBlog").controller("editPostCtrl",["$scope","notifier","mvPost","mvSavePost","$q","$location","$routeParams",function(e,t,o,n,r,a,i){e.post=o.get({slug:i.slug}),e.updatePost=function(){var o={title:e.post.title,categories:e.post.categories,headerImage:e.post.headerImage,excerpt:e.post.excerpt,body:e.post.body,author:e.post.author};console.log(o),n.updateCurrentPost(o).then(function(){t.notify("Your post has been updated")},function(e){t.error(e)})},e.cancel=function(){a.path("/blog")}}]),angular.module("willsBlog").factory("mvCachedPost",["mvPost",function(e){var t;return{query:function(){return t||(t=e.query()),t}}}]),angular.module("willsBlog").factory("mvPost",["$resource","$q",function(e,t){var o=e("/api/posts/:slug",{_slug:"@slug"},{update:{method:"PUT",isArray:!1}});return o.createPost=function(e){var n=new o(e),r=t.defer();return n.$save().then(function(){r.resolve()},function(e){r.reject(e.data.reason)}),r.promise},o}]),angular.module("willsBlog").factory("mvSavePost",["$q","mvPost",function(e,t){return{updateCurrentPost:function(t){var o=e.defer(),n=t;return n.$save().then(function(){o.resolve()},function(e){o.reject(e.data.reason)}),o.promise}}}]),angular.module("willsBlog").controller("newPostCtrl",["$scope","notifier","mvPost","$q","$location",function(e,t,o,n,r){e.createNewPost=function(){var n={title:e.title,categories:e.categories,headerImage:e.headerImage,excerpt:e.excerpt,body:e.body,author:e.author,postedDate:new Date};o.createPost(n).then(function(){t.notify("New Post Created"),r.path("/blog")},function(e){t.error(e)})},e.cancel=function(){r.path("/blog")}}]),angular.module("willsBlog").controller("postDetailCtrl",["$scope","mvCachedPost","$routeParams",function(e,t,o){window.scrollTo(0,0);const n=angular.element(".navbar-brand");n.show(),t.query().$promise.then(function(t){t.forEach(function(t){t.slug===o.slug&&(e.post=t)})})}]),angular.module("willsBlog").directive("globalModal",function(){return{restrict:"E",scope:{show:"="},replace:!0,transclude:!0,link:function(e,t,o){e.dialogStyle={},o.width&&(e.dialogStyle.width=o.width),o.height&&(e.dialogStyle.height=o.height),e.hideModal=function(){e.show=!1}},templateUrl:"/partials/common/modal"}}),angular.module("willsBlog").value("Toastr",toastr),angular.module("willsBlog").factory("notifier",["Toastr",function(e){return{notify:function(t){e.success(t),console.log(t)},error:function(t){e.error(t),console.log(t)}}}]),angular.module("willsBlog").factory("TwitterService",["$http","$q",function(e,t){var o=function(o){var n=t.defer();return e.post("/twitter/user",{username:o}).success(function(e){return n.resolve(e)}).error(function(e){return n.reject(e)}),n.promise};return{getUser:o}}]),angular.module("willsBlog").factory("identity",["$window","mvUser",function(e,t){var o;return e.bootstrappedUserObject&&(o=new t,angular.extend(o,e.bootstrappedUserObject)),{currentUser:o,isAuthenticated:function(){return!!this.currentUser},isAuthorized:function(e){return!!this.currentUser&&this.currentUser.roles.indexOf(e)>-1}}}]),angular.module("willsBlog").controller("loginCtrl",["$scope","$http","identity","notifier","mvAuth","$location",function(e,t,o,n,r,a){e.identity=o,e.signIn=function(t,o){r.authenticateUser(t,o).then(function(t){t?(n.notify("You have signed in"),a.url("/account"),e.actShown=!1):n.notify("Username/Password Incorrect")})},e.signOut=function(){r.logoutUser().then(function(){e.username="",e.password="",n.notify("You have logged out"),a.path("/")})},e.signup=function(){var t={username:e.username,firstName:e.fName,lastName:e.lName,password:e.password};r.createUser(t).then(function(){n.notify("User account created"),a.path("/")},function(e){n.error(e)})},e.cancel=function(){a.path("/")},e.actShown=!1,e.toggleAccount=function(){o.isAuthenticated()?a.path("/account"):(e.actShown=!e.actShown,console.log(e.actShown))},e.signupShown=!1,e.toggleSignup=function(){e.signupShown=!e.signupShown,console.log(e.signupShown)}}]),angular.module("willsBlog").factory("mvAuth",["$http","identity","$q","mvUser",function(e,t,o,n){return{authenticateUser:function(r,a){var i=o.defer();return e.post("/login",{username:r,password:a}).then(function(e){if(e.data.success){var o=new n;angular.extend(o,e.data.user),t.currentUser=o,i.resolve(!0)}else i.resolve(!1)}),i.promise},logoutUser:function(){var n=o.defer();return e.post("/logout",{logout:!0}).then(function(){t.currentUser=void 0,n.resolve()}),n.promise},authorizeCurrentUserForRoute:function(e){return!!t.isAuthorized("admin")||o.reject("not authorized")},authorizeAutheticatedUserForRoute:function(){return!!t.isAuthenticated()||o.reject("not a current user")},createUser:function(e){var r=new n(e),a=o.defer();return r.$save().then(function(){t.currentUser=r,a.resolve()},function(e){a.reject(e.data.reason)}),a.promise},updateCurrentUser:function(e){var n=o.defer(),r=angular.copy(t.currentUser);return angular.extend(r,e),r.$update().then(function(){t.currentUser=r,n.resolve()},function(e){n.reject(e.data.reason)}),n.promise}}}]),angular.module("willsBlog").factory("mvUser",["$resource",function(e){var t=e("/api/users/:id",{_id:"@id"},{update:{method:"PUT",isArray:!1}});return t.prototype.isAdmin=function(){return this.roles&&this.roles.indexOf("admin")>-1},t}]),angular.module("willsBlog").controller("signupCtrl",["$scope","mvAuth","notifier","$location",function(e,t,o,n){e.signup=function(){var r={username:e.username,firstName:e.fName,lastName:e.lName,password:e.password};t.createUser(r).then(function(){o.notify("User account created"),n.path("/")},function(e){o.error(e)})},e.cancel=function(){n.path("/")}}]),angular.module("willsBlog").controller("carouselCtrl",["$scope",function(e){e.slides=[{name:"Mobile",svg:"mobile-svg",desc:"Is your website up to date with the most current mobile design trends? If not, you are loosing valuable business. Ensure that your customers can reach your business from anywhere and receive the best user experience. By building with responsive design in mind, your customers will get a pixel perfect look from mobile to tablet or desktop."},{name:"ECommerce",svg:"ecomm-svg",desc:"Do you have a new product you are looking to bring to market and need an e-commerce site or just looking for more modern feel to an existing site?  By utilizing robust ecommerce platforms, we can design and develop a site that will scale with your business and needs all in time to meet your busy deadlines. "},{name:"SEO",svg:"seo-svg",desc:"Having a modern design and user friendly website is great, but if customers can`t find your business, it wont matter much.  We design and develop every aspect of the website with search engine optimization in mind and so your customers can find you among the competition.  Also through research and analytics we can develop, plan and deploy the best SEO and marketing practices to increase conversions and retention."}],e.currentIndex=0,e.setCurrentSlideIndex=function(t){e.currentIndex=t},e.isCurrentSlideIndex=function(t){return e.currentIndex===t}}]).animation(".slide-animation",function(){return{addClass:function(e,t,o){"ng-hide"==t?TweenMax.to(e,.5,{left:-e.parent().width(),onComplete:o}):o()},removeClass:function(e,t,o){"ng-hide"==t?(e.removeClass("ng-hide"),TweenMax.set(e,{left:e.parent().width()}),TweenMax.to(e,.5,{left:0,onComplete:o})):o()}}}),angular.module("willsBlog").controller("footerCtrl",["$scope",function(e){e.modalShown=!1,e.toggleModal=function(){e.modalShown=!e.modalShown}}]),angular.module("willsBlog").controller("mainCtrl",["$scope","$location","mvCachedPost","notifier","TwitterService",function(e,t,o,n,r){e.services=[{name:"Development",svg:"dev-logo",description:"Customized and reusable code using the most up to date HTML5, CSS3 and Javascript framworks. Options range from static sites, content managed sites, and ecommerce stores.",more:"Development Skills include HTML5, CSS, Javascript, Angular, Backbone, Node, Express, Boostrap and more."},{name:"Web Design",svg:"design-logo",description:"Creating an excellent user experience through clean, simple and thoroughly crafted design. Collaboration with clients during design process ensures a superb finished project.",more:"Services include wire frames, photoshop mockups, logo design, and company branding."},{name:"Support",svg:"sup-logo",description:"Support is readily available for clients when anything comes up along the development process. Also available are personal instruction on how to maintain or update your own site.",more:"Have a new product or feature you want to implement? Plans for continued support and maintenance are available."}],e.posts=o.query(),e.sendMail=function(){var e={contactName:this.contactName,contactCompany:this.contactCompany,contactEmail:this.contactEmail,contactMessage:this.contactMessage};$http.post("/contact-form",e).success(function(e,t,o,r){n.notify("Thank you for your message "+e.contactName)}).error(function(e,t,o,r){n.notify("There was an error processing your request. Please try again")})},e.getUser=function(t){r.getUser(t).then(function(t){e.twitterErrors=void 0,e.tweets=JSON.parse(t.result.userData)}).catch(function(t){console.error("there was an error retrieving data: ",t),e.twitterErrors=t.error})}}]),angular.module("willsBlog").controller("navCtrl",["$scope","$location","$anchorScroll",function(e,t,o){e.linkTo=function(e){t.url(e),o()}}]),angular.module("willsBlog").controller("workCtrl",["$scope",function(e){e.tendrilShown=!1,e.toggleTendril=function(){e.tendrilShown=!e.tendrilShown},e.crownShow=!1,e.toggleCrown=function(){e.crownShow=!e.crownShow},e.broadShow=!1,e.toggleBroad=function(){e.broadShow=!e.broadShow},e.adihow=!1,e.toggleAdi=function(){e.adiShow=!e.adiShow}}]);
+angular.module('willsBlog', ['ngResource','ngAnimate','ngRoute','ngSanitize','ui.bootstrap']);
+
+angular.module('willsBlog').config(['$routeProvider', '$locationProvider', function($routeProvider, $locationProvider){
+
+  var routeRoleChecks = {
+    admin: {auth: function(mvAuth){
+        return mvAuth.authorizeCurrentUserForRoute('admin');
+    }},
+    user: {auth: function(mvAuth){
+        return mvAuth.authorizeAutheticatedUserForRoute();
+    }}
+  }
+
+    $locationProvider.html5Mode(true);
+
+    $routeProvider
+    .when('/', {
+      templateUrl: '/partials/main/main',
+      controller: 'mainCtrl'
+    })
+    .when('/account', {
+      templateUrl: '/partials/login/login',
+      controller: 'loginCtrl'
+    })
+    .when('/signup', {
+      templateUrl: '/partials/login/signup',
+      controller: 'signupCtrl'
+    })
+    .when('/blog', {
+      templateUrl: '/partials/blog/blog-list',
+      controller: 'blogListCtrl'
+    })
+    .when('/admin/new-post', {
+      templateUrl: '/partials/blog/new-post',
+      controller: 'newPostCtrl',
+      resolve: routeRoleChecks.admin
+    })
+    .when('/profile', {
+      templateUrl: '/partials/admin/profile',
+      controller: 'profileCtrl',
+      resolve: routeRoleChecks.user
+    })
+    .when('/posts/:slug', {
+      templateUrl: '/partials/blog/post-detail',
+      controller: 'postDetailCtrl'
+    })
+    .when('/edit/posts/:slug', {
+      templateUrl: '/partials/blog/edit-post',
+      controller: 'editPostCtrl',
+      resolve: routeRoleChecks.admin
+    })
+    .when('/admin/users', {
+      templateUrl: '/partials/admin/users-list',
+      controller: 'userListCtrl',
+      resolve: routeRoleChecks.admin
+    });
+
+}]);//end config
+
+
+angular.module('willsBlog').run(['$rootScope', '$location', '$routeParams', '$anchorScroll', function($rootScope, $location, $routeParams, $anchorScroll){
+
+  $rootScope.$on('$routeChangeError', function(evt, current, previous, rejection) {
+      if(rejection === 'not authorized') {
+        $location.path('/');
+      }
+  });
+
+}]);
+
+angular.module('willsBlog').controller('profileCtrl', ['$scope', 'mvAuth', 'identity', 'notifier', function($scope, mvAuth, identity, notifier){
+  $scope.username = identity.currentUser.username;
+  $scope.fName = identity.currentUser.firstName;
+  $scope.lName = identity.currentUser.lastName;
+
+  $scope.update = function(){
+      var newUserData = {
+        username: $scope.username,
+        firstName: $scope.fName,
+        lastName: $scope.lName
+      }
+
+      if($scope.password && $scope.password.length > 0) {
+       newUserData.password = $scope.password;
+      }
+
+      mvAuth.updateCurrentUser(newUserData)
+        .then(function(){
+          notifier.notify('Your information has been updated');
+        }, function(reason){
+          notifier.error(reason);
+        });
+  }
+
+}]);
+
+angular.module('willsBlog').controller('userListCtrl', ['$scope', 'mvUser', function($scope, mvUser){
+  $scope.users = mvUser.query();
+}]);
+
+angular.module('willsBlog').controller('blogListCtrl', ['$scope', 'mvCachedPost', 'identity', '$location', function($scope, mvCachedPost, identity, $location){
+  $scope.posts = mvCachedPost.query();
+
+  const nav = angular.element('.navbar-brand');
+  nav.show();
+
+  $scope.identity = identity;
+
+  $scope.sortOptions= [
+    {value: 'title', text: 'Sort by Title'},
+    {value: 'published', text: 'Published Date'}];
+
+  $scope.sortOrder = $scope.sortOptions[0].value;
+}]);
+
+angular.module('willsBlog').controller('editPostCtrl', ['$scope', 'notifier', 'mvPost', 'mvSavePost', '$q', '$location', '$routeParams', function($scope, notifier, mvPost, mvSavePost, $q, $location, $routeParams){
+
+  $scope.post = mvPost.get({ slug: $routeParams.slug });
+
+  $scope.updatePost = function(){
+    var newPostData = {
+      title : $scope.post.title,
+      categories : $scope.post.categories,
+      headerImage : $scope.post.headerImage,
+      excerpt : $scope.post.excerpt,
+      body : $scope.post.body,
+      author: $scope.post.author
+    }
+
+    console.log(newPostData);
+
+    mvSavePost.updateCurrentPost(newPostData)
+      .then(function(){
+        notifier.notify('Your post has been updated');
+      }, function(response){
+        notifier.error(response);
+      });
+  };
+
+  $scope.cancel = function(){
+    $location.path('/blog');
+  };
+
+}]);
+
+angular.module('willsBlog').factory('mvCachedPost', ['mvPost', function(mvPost){
+  var postList;
+
+  return {
+    query: function(){
+      if(!postList){
+        postList = mvPost.query();
+      }
+
+      return postList;
+    }
+  }
+
+}]);
+
+angular.module('willsBlog').factory('mvPost', ['$resource', '$q', function($resource, $q){
+
+  var PostResource = $resource('/api/posts/:slug', {_slug: '@slug'}, {
+    update: {method: 'PUT', isArray: false}
+  });
+
+  PostResource.createPost = function(newPostData) {
+    var newPost = new PostResource(newPostData);
+    var deferred = $q.defer();
+
+    newPost.$save().then(function(){
+      deferred.resolve();
+    }, function(response){
+      deferred.reject(response.data.reason);
+    });
+    return deferred.promise;
+  }
+
+  // PostResource.prototype.updateCurrentPost = function(newPostData){
+  //   var dfd = $q.defer();
+  //   var editedPost = newPostData;
+  //   editedPost.$update().then(function(){
+  //     dfd.resolve();
+  //   }, function(response){
+  //     dfd.reject(response.data.reason);
+  //   });
+  //   return dfd.promise;
+  // }
+
+  return PostResource;
+}]);
+
+angular.module('willsBlog').factory('mvSavePost', ['$q', 'mvPost', function($q, mvPost){
+
+  return {
+
+    updateCurrentPost : function(newPostData){
+      var dfd = $q.defer();
+      var editedPost = newPostData;
+      editedPost.$save().then(function(){
+        dfd.resolve();
+      }, function(response){
+        dfd.reject(response.data.reason);
+      });
+      return dfd.promise;
+    }
+
+  }// return
+}]);
+
+angular.module('willsBlog').controller('newPostCtrl', ['$scope', 'notifier', 'mvPost', '$q', '$location', function($scope, notifier, mvPost, $q, $location){
+
+    $scope.createNewPost = function(){
+
+      var newPostData = {
+        title : $scope.title,
+        categories: $scope.categories,
+        headerImage : $scope.headerImage,
+        excerpt : $scope.excerpt,
+        body : $scope.body,
+        author: $scope.author,
+        postedDate : new Date()
+      };
+
+      //  var newPost = new mvPost(newPostData);
+      //  var deferred = $q.defer();
+
+       mvPost.createPost(newPostData)
+        .then(function(){
+          notifier.notify('New Post Created');
+          $location.path('/blog');
+        }, function(reason){
+          notifier.error(reason);
+        });
+
+    };
+
+  $scope.cancel = function(){
+    $location.path('/blog');
+  };
+
+}]);
+
+angular.module('willsBlog').controller('postDetailCtrl', ['$scope', 'mvCachedPost', '$routeParams', function($scope, mvCachedPost, $routeParams){
+
+  window.scrollTo(0,0);
+
+  const nav = angular.element('.navbar-brand');
+  nav.show();
+
+  mvCachedPost.query().$promise.then(function(collection){
+    collection.forEach(function(post){
+      if(post.slug === $routeParams.slug){
+        $scope.post = post;
+      }
+    });
+  });
+  // $scope.post = mvPost.get({ _id: $routeParams.id });
+}]);
+
+angular.module('willsBlog').directive('globalModal', function(){
+  return{
+    restrict: 'E',
+    scope: {
+      show: '='
+    },
+    replace: true,
+    transclude: true,
+    link : function(scope, element, attrs){
+      scope.dialogStyle = {};
+      if(attrs.width)
+        scope.dialogStyle.width = attrs.width;
+      if (attrs.height)
+        scope.dialogStyle.height = attrs.height;
+
+      scope.hideModal = function(){
+        scope.show = false;
+      };
+    },
+    templateUrl: '/partials/common/modal'
+  }
+});
+
+angular.module('willsBlog').value('Toastr', toastr);
+
+angular.module('willsBlog').factory('notifier', ['Toastr', function(Toastr){
+  return {
+    notify: function(message){
+      Toastr.success(message);
+      console.log(message);
+    },
+    error: function(message){
+      Toastr.error(message);
+      console.log(message);
+    }
+  }
+}]);
+
+angular.module('willsBlog').factory('TwitterService', ['$http', '$q', function($http, $q){
+
+  var getUser = function(username){
+    var d = $q.defer();
+
+    $http.post('/twitter/user', {username : username})
+      .success(function(data){
+        return d.resolve(data);
+      })
+      .error(function(error){
+        return d.reject(error);
+      });
+      return d.promise;
+    };
+
+    return {
+      getUser : getUser
+    }
+}]);
+
+angular.module('willsBlog').factory('identity', ['$window', 'mvUser', function($window, mvUser){
+
+  var currentUser;
+  if(!!$window.bootstrappedUserObject) {
+    currentUser = new mvUser();
+    angular.extend(currentUser, $window.bootstrappedUserObject);
+  }
+  return {
+    currentUser: currentUser,
+    isAuthenticated: function(){
+      return !!this.currentUser;
+    },
+
+    isAuthorized: function(role){
+      return !!this.currentUser && this.currentUser.roles.indexOf(role) > -1;
+    }
+
+  }
+
+}]);
+
+angular.module('willsBlog').controller('loginCtrl', ['$scope', '$http', 'identity', 'notifier', 'mvAuth', '$location', function($scope, $http, identity, notifier, mvAuth, $location){
+
+    $scope.identity = identity;
+
+    $scope.signIn = function(username, password){
+      mvAuth.authenticateUser(username, password).then(function(success){
+        if(success){
+          notifier.notify('You have signed in');
+          $location.url('/account');
+          $scope.actShown = false;
+        } else {
+          notifier.notify('Username/Password Incorrect');
+        }
+      });
+    };
+
+    $scope.signOut = function(){
+      mvAuth.logoutUser().then(function() {
+        $scope.username = '';
+        $scope.password = '';
+        notifier.notify('You have logged out');
+        $location.path('/');
+      });
+    };
+
+    $scope.signup = function(){
+      var newUserData = {
+        username: $scope.username,
+        firstName: $scope.fName,
+        lastName: $scope.lName,
+        password: $scope.password
+      };
+      mvAuth.createUser(newUserData)
+        .then(function(){
+          notifier.notify('User account created');
+          $location.path('/');
+      }, function(reason){
+        notifier.error(reason);
+      });
+    };
+
+    $scope.cancel = function(){
+      $location.path('/');
+    };
+
+    $scope.actShown = false;
+    $scope.toggleAccount = function() {
+      if(identity.isAuthenticated()){
+        $location.path('/account');
+      } else {
+        $scope.actShown = !$scope.actShown;
+      }
+    };
+
+    $scope.signupShown = false;
+    $scope.toggleSignup = function() {
+      $scope.signupShown = !$scope.signupShown;
+    };
+
+
+}]);
+
+
+angular.module('willsBlog').factory('mvAuth', ['$http', 'identity', '$q', 'mvUser', function($http, identity, $q, mvUser){
+
+  return {
+    // this thing working
+    authenticateUser: function(username, password){
+      var deferred = $q.defer();
+
+      $http.post('/login', {
+        username: username,
+        password: password
+      }).then(function(response){
+        if (response.data.success){
+
+          var user = new mvUser();
+          angular.extend(user, response.data.user);
+          identity.currentUser = user;
+          deferred.resolve(true);
+        } else {
+          deferred.resolve(false);
+        }
+      });
+
+      return deferred.promise;
+    },
+
+    logoutUser: function() {
+      var deferred = $q.defer();
+
+      $http.post('/logout', {logout: true}).then(function(){
+        identity.currentUser = undefined;
+        deferred.resolve();
+      });
+
+      return deferred.promise;
+
+    },
+
+    authorizeCurrentUserForRoute: function(role){
+      if (identity.isAuthorized('admin')){
+        return true;
+      } else {
+        return $q.reject('not authorized');
+      }
+    },
+
+    authorizeAutheticatedUserForRoute: function(){
+      if (identity.isAuthenticated()){
+        return true;
+      } else {
+        return $q.reject('not a current user');
+      }
+    },
+
+    createUser : function(newUserData) {
+       var newUser = new mvUser(newUserData);
+       var deferred = $q.defer();
+
+       newUser.$save().then(function(){
+         identity.currentUser = newUser;
+         deferred.resolve();
+       }, function(response){
+         deferred.reject(response.data.reason);
+       });
+
+       return deferred.promise;
+    },
+
+    updateCurrentUser: function(newUserData){
+        var deferred = $q.defer();
+        var clone = angular.copy(identity.currentUser);
+        angular.extend(clone, newUserData);
+        clone.$update().then(function(){
+          identity.currentUser = clone;
+          deferred.resolve();
+        }, function(response){
+          deferred.reject(response.data.reason);
+        });
+        return deferred.promise;
+    }
+
+  }// return
+
+}]);
+
+angular.module('willsBlog').factory('mvUser', ['$resource', function($resource){
+
+  var UserResource = $resource('/api/users/:id', {_id : '@id'}, {
+    update: {method: 'PUT', isArray: false}
+  });
+
+  UserResource.prototype.isAdmin = function(){
+    return this.roles && this.roles.indexOf('admin') > -1;
+  }
+
+  return UserResource;
+
+}]);
+
+angular.module('willsBlog').controller('signupCtrl', ['$scope', 'mvAuth', 'notifier', '$location', function($scope, mvAuth, notifier, $location){
+    $scope.signup = function(){
+
+      var newUserData = {
+        username: $scope.username,
+        firstName: $scope.fName,
+        lastName: $scope.lName,
+        password: $scope.password
+      };
+      mvAuth.createUser(newUserData)
+        .then(function(){
+          notifier.notify('User account created');
+          $location.path('/');
+      }, function(reason){
+        notifier.error(reason);
+      });
+
+    };
+
+    $scope.cancel = function(){
+      $location.path('/');
+    };
+
+}]);
+
+angular.module('willsBlog').controller('carouselCtrl', ['$scope', function($scope){
+  $scope.slides = [
+    { name: 'Mobile',
+    svg: 'mobile-svg',
+    desc: 'Is your website up to date with the most current mobile design trends? If not, you are loosing valuable business. Ensure that your customers can reach your business from anywhere and receive the best user experience. By building with responsive design in mind, your customers will get a pixel perfect look from mobile to tablet or desktop.' },
+
+    { name: 'ECommerce',
+    svg: 'ecomm-svg',
+    desc: 'Do you have a new product you are looking to bring to market and need an e-commerce site or just looking for more modern feel to an existing site?  By utilizing robust ecommerce platforms, we can design and develop a site that will scale with your business and needs all in time to meet your busy deadlines. ' },
+
+    { name: 'SEO',
+    svg: 'seo-svg',
+    desc: 'Having a modern design and user friendly website is great, but if customers can`t find your business, it wont matter much.  We design and develop every aspect of the website with search engine optimization in mind and so your customers can find you among the competition.  Also through research and analytics we can develop, plan and deploy the best SEO and marketing practices to increase conversions and retention.' }
+
+  ];
+
+  $scope.currentIndex = 0;
+  $scope.setCurrentSlideIndex = function(index){
+    $scope.currentIndex = index;
+  }
+  $scope.isCurrentSlideIndex = function(index){
+    return $scope.currentIndex === index;
+  }
+}])
+
+.animation('.slide-animation', function(){
+  return {
+    addClass: function(element, className, done){
+      if (className == 'ng-hide'){
+          TweenMax.to(element, 0.5, {left: -element.parent().width(), onComplete: done });
+      } else {
+        done();
+      }
+    },
+    removeClass: function(element, className, done){
+      if(className == 'ng-hide'){
+        element.removeClass('ng-hide');
+        TweenMax.set(element, { left: element.parent().width() });
+        TweenMax.to(element, 0.5, {left: 0, onComplete: done });
+      } else {
+        done();
+      }
+    }
+  }
+});
+
+angular.module('willsBlog').controller('mainCtrl', ['$scope', '$location', 'mvCachedPost', 'notifier' ,'TwitterService', '$http', function($scope, $location, mvCachedPost, notifier, TwitterService, $http){
+
+
+  $scope.services = [
+    { name: 'Development',
+    svg: 'dev-logo',
+    description: 'Customized and reusable code using the most up to date HTML5, CSS3 and Javascript framworks. Options range from static sites, content managed sites, and ecommerce stores.',
+    more: 'Development Skills include HTML5, CSS, Javascript, Angular, Backbone, Node, Express, Boostrap and more.' },
+
+    { name: 'Web Design',
+    svg: 'design-logo',
+    description: 'Creating an excellent user experience through clean, simple and thoroughly crafted design. Collaboration with clients during design process ensures a superb finished project.',
+    more: 'Services include wire frames, photoshop mockups, logo design, and company branding.' },
+
+    { name: 'Support',
+    svg: 'sup-logo',
+    description: 'Support is readily available for clients when anything comes up along the development process. Also available are personal instruction on how to maintain or update your own site.',
+    more: 'Have a new product or feature you want to implement? Plans for continued support and maintenance are available.' }
+
+  ];
+
+  $scope.posts = mvCachedPost.query();
+
+  $scope.form = {};
+
+  $scope.sendMail = function(){
+    var data =({
+      contactName : this.contactName,
+      contactCompany : this.contactCompany,
+      contactEmail : this.contactEmail,
+      contactMessage : this.contactMessage
+    });
+
+    $http.post('/contact-form', data)
+      .success(function(data, status, headers, config){
+        notifier.notify('Thank you for your message ' + data.contactName);
+           $scope.form.contactForm.$setPristine();
+           $scope.form.contactForm.$setUntouched();
+      })
+      .error(function(data, status, headers, config){
+        notifier.notify('There was an error processing your request. Please try again');
+      });
+      this.contactName = null;
+      this.contactCompany = null;
+      this.contactEmail = null;
+      this.contactMessage = null;
+
+  }
+
+  $scope.getUser = function(username){
+		TwitterService.getUser(username)
+		    .then(function(data){
+		        $scope.twitterErrors = undefined;
+	        	$scope.tweets = JSON.parse(data.result.userData);
+						// console.log($scope.tweets);
+		    })
+		    .catch(function(error){
+		        console.error('there was an error retrieving data: ', error);
+		        $scope.twitterErrors = error.error;
+		    })
+	};
+
+  //$scope.getUser();
+
+
+
+}]);
+
+angular.module('willsBlog').controller('navCtrl', ['$scope', '$location', '$anchorScroll', function($scope, $location, $anchorScroll){
+  $scope.linkTo = function(id){
+    $location.url(id);
+    $anchorScroll();
+  };
+
+}]);
+
+angular.module('willsBlog').controller('workCtrl', ['$scope', function($scope){
+
+  $scope.tendrilShown = false;
+  $scope.toggleTendril = function() {
+    $scope.tendrilShown = !$scope.tendrilShown;
+  };
+
+  $scope.crownShow = false;
+  $scope.toggleCrown = function() {
+    $scope.crownShow = !$scope.crownShow;
+  };
+
+  $scope.broadShow = false;
+  $scope.toggleBroad = function() {
+    $scope.broadShow = !$scope.broadShow;
+  };
+
+  $scope.adihow = false;
+  $scope.toggleAdi = function() {
+    $scope.adiShow = !$scope.adiShow;
+  };
+
+}]);

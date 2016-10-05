@@ -13,10 +13,10 @@ exports.sendMail = function(req, res){
 
   var mailOptions = {
     from: data.contactEmail,
-    to: 'info@willarendsdesign.com',
+    to: 'willarends@gmail.com',
     subject: 'Message from ' + data.contactName,
     //text: data.contactMessage,
-    html: data.contactMessage + '<br><br><p>Email: ' + data.contactEmail + '</p><p>Name: ' + data.contactName + '</p>'
+    html: data.contactMessage + '<br><br><p>Email: ' + data.contactEmail + '<br>Company: ' + data.contactCompany + '<br>Name: ' + data.contactName + '</p>'
   }
 
 

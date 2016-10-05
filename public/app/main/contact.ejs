@@ -12,9 +12,9 @@
 
 
 
-    <div class="container contact-form">
+    <div class="container">
     <div class="row">
-      <form data-toggle="validator" role="form" data-ng-submit="sendMail()">
+      <form name="form.contactForm" data-toggle="validator" role="form" data-ng-submit="sendMail()">
 
           <div class="col-md-6">
 
@@ -36,7 +36,7 @@
                 </div>
           </div>
 
-          <div class="col-md-6 contact-form">
+          <div class="col-md-6">
                 <div class="form-group">
                   <label for="message">Message:</label>
                   <textarea class="form-control required" data-ng-model="contactMessage" name="message" id="user-message" rows="4" placeholder="Message" data-error="Whats on your mind?" required></textarea>
