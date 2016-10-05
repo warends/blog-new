@@ -14,7 +14,18 @@
     font-style: normal;
 
 }
-
+html, body{
+  height: 100%;
+}
+section#content{
+  min-height: 100%;
+  margin-bottom: -100px;
+  margin-top: 100px;
+  &:after{
+    content: "";
+    display: block;
+  }
+}
 body {
 	font-family: 'cloud-light', Helvetica, Arial;
 	font-size: 16px;
@@ -38,7 +49,7 @@ a {
 a:hover, a:focus {
 	color: #308ac6;
 }
-.btn-default {
+.btn, .btn-default {
   font-family: 'cloud-bold', Helvetica, Arial;
   border: none;
  	background: $blue;
@@ -56,9 +67,6 @@ a:hover, a:focus {
 
 .btn:active {
 	box-shadow: none;
-}
-section.content {
-  padding-top: 100px;
 }
 .padded {
   padding: 1em;

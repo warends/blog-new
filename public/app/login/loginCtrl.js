@@ -49,14 +49,12 @@ angular.module('willsBlog').controller('loginCtrl', ['$scope', '$http', 'identit
         $location.path('/account');
       } else {
         $scope.actShown = !$scope.actShown;
-        console.log($scope.actShown);
       }
     };
 
     $scope.signupShown = false;
     $scope.toggleSignup = function() {
       $scope.signupShown = !$scope.signupShown;
-      console.log($scope.signupShown);
     };
 
 

@@ -1,7 +1,8 @@
+
 angular.module('willsBlog').factory('mvAuth', ['$http', 'identity', '$q', 'mvUser', function($http, identity, $q, mvUser){
 
   return {
-
+    // this thing working
     authenticateUser: function(username, password){
       var deferred = $q.defer();
 
@@ -79,4 +80,5 @@ angular.module('willsBlog').factory('mvAuth', ['$http', 'identity', '$q', 'mvUse
     }
 
   }// return
+
 }]);

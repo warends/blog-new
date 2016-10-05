@@ -1,20 +1,4 @@
-angular.module('willsBlog').controller('mainCtrl', ['$scope', '$location', 'mvCachedPost', 'notifier' ,'TwitterService', function($scope, $location, mvCachedPost, notifier, TwitterService){
-
-
-  // var width = window.innerWidth;
-  // var scroll;
-  // var scroll = (width <= 765) ? 100 : 300;
-  // const nav = angular.element('.navbar-brand');
-  // nav.hide();
-  //const bannerLogo = angular.element('.square-logo');
-  //const contact = angular.element('.contact-link');
-  // $(window).scroll(function(){
-  //   if($(this).scrollTop() > scroll){
-  //     nav.fadeIn();
-  //   } else {
-  //     nav.fadeOut();
-  //   }
-  // });
+angular.module('willsBlog').controller('mainCtrl', ['$scope', '$location', 'mvCachedPost', 'notifier' ,'TwitterService', '$http', function($scope, $location, mvCachedPost, notifier, TwitterService, $http){
 
 
   $scope.services = [
@@ -37,6 +21,8 @@ angular.module('willsBlog').controller('mainCtrl', ['$scope', '$location', 'mvCa
 
   $scope.posts = mvCachedPost.query();
 
+  $scope.form = {};
+
   $scope.sendMail = function(){
     var data =({
       contactName : this.contactName,
@@ -48,10 +34,17 @@ angular.module('willsBlog').controller('mainCtrl', ['$scope', '$location', 'mvCa
     $http.post('/contact-form', data)
       .success(function(data, status, headers, config){
         notifier.notify('Thank you for your message ' + data.contactName);
+           $scope.form.contactForm.$setPristine();
+           $scope.form.contactForm.$setUntouched();
       })
       .error(function(data, status, headers, config){
         notifier.notify('There was an error processing your request. Please try again');
       });
+      this.contactName = null;
+      this.contactCompany = null;
+      this.contactEmail = null;
+      this.contactMessage = null;
+
   }
 
   $scope.getUser = function(username){
