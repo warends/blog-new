@@ -7,13 +7,16 @@
           <input type="text" name="title" ng-model="post.title" class="form-control" />
         </div>
         <div class="form-group">
+          <label for="slug">Slug:</label>
+          <input type="text" name="slug" ng-model="post.slug" class="form-control" required/>
+        </div>
+        <div class="form-group">
           <label for="categories">Categories:</label>
           <input type="text" name="categories" ng-model="post.categories" class="form-control"/>
         </div>
         <div class="form-group">
           <label for="headerImage">Header Image</label>
           <input type="file" id="headerImage">
-          <p class="help-block">Example block-level help text here.</p>
         </div>
         <div class="form-group">
           <label for="excerpt">Excerpt:</label>
@@ -29,7 +32,8 @@
         </div>
         <div class="form-group">
           <button class="btn btn-primary" ng-click="updatePost()" ng-disabled="editPostForm.$invalid">Submit</button>
-          <a href="/"><button class="btn btn-danger" ng-click="cancel()">Cancel</button></a>
+          <button class="btn btn-danger" ng-click="cancel()">Cancel</button>
+          <button class="btn btn-danger pull-right" ng-click="deletePost()">Delete</button>
         </div>
       </form>
     </div>

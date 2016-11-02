@@ -20,14 +20,16 @@ exports.createPost = function(req, res, next) {
       res.status(400);
       return res.send({reason: err.toString()});
     }
-    //res.send(post);
+    res.send(post);
   });
 
 };
 
 exports.updatePost = function(req, res){
   var updatedPost = req.body;
+
   req.post.title = updatedPost.title;
+  req.post.slug = updatedPost.slug;
   req.post.categories = updatedPost.categories;
   req.post.excerpt = updatedPost.excerpt;
   req.post.body = updatedPost.body;
@@ -40,5 +42,15 @@ exports.updatePost = function(req, res){
       return res.send({reason:err.toString});
     }
     res.send(req.post);
+  });
+};
+
+exports.deletePost = function(req, res){
+  var deletedPost = req.body;
+  deletedPost.delete(function(err){
+    if(err) {
+      res.status(400);
+      return res.send({reason:err.toString});
+    }
   });
 };

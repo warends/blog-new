@@ -4,6 +4,7 @@ angular.module('willsBlog').controller('newPostCtrl', ['$scope', 'notifier', 'mv
 
       var newPostData = {
         title : $scope.title,
+        slug: $scope.slug,
         categories: $scope.categories,
         headerImage : $scope.headerImage,
         excerpt : $scope.excerpt,

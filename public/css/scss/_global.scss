@@ -49,15 +49,17 @@ a {
 a:hover, a:focus {
 	color: #308ac6;
 }
-.btn, .btn-default {
+.btn {
   font-family: 'cloud-bold', Helvetica, Arial;
   border: none;
- 	background: $blue;
- 	color: #fff;
   border-radius: 2px;
  	text-transform: uppercase;
  	font-size: 14px;
  	padding: 10px;
+}
+.btn-default, .btn-primary {
+ 	background: $blue;
+ 	color: #fff;
   &:hover{
     background: $orange;
   	color: #fff;

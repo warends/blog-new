@@ -1,9 +1,9 @@
-angular.module('willsBlog').controller('editPostCtrl', ['$scope', 'notifier', 'mvPost', 'mvSavePost', '$q', '$location', '$routeParams', function($scope, notifier, mvPost, mvSavePost, $q, $location, $routeParams){
+ angular.module('willsBlog').controller('editPostCtrl', ['$scope', 'notifier', 'mvPost', 'mvSavePost', '$q', '$location', '$routeParams', function($scope, notifier, mvPost, mvSavePost, $q, $location, $routeParams){
 
   $scope.post = mvPost.get({ slug: $routeParams.slug });
 
   $scope.updatePost = function(){
-    var newPostData = {
+    var postData = {
       title : $scope.post.title,
       categories : $scope.post.categories,
       headerImage : $scope.post.headerImage,
@@ -12,18 +12,22 @@ angular.module('willsBlog').controller('editPostCtrl', ['$scope', 'notifier', 'm
       author: $scope.post.author
     }
 
-    console.log(newPostData);
+    console.log(postData);
 
-    mvSavePost.updateCurrentPost(newPostData)
-      .then(function(){
-        notifier.notify('Your post has been updated');
-      }, function(response){
-        notifier.error(response);
-      });
+    mvPost.updateCurrentPost(postData).then(function(){
+      notifier.notify('Your post has been updated');
+    }, function(error){
+      notifier.error(error);
+    });
+
   };
 
   $scope.cancel = function(){
     $location.path('/blog');
+  };
+
+  $scope.deletePost = function(){
+    mvPost.deleteCurrentPost($scope.post);
   };
 
 }]);
