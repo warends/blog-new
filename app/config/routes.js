@@ -7,20 +7,14 @@ var auth = require('./auth'),
 
 module.exports = function(app){
 
-  // app.use('multer'({ dest: '../../public/uploads/img',
-  //   rename: fuction (fieldname, filename){
-  //     retun filename;
-  //   }
-  // }));
-
   app.get('/api/users', auth.requiresRole('admin'), users.getUsers);
   app.post('/api/users', users.createUser);
   app.put('/api/users', users.updateUser);
 
   app.get('/api/posts', posts.getPosts);
   app.post('/api/posts', posts.createPost);
-  app.put('/api/posts/:slug', posts.updatePost);
-  app.delete('/api/posts/:slug', posts.deletePost);
+  app.put('/api/posts', posts.updatePost);
+  app.delete('/api/posts', posts.deletePost);
   app.get('/api/posts/:slug', posts.getPostBySlug);
 
   app.get('/partials/*', function(req, res){

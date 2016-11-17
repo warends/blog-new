@@ -46,8 +46,8 @@ exports.updatePost = function(req, res){
 };
 
 exports.deletePost = function(req, res){
-  var deletedPost = req.body;
-  deletedPost.delete(function(err){
+
+  req.delete(function(err){
     if(err) {
       res.status(400);
       return res.send({reason:err.toString});

@@ -98,64 +98,6 @@ angular.module('willsBlog').controller('userListCtrl', ['$scope', 'mvUser', func
   $scope.users = mvUser.query();
 }]);
 
-angular.module('willsBlog').directive('globalModal', function(){
-  return{
-    restrict: 'E',
-    scope: {
-      show: '='
-    },
-    replace: true,
-    transclude: true,
-    link : function(scope, element, attrs){
-      scope.dialogStyle = {};
-      if(attrs.width)
-        scope.dialogStyle.width = attrs.width;
-      if (attrs.height)
-        scope.dialogStyle.height = attrs.height;
-
-      scope.hideModal = function(){
-        scope.show = false;
-      };
-    },
-    templateUrl: '/partials/common/modal'
-  }
-});
-
-angular.module('willsBlog').value('Toastr', toastr);
-
-angular.module('willsBlog').factory('notifier', ['Toastr', function(Toastr){
-  return {
-    notify: function(message){
-      Toastr.success(message);
-      console.log(message);
-    },
-    error: function(message){
-      Toastr.error(message);
-      console.log(message);
-    }
-  }
-}]);
-
-angular.module('willsBlog').factory('TwitterService', ['$http', '$q', function($http, $q){
-
-  var getUser = function(username){
-    var d = $q.defer();
-
-    $http.post('/twitter/user', {username : username})
-      .success(function(data){
-        return d.resolve(data);
-      })
-      .error(function(error){
-        return d.reject(error);
-      });
-      return d.promise;
-    };
-
-    return {
-      getUser : getUser
-    }
-}]);
-
 angular.module('willsBlog').controller('blogListCtrl', ['$scope', 'mvCachedPost', 'identity', '$location', function($scope, mvCachedPost, identity, $location){
   $scope.posts = mvCachedPost.query();
 
@@ -171,7 +113,7 @@ angular.module('willsBlog').controller('blogListCtrl', ['$scope', 'mvCachedPost'
   $scope.sortOrder = $scope.sortOptions[0].value;
 }]);
 
- angular.module('willsBlog').controller('editPostCtrl', ['$scope', 'notifier', 'mvPost', 'mvSavePost', '$q', '$location', '$routeParams', function($scope, notifier, mvPost, mvSavePost, $q, $location, $routeParams){
+ angular.module('willsBlog').controller('editPostCtrl', ['$scope', 'notifier', 'mvPost', '$q', '$location', '$routeParams', function($scope, notifier, mvPost, $q, $location, $routeParams){
 
   $scope.post = mvPost.get({ slug: $routeParams.slug });
 
@@ -187,7 +129,8 @@ angular.module('willsBlog').controller('blogListCtrl', ['$scope', 'mvCachedPost'
 
     console.log(postData);
 
-    mvPost.updateCurrentPost(postData).then(function(){
+    mvPost.updateCurrentPost(postData)
+    .then(function(){
       notifier.notify('Your post has been updated');
     }, function(error){
       notifier.error(error);
@@ -223,7 +166,13 @@ angular.module('willsBlog').factory('mvCachedPost', ['mvPost', function(mvPost){
 angular.module('willsBlog').factory('mvPost', ['$resource', '$q', function($resource, $q){
 
   var PostResource = $resource('/api/posts/:slug', {_slug: '@slug'}, {
-    update: {method:'PUT', isArray: false}
+    update: {
+      method:'PUT',
+      isArray: false
+    },
+    remove: {
+      method: 'DELETE'
+    }
   });
 
   PostResource.createPost = function(newPostData) {
@@ -249,7 +198,7 @@ angular.module('willsBlog').factory('mvPost', ['$resource', '$q', function($reso
   }
 
   PostResource.deleteCurrentPost = function(postData){
-    postData.$delete(function(){
+    postData.$remove(function(){
       notify.notify('Post has been deleted.');
       $location.path('/blog');
     });
@@ -327,150 +276,62 @@ angular.module('willsBlog').controller('postDetailCtrl', ['$scope', 'mvCachedPos
   // $scope.post = mvPost.get({ _id: $routeParams.id });
 }]);
 
-angular.module('willsBlog').controller('carouselCtrl', ['$scope', function($scope){
-  $scope.slides = [
-    { name: 'Mobile',
-    svg: 'mobile-svg',
-    desc: 'Is your website up to date with the most current mobile design trends? If not, you are loosing valuable business. Ensure that your customers can reach your business from anywhere and receive the best user experience. By building with responsive design in mind, your customers will get a pixel perfect look from mobile to tablet or desktop.' },
-
-    { name: 'ECommerce',
-    svg: 'ecomm-svg',
-    desc: 'Do you have a new product you are looking to bring to market and need an e-commerce site or just looking for more modern feel to an existing site?  By utilizing robust ecommerce platforms, we can design and develop a site that will scale with your business and needs all in time to meet your busy deadlines. ' },
-
-    { name: 'SEO',
-    svg: 'seo-svg',
-    desc: 'Having a modern design and user friendly website is great, but if customers can`t find your business, it wont matter much.  We design and develop every aspect of the website with search engine optimization in mind and so your customers can find you among the competition.  Also through research and analytics we can develop, plan and deploy the best SEO and marketing practices to increase conversions and retention.' }
-
-  ];
-
-  $scope.currentIndex = 0;
-  $scope.setCurrentSlideIndex = function(index){
-    $scope.currentIndex = index;
-  }
-  $scope.isCurrentSlideIndex = function(index){
-    return $scope.currentIndex === index;
-  }
-}])
-
-.animation('.slide-animation', function(){
-  return {
-    addClass: function(element, className, done){
-      if (className == 'ng-hide'){
-          TweenMax.to(element, 0.5, {left: -element.parent().width(), onComplete: done });
-      } else {
-        done();
-      }
+angular.module('willsBlog').directive('globalModal', function(){
+  return{
+    restrict: 'E',
+    scope: {
+      show: '='
     },
-    removeClass: function(element, className, done){
-      if(className == 'ng-hide'){
-        element.removeClass('ng-hide');
-        TweenMax.set(element, { left: element.parent().width() });
-        TweenMax.to(element, 0.5, {left: 0, onComplete: done });
-      } else {
-        done();
-      }
-    }
+    replace: true,
+    transclude: true,
+    link : function(scope, element, attrs){
+      scope.dialogStyle = {};
+      if(attrs.width)
+        scope.dialogStyle.width = attrs.width;
+      if (attrs.height)
+        scope.dialogStyle.height = attrs.height;
+
+      scope.hideModal = function(){
+        scope.show = false;
+      };
+    },
+    templateUrl: '/partials/common/modal'
   }
 });
 
-angular.module('willsBlog').controller('mainCtrl', ['$scope', '$location', 'mvCachedPost', 'notifier' ,'TwitterService', '$http', function($scope, $location, mvCachedPost, notifier, TwitterService, $http){
+angular.module('willsBlog').value('Toastr', toastr);
 
-
-  $scope.services = [
-    { name: 'Development',
-    svg: 'dev-logo',
-    description: 'Customized and reusable code using the most up to date HTML5, CSS3 and Javascript framworks. Options range from static sites, content managed sites, and ecommerce stores.',
-    more: 'Development Skills include HTML5, CSS, Javascript, Angular, Backbone, Node, Express, Boostrap and more.' },
-
-    { name: 'Web Design',
-    svg: 'design-logo',
-    description: 'Creating an excellent user experience through clean, simple and thoroughly crafted design. Collaboration with clients during design process ensures a superb finished project.',
-    more: 'Services include wire frames, photoshop mockups, logo design, and company branding.' },
-
-    { name: 'Support',
-    svg: 'sup-logo',
-    description: 'Support is readily available for clients when anything comes up along the development process. Also available are personal instruction on how to maintain or update your own site.',
-    more: 'Have a new product or feature you want to implement? Plans for continued support and maintenance are available.' }
-
-  ];
-
-  $scope.posts = mvCachedPost.query();
-
-  $scope.form = {};
-
-  $scope.sendMail = function(){
-    var data =({
-      contactName : this.contactName,
-      contactCompany : this.contactCompany,
-      contactEmail : this.contactEmail,
-      contactMessage : this.contactMessage
-    });
-
-    $http.post('/contact-form', data)
-      .success(function(data, status, headers, config){
-        notifier.notify('Thank you for your message ' + data.contactName);
-           $scope.form.contactForm.$setPristine();
-           $scope.form.contactForm.$setUntouched();
-      })
-      .error(function(data, status, headers, config){
-        notifier.notify('There was an error processing your request. Please try again');
-      });
-      this.contactName = null;
-      this.contactCompany = null;
-      this.contactEmail = null;
-      this.contactMessage = null;
-
+angular.module('willsBlog').factory('notifier', ['Toastr', function(Toastr){
+  return {
+    notify: function(message){
+      Toastr.success(message);
+      console.log(message);
+    },
+    error: function(message){
+      Toastr.error(message);
+      console.log(message);
+    }
   }
-
-  $scope.getUser = function(username){
-		TwitterService.getUser(username)
-		    .then(function(data){
-		        $scope.twitterErrors = undefined;
-	        	$scope.tweets = JSON.parse(data.result.userData);
-						// console.log($scope.tweets);
-		    })
-		    .catch(function(error){
-		        console.error('there was an error retrieving data: ', error);
-		        $scope.twitterErrors = error.error;
-		    })
-	};
-
-  //$scope.getUser();
-
-
-
 }]);
 
-angular.module('willsBlog').controller('navCtrl', ['$scope', '$location', '$anchorScroll', function($scope, $location, $anchorScroll){
-  $scope.linkTo = function(id){
-    $location.url(id);
-    $anchorScroll();
-  };
+angular.module('willsBlog').factory('TwitterService', ['$http', '$q', function($http, $q){
 
-}]);
+  var getUser = function(username){
+    var d = $q.defer();
 
-angular.module('willsBlog').controller('workCtrl', ['$scope', function($scope){
+    $http.post('/twitter/user', {username : username})
+      .success(function(data){
+        return d.resolve(data);
+      })
+      .error(function(error){
+        return d.reject(error);
+      });
+      return d.promise;
+    };
 
-  $scope.tendrilShown = false;
-  $scope.toggleTendril = function() {
-    $scope.tendrilShown = !$scope.tendrilShown;
-  };
-
-  $scope.crownShow = false;
-  $scope.toggleCrown = function() {
-    $scope.crownShow = !$scope.crownShow;
-  };
-
-  $scope.broadShow = false;
-  $scope.toggleBroad = function() {
-    $scope.broadShow = !$scope.broadShow;
-  };
-
-  $scope.adihow = false;
-  $scope.toggleAdi = function() {
-    $scope.adiShow = !$scope.adiShow;
-  };
-
+    return {
+      getUser : getUser
+    }
 }]);
 
 angular.module('willsBlog').factory('identity', ['$window', 'mvUser', function($window, mvUser){
@@ -677,5 +538,151 @@ angular.module('willsBlog').controller('signupCtrl', ['$scope', 'mvAuth', 'notif
     $scope.cancel = function(){
       $location.path('/');
     };
+
+}]);
+
+angular.module('willsBlog').controller('carouselCtrl', ['$scope', function($scope){
+  $scope.slides = [
+    { name: 'Mobile',
+    svg: 'mobile-svg',
+    desc: 'Is your website up to date with the most current mobile design trends? If not, you are loosing valuable business. Ensure that your customers can reach your business from anywhere and receive the best user experience. By building with responsive design in mind, your customers will get a pixel perfect look from mobile to tablet or desktop.' },
+
+    { name: 'ECommerce',
+    svg: 'ecomm-svg',
+    desc: 'Do you have a new product you are looking to bring to market and need an e-commerce site or just looking for more modern feel to an existing site?  By utilizing robust ecommerce platforms, we can design and develop a site that will scale with your business and needs all in time to meet your busy deadlines. ' },
+
+    { name: 'SEO',
+    svg: 'seo-svg',
+    desc: 'Having a modern design and user friendly website is great, but if customers can`t find your business, it wont matter much.  We design and develop every aspect of the website with search engine optimization in mind and so your customers can find you among the competition.  Also through research and analytics we can develop, plan and deploy the best SEO and marketing practices to increase conversions and retention.' }
+
+  ];
+
+  $scope.currentIndex = 0;
+  $scope.setCurrentSlideIndex = function(index){
+    $scope.currentIndex = index;
+  }
+  $scope.isCurrentSlideIndex = function(index){
+    return $scope.currentIndex === index;
+  }
+}])
+
+.animation('.slide-animation', function(){
+  return {
+    addClass: function(element, className, done){
+      if (className == 'ng-hide'){
+          TweenMax.to(element, 0.5, {left: -element.parent().width(), onComplete: done });
+      } else {
+        done();
+      }
+    },
+    removeClass: function(element, className, done){
+      if(className == 'ng-hide'){
+        element.removeClass('ng-hide');
+        TweenMax.set(element, { left: element.parent().width() });
+        TweenMax.to(element, 0.5, {left: 0, onComplete: done });
+      } else {
+        done();
+      }
+    }
+  }
+});
+
+angular.module('willsBlog').controller('mainCtrl', ['$scope', '$location', 'mvCachedPost', 'notifier' ,'TwitterService', '$http', function($scope, $location, mvCachedPost, notifier, TwitterService, $http){
+
+
+  $scope.services = [
+    { name: 'Development',
+    svg: 'dev-logo',
+    description: 'Customized and reusable code using the most up to date HTML5, CSS3 and Javascript framworks. Options range from static sites, content managed sites, and ecommerce stores.',
+    more: 'Development Skills include HTML5, CSS, Javascript, Angular, Backbone, Node, Express, Boostrap and more.' },
+
+    { name: 'Web Design',
+    svg: 'design-logo',
+    description: 'Creating an excellent user experience through clean, simple and thoroughly crafted design. Collaboration with clients during design process ensures a superb finished project.',
+    more: 'Services include wire frames, photoshop mockups, logo design, and company branding.' },
+
+    { name: 'Support',
+    svg: 'sup-logo',
+    description: 'Support is readily available for clients when anything comes up along the development process. Also available are personal instruction on how to maintain or update your own site.',
+    more: 'Have a new product or feature you want to implement? Plans for continued support and maintenance are available.' }
+
+  ];
+
+  $scope.posts = mvCachedPost.query();
+
+  $scope.form = {};
+
+  $scope.sendMail = function(){
+    var data =({
+      contactName : this.contactName,
+      contactCompany : this.contactCompany,
+      contactEmail : this.contactEmail,
+      contactMessage : this.contactMessage
+    });
+
+    $http.post('/contact-form', data)
+      .success(function(data, status, headers, config){
+        notifier.notify('Thank you for your message ' + data.contactName);
+           $scope.form.contactForm.$setPristine();
+           $scope.form.contactForm.$setUntouched();
+      })
+      .error(function(data, status, headers, config){
+        notifier.notify('There was an error processing your request. Please try again');
+      });
+      this.contactName = null;
+      this.contactCompany = null;
+      this.contactEmail = null;
+      this.contactMessage = null;
+
+  }
+
+  $scope.getUser = function(username){
+		TwitterService.getUser(username)
+		    .then(function(data){
+		        $scope.twitterErrors = undefined;
+	        	$scope.tweets = JSON.parse(data.result.userData);
+						// console.log($scope.tweets);
+		    })
+		    .catch(function(error){
+		        console.error('there was an error retrieving data: ', error);
+		        $scope.twitterErrors = error.error;
+		    })
+	};
+
+  //$scope.getUser();
+
+
+
+}]);
+
+angular.module('willsBlog').controller('navCtrl', ['$scope', '$location', '$anchorScroll', function($scope, $location, $anchorScroll){
+  $scope.linkTo = function(id){
+    $location.url(id);
+    $anchorScroll();
+  };
+
+}]);
+
+angular.module('willsBlog').controller('workCtrl', ['$scope', function($scope){
+
+  $scope.tendrilShown = false;
+  $scope.toggleTendril = function() {
+    $scope.tendrilShown = !$scope.tendrilShown;
+  };
+
+  $scope.crownShow = false;
+  $scope.toggleCrown = function() {
+    $scope.crownShow = !$scope.crownShow;
+  };
+
+  $scope.broadShow = false;
+  $scope.toggleBroad = function() {
+    $scope.broadShow = !$scope.broadShow;
+  };
+
+  $scope.adihow = false;
+  $scope.toggleAdi = function() {
+    $scope.adiShow = !$scope.adiShow;
+  };
 
 }]);

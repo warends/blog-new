@@ -1,7 +1,13 @@
 angular.module('willsBlog').factory('mvPost', ['$resource', '$q', function($resource, $q){
 
   var PostResource = $resource('/api/posts/:slug', {_slug: '@slug'}, {
-    update: {method:'PUT', isArray: false}
+    update: {
+      method:'PUT',
+      isArray: false
+    },
+    remove: {
+      method: 'DELETE'
+    }
   });
 
   PostResource.createPost = function(newPostData) {
@@ -27,7 +33,7 @@ angular.module('willsBlog').factory('mvPost', ['$resource', '$q', function($reso
   }
 
   PostResource.deleteCurrentPost = function(postData){
-    postData.$delete(function(){
+    postData.$remove(function(){
       notify.notify('Post has been deleted.');
       $location.path('/blog');
     });
