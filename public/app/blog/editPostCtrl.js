@@ -1,6 +1,6 @@
  angular.module('willsBlog').controller('editPostCtrl', ['$scope', 'notifier', 'mvPost', '$q', '$location', '$routeParams', function($scope, notifier, mvPost, $q, $location, $routeParams){
 
-  $scope.post = mvPost.get({ slug: $routeParams.slug });
+  $scope.post = mvPost.get({ id: $routeParams.id });
 
   $scope.updatePost = function(){
     var postData = {

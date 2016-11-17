@@ -115,7 +115,7 @@ angular.module('willsBlog').controller('blogListCtrl', ['$scope', 'mvCachedPost'
 
  angular.module('willsBlog').controller('editPostCtrl', ['$scope', 'notifier', 'mvPost', '$q', '$location', '$routeParams', function($scope, notifier, mvPost, $q, $location, $routeParams){
 
-  $scope.post = mvPost.get({ slug: $routeParams.slug });
+  $scope.post = mvPost.get({ id: $routeParams.id });
 
   $scope.updatePost = function(){
     var postData = {
@@ -165,7 +165,7 @@ angular.module('willsBlog').factory('mvCachedPost', ['mvPost', function(mvPost){
 
 angular.module('willsBlog').factory('mvPost', ['$resource', '$q', function($resource, $q){
 
-  var PostResource = $resource('/api/posts/:slug', {_slug: '@slug'}, {
+  var PostResource = $resource('/api/posts/:id', {_id: '@id'}, {
     update: {
       method:'PUT',
       isArray: false

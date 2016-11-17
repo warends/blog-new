@@ -15,7 +15,7 @@ module.exports = function(app){
   app.post('/api/posts', posts.createPost);
   app.put('/api/posts', posts.updatePost);
   app.delete('/api/posts', posts.deletePost);
-  app.get('/api/posts/:slug', posts.getPostBySlug);
+  app.get('/api/posts/:slug', posts.getPostById);
 
   app.get('/partials/*', function(req, res){
       res.render('../../public/app/' + req.params[0]);
