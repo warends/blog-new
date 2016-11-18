@@ -1,18 +1,18 @@
 <div class="container">
   <div class="row">
     <div class="col-sm-12">
-      <form name="newPostForm">
+      <form name="newPostForm" ng-submit="createNewPost()">
         <div class="form-group">
           <label for="title">Title:</label>
-          <input type="text" name="title" ng-model="title" class="form-control" required/>
+          <input type="text" name="title" ng-model="post.title" class="form-control" required/>
         </div>
         <div class="form-group">
           <label for="slug">Slug:</label>
-          <input type="text" name="slug" ng-model="slug" class="form-control" required/>
+          <input type="text" name="slug" ng-model="post.slug" class="form-control" required/>
         </div>
         <div class="form-group">
           <label for="categories">Categories:</label>
-          <input type="text" name="categories" ng-model="categories" class="form-control"/>
+          <input type="text" name="categories" ng-model="post.categories" class="form-control"/>
         </div>
         <div class="form-group">
           <label for="headerImage">Header Image</label>
@@ -20,18 +20,18 @@
         </div>
         <div class="form-group">
           <label for="excerpt">Excerpt:</label>
-          <textarea rows="4" name="body" ng-model="excerpt" class="form-control" required/></textarea>
+          <textarea rows="4" name="body" ng-model="post.excerpt" class="form-control" required/></textarea>
         </div>
         <div class="form-group">
           <label for="body">Body:</label>
-          <textarea rows="8" name="body" ng-model="body" class="form-control" required/></textarea>
+          <textarea rows="8" name="body" ng-model="post.body" class="form-control" required/></textarea>
         </div>
         <div class="form-group">
           <label for="author">Author:</label>
-          <input type="text" name="author" ng-model="author" class="form-control" required/>
+          <input type="text" name="author" ng-model="post.author" class="form-control" required/>
         </div>
         <div class="form-group">
-          <button class="btn btn-primary" ng-click="createNewPost()" ng-disabled="newPostForm.$invalid">Submit</button>
+          <input type="submit" class="btn btn-primary" ng-disabled="newPostForm.$invalid" value="Submit"/>
           <a href="/"><button class="btn btn-danger" ng-click="cancel()">Cancel</button></a>
         </div>
       </form>

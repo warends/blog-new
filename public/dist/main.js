@@ -30,21 +30,21 @@ angular.module('willsBlog').config(['$routeProvider', '$locationProvider', funct
       templateUrl: '/partials/blog/blog-list',
       controller: 'blogListCtrl'
     })
-    .when('/admin/new-post', {
-      templateUrl: '/partials/blog/new-post',
-      controller: 'newPostCtrl',
-      resolve: routeRoleChecks.admin
-    })
     .when('/profile', {
       templateUrl: '/partials/admin/profile',
       controller: 'profileCtrl',
       resolve: routeRoleChecks.user
     })
-    .when('/posts/:slug', {
+    .when('/posts/:id', { //view single post
       templateUrl: '/partials/blog/post-detail',
       controller: 'postDetailCtrl'
     })
-    .when('/admin/edit-post/:slug', {
+    .when('/admin/new-post', {  //adding a new post
+      templateUrl: '/partials/blog/new-post',
+      controller: 'newPostCtrl',
+      resolve: routeRoleChecks.admin
+    })
+    .when('/admin/:id/edit', {  //edit post
       templateUrl: '/partials/blog/edit-post',
       controller: 'editPostCtrl',
       resolve: routeRoleChecks.admin
@@ -99,10 +99,8 @@ angular.module('willsBlog').controller('userListCtrl', ['$scope', 'mvUser', func
 }]);
 
 angular.module('willsBlog').controller('blogListCtrl', ['$scope', 'mvCachedPost', 'identity', '$location', function($scope, mvCachedPost, identity, $location){
+  
   $scope.posts = mvCachedPost.query();
-
-  const nav = angular.element('.navbar-brand');
-  nav.show();
 
   $scope.identity = identity;
 
@@ -115,36 +113,41 @@ angular.module('willsBlog').controller('blogListCtrl', ['$scope', 'mvCachedPost'
 
  angular.module('willsBlog').controller('editPostCtrl', ['$scope', 'notifier', 'mvPost', '$q', '$location', '$routeParams', function($scope, notifier, mvPost, $q, $location, $routeParams){
 
-  $scope.post = mvPost.get({ id: $routeParams.id });
-
-  $scope.updatePost = function(){
-    var postData = {
-      title : $scope.post.title,
-      categories : $scope.post.categories,
-      headerImage : $scope.post.headerImage,
-      excerpt : $scope.post.excerpt,
-      body : $scope.post.body,
-      author: $scope.post.author
+    $scope.updatePost = function(){
+      console.log($scope.post._id);
+      $scope.post.$update(function(){
+        notifier.notify('Your post has been updated');
+      }, function(reason){
+        notifier.error(reason.data);
+      });
     }
 
-    console.log(postData);
+    $scope.post = mvPost.get({ id: $routeParams.id });
 
-    mvPost.updateCurrentPost(postData)
-    .then(function(){
-      notifier.notify('Your post has been updated');
-    }, function(error){
-      notifier.error(error);
-    });
-
-  };
-
-  $scope.cancel = function(){
-    $location.path('/blog');
-  };
-
-  $scope.deletePost = function(){
-    mvPost.deleteCurrentPost($scope.post);
-  };
+  // $scope.updatePost = function(){
+  //   var postData = {
+  //     title : $scope.post.title,
+  //     categories : $scope.post.categories,
+  //     headerImage : $scope.post.headerImage,
+  //     excerpt : $scope.post.excerpt,
+  //     body : $scope.post.body,
+  //     author: $scope.post.author
+  //   }
+  //
+  //   console.log(postData);
+  //
+  //   mvPost.updateCurrentPost(postData)
+  //   .then(function(){
+  //     notifier.notify('Your post has been updated');
+  //   }, function(error){
+  //     notifier.error(error);
+  //   });
+  //
+  // };
+  //
+  // $scope.deletePost = function(){
+  //   mvPost.deleteCurrentPost($scope.post);
+  // };
 
 }]);
 
@@ -165,93 +168,35 @@ angular.module('willsBlog').factory('mvCachedPost', ['mvPost', function(mvPost){
 
 angular.module('willsBlog').factory('mvPost', ['$resource', '$q', function($resource, $q){
 
-  var PostResource = $resource('/api/posts/:id', {_id: '@id'}, {
-    update: {
-      method:'PUT',
-      isArray: false
-    },
-    remove: {
-      method: 'DELETE'
+  return $resource('/api/posts/:id', {_id: '@id'}, {
+    update : {
+      method: 'PUT'
     }
   });
 
-  PostResource.createPost = function(newPostData) {
-    var newPost = new PostResource(newPostData);
-    var deferred = $q.defer();
-
-    newPost.$save().then(function(){
-      deferred.resolve();
-    }, function(response){
-      deferred.reject(response.data.reason);
-    });
-    return deferred.promise;
-  }
-
-  PostResource.updateCurrentPost = function(postData){
-    var dfd = $q.defer();
-    postData.$update().then(function(){
-      dfd.resolve();
-    }, function(response){
-      dfd.reject(response.data.reason);
-    });
-    return dfd.promise;
-  }
-
-  PostResource.deleteCurrentPost = function(postData){
-    postData.$remove(function(){
-      notify.notify('Post has been deleted.');
-      $location.path('/blog');
-    });
-  }
-
-  return PostResource;
-}]);
-
-angular.module('willsBlog').factory('mvSavePost', ['$q', 'mvPost', function($q, mvPost){
-
-  return {
-
-    updateCurrentPost : function(newPostData){
-      var dfd = $q.defer();
-      var editedPost = newPostData;
-      editedPost.$save().then(function(){
-        dfd.resolve();
-      }, function(response){
-        dfd.reject(response.data.reason);
-      });
-      return dfd.promise;
-    }
-
-  }// return
 }]);
 
 angular.module('willsBlog').controller('newPostCtrl', ['$scope', 'notifier', 'mvPost', '$q', '$location', function($scope, notifier, mvPost, $q, $location){
 
-    $scope.createNewPost = function(){
+  // var newPostData = {
+  //     title : $scope.title,
+  //     slug: $scope.slug,
+  //     categories: $scope.categories,
+  //     headerImage : $scope.headerImage,
+  //     excerpt : $scope.excerpt,
+  //     body : $scope.body,
+  //     author: $scope.author,
+  //     postedDate : new Date()
+  //   };
 
-      var newPostData = {
-        title : $scope.title,
-        slug: $scope.slug,
-        categories: $scope.categories,
-        headerImage : $scope.headerImage,
-        excerpt : $scope.excerpt,
-        body : $scope.body,
-        author: $scope.author,
-        postedDate : new Date()
-      };
+  $scope.post = new mvPost();
 
-      //  var newPost = new mvPost(newPostData);
-      //  var deferred = $q.defer();
-
-       mvPost.createPost(newPostData)
-        .then(function(){
-          notifier.notify('New Post Created');
-          $location.path('/blog');
-        }, function(reason){
-          notifier.error(reason);
-        });
-
-    };
+  $scope.createNewPost = function(){
+    $scope.post.$save(function(){
+        notifier.notify('New Post Created');
+        $location.path('/blog');
+    });
+  }
 
   $scope.cancel = function(){
     $location.path('/blog');
@@ -259,21 +204,19 @@ angular.module('willsBlog').controller('newPostCtrl', ['$scope', 'notifier', 'mv
 
 }]);
 
-angular.module('willsBlog').controller('postDetailCtrl', ['$scope', 'mvCachedPost', '$routeParams', function($scope, mvCachedPost, $routeParams){
+angular.module('willsBlog').controller('postDetailCtrl', ['$scope', 'mvCachedPost', 'mvPost', '$routeParams', function($scope, mvCachedPost, mvPost, $routeParams){
 
   window.scrollTo(0,0);
 
-  const nav = angular.element('.navbar-brand');
-  nav.show();
-
-  mvCachedPost.query().$promise.then(function(collection){
-    collection.forEach(function(post){
-      if(post.slug === $routeParams.slug){
-        $scope.post = post;
-      }
-    });
-  });
-  // $scope.post = mvPost.get({ _id: $routeParams.id });
+  // mvCachedPost.query().$promise.then(function(collection){
+  //   collection.forEach(function(post){
+  //     if(post._id === $routeParams.id){
+  //       $scope.post = post;
+  //     }
+  //   });
+  // });
+  
+   $scope.post = mvPost.get({ id: $routeParams.id });
 }]);
 
 angular.module('willsBlog').directive('globalModal', function(){
