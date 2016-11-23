@@ -4,6 +4,8 @@ angular.module('willsBlog').factory('mvPost', ['$resource', '$q', function($reso
     update : {
       method: 'PUT'
     }
+  }, {
+    stripTrailingSlashes: false
   });
 
 }]);

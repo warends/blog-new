@@ -98,127 +98,6 @@ angular.module('willsBlog').controller('userListCtrl', ['$scope', 'mvUser', func
   $scope.users = mvUser.query();
 }]);
 
-angular.module('willsBlog').controller('blogListCtrl', ['$scope', 'mvCachedPost', 'identity', '$location', function($scope, mvCachedPost, identity, $location){
-  
-  $scope.posts = mvCachedPost.query();
-
-  $scope.identity = identity;
-
-  $scope.sortOptions= [
-    {value: 'title', text: 'Sort by Title'},
-    {value: 'published', text: 'Published Date'}];
-
-  $scope.sortOrder = $scope.sortOptions[0].value;
-}]);
-
- angular.module('willsBlog').controller('editPostCtrl', ['$scope', 'notifier', 'mvPost', '$q', '$location', '$routeParams', function($scope, notifier, mvPost, $q, $location, $routeParams){
-
-    $scope.updatePost = function(){
-      console.log($scope.post._id);
-      $scope.post.$update(function(){
-        notifier.notify('Your post has been updated');
-      }, function(reason){
-        notifier.error(reason.data);
-      });
-    }
-
-    $scope.post = mvPost.get({ id: $routeParams.id });
-
-  // $scope.updatePost = function(){
-  //   var postData = {
-  //     title : $scope.post.title,
-  //     categories : $scope.post.categories,
-  //     headerImage : $scope.post.headerImage,
-  //     excerpt : $scope.post.excerpt,
-  //     body : $scope.post.body,
-  //     author: $scope.post.author
-  //   }
-  //
-  //   console.log(postData);
-  //
-  //   mvPost.updateCurrentPost(postData)
-  //   .then(function(){
-  //     notifier.notify('Your post has been updated');
-  //   }, function(error){
-  //     notifier.error(error);
-  //   });
-  //
-  // };
-  //
-  // $scope.deletePost = function(){
-  //   mvPost.deleteCurrentPost($scope.post);
-  // };
-
-}]);
-
-angular.module('willsBlog').factory('mvCachedPost', ['mvPost', function(mvPost){
-  var postList;
-
-  return {
-    query: function(){
-      if(!postList){
-        postList = mvPost.query();
-      }
-
-      return postList;
-    }
-  }
-
-}]);
-
-angular.module('willsBlog').factory('mvPost', ['$resource', '$q', function($resource, $q){
-
-  return $resource('/api/posts/:id', {_id: '@id'}, {
-    update : {
-      method: 'PUT'
-    }
-  });
-
-}]);
-
-angular.module('willsBlog').controller('newPostCtrl', ['$scope', 'notifier', 'mvPost', '$q', '$location', function($scope, notifier, mvPost, $q, $location){
-
-  // var newPostData = {
-  //     title : $scope.title,
-  //     slug: $scope.slug,
-  //     categories: $scope.categories,
-  //     headerImage : $scope.headerImage,
-  //     excerpt : $scope.excerpt,
-  //     body : $scope.body,
-  //     author: $scope.author,
-  //     postedDate : new Date()
-  //   };
-
-  $scope.post = new mvPost();
-
-  $scope.createNewPost = function(){
-    $scope.post.$save(function(){
-        notifier.notify('New Post Created');
-        $location.path('/blog');
-    });
-  }
-
-  $scope.cancel = function(){
-    $location.path('/blog');
-  };
-
-}]);
-
-angular.module('willsBlog').controller('postDetailCtrl', ['$scope', 'mvCachedPost', 'mvPost', '$routeParams', function($scope, mvCachedPost, mvPost, $routeParams){
-
-  window.scrollTo(0,0);
-
-  // mvCachedPost.query().$promise.then(function(collection){
-  //   collection.forEach(function(post){
-  //     if(post._id === $routeParams.id){
-  //       $scope.post = post;
-  //     }
-  //   });
-  // });
-  
-   $scope.post = mvPost.get({ id: $routeParams.id });
-}]);
-
 angular.module('willsBlog').directive('globalModal', function(){
   return{
     restrict: 'E',
@@ -275,6 +154,112 @@ angular.module('willsBlog').factory('TwitterService', ['$http', '$q', function($
     return {
       getUser : getUser
     }
+}]);
+
+angular.module('willsBlog').controller('blogListCtrl', ['$scope', 'mvCachedPost', 'identity', '$location', function($scope, mvCachedPost, identity, $location){
+  
+  $scope.posts = mvCachedPost.query();
+
+  $scope.identity = identity;
+
+  $scope.sortOptions= [
+    {value: 'title', text: 'Sort by Title'},
+    {value: 'published', text: 'Published Date'}];
+
+  $scope.sortOrder = $scope.sortOptions[0].value;
+}]);
+
+ angular.module('willsBlog').controller('editPostCtrl', ['$scope', 'notifier', 'mvPost', '$q', '$location', '$routeParams', function($scope, notifier, mvPost, $q, $location, $routeParams){
+
+    $scope.post = mvPost.get({ id: $routeParams.id });
+
+      $scope.post.data = {
+          _id: $scope.post._id,
+          title : $scope.post.title,
+          slug: $scope.post.slug,
+          categories : $scope.post.categories,
+          headerImage : $scope.post.headerImage,
+          excerpt : $scope.post.excerpt,
+          body : $scope.post.body,
+          author: $scope.post.author
+      }
+
+      $scope.updatePost = function(){
+          $scope.post.$update( { id: $scope.post._id }, function(){
+            notifier.notify('Your post has been updated');
+          }, function(reason){
+            notifier.error(reason.data);
+          });
+      }
+
+      $scope.deletePost = function(){
+        $scope.post.$delete({ id: $scope.post._id }, function() {
+          notifier.notify('Deleted from server');
+          $location.path('/blog');
+        });
+
+      }
+
+
+}]);
+
+angular.module('willsBlog').factory('mvCachedPost', ['mvPost', function(mvPost){
+  var postList;
+
+  return {
+    query: function(){
+      if(!postList){
+        postList = mvPost.query();
+      }
+
+      return postList;
+    }
+  }
+
+}]);
+
+angular.module('willsBlog').factory('mvPost', ['$resource', '$q', function($resource, $q){
+
+  return $resource('/api/posts/:id', {_id: '@id'}, {
+    update : {
+      method: 'PUT'
+    }
+  }, {
+    stripTrailingSlashes: false
+  });
+
+}]);
+
+angular.module('willsBlog').controller('newPostCtrl', ['$scope', 'notifier', 'mvPost', '$q', '$location', function($scope, notifier, mvPost, $q, $location){
+
+  $scope.post = new mvPost();
+
+  $scope.createNewPost = function(){
+    $scope.post.$save(function(){
+        notifier.notify('New Post Created');
+        $location.path('/blog');
+    });
+  }
+
+  $scope.cancel = function(){
+    $location.path('/blog');
+  };
+
+}]);
+
+angular.module('willsBlog').controller('postDetailCtrl', ['$scope', 'mvCachedPost', 'mvPost', '$routeParams', function($scope, mvCachedPost, mvPost, $routeParams){
+
+  window.scrollTo(0,0);
+
+  // mvCachedPost.query().$promise.then(function(collection){
+  //   collection.forEach(function(post){
+  //     if(post._id === $routeParams.id){
+  //       $scope.post = post;
+  //     }
+  //   });
+  // });
+  
+   $scope.post = mvPost.get({ id: $routeParams.id });
 }]);
 
 angular.module('willsBlog').factory('identity', ['$window', 'mvUser', function($window, mvUser){
