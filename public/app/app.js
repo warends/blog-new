@@ -30,21 +30,21 @@ angular.module('willsBlog').config(['$routeProvider', '$locationProvider', funct
       templateUrl: '/partials/blog/blog-list',
       controller: 'blogListCtrl'
     })
-    .when('/admin/new-post', {
-      templateUrl: '/partials/blog/new-post',
-      controller: 'newPostCtrl',
-      resolve: routeRoleChecks.admin
-    })
     .when('/profile', {
       templateUrl: '/partials/admin/profile',
       controller: 'profileCtrl',
       resolve: routeRoleChecks.user
     })
-    .when('/posts/:slug', {
+    .when('/posts/:id', { //view single post
       templateUrl: '/partials/blog/post-detail',
       controller: 'postDetailCtrl'
     })
-    .when('/admin/edit-post/:slug', {
+    .when('/admin/new-post', {  //adding a new post
+      templateUrl: '/partials/blog/new-post',
+      controller: 'newPostCtrl',
+      resolve: routeRoleChecks.admin
+    })
+    .when('/admin/:id/edit', {  //edit post
       templateUrl: '/partials/blog/edit-post',
       controller: 'editPostCtrl',
       resolve: routeRoleChecks.admin
