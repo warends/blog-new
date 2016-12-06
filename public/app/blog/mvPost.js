@@ -1,4 +1,4 @@
-angular.module('willsBlog').factory('mvPost', ['$resource', '$q', function($resource, $q){
+angular.module('willsBlog').factory('mvPost', ['$resource', function($resource){
 
   return $resource('/api/posts/:id', {_id: '@id'}, {
     update : {

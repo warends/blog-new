@@ -16,6 +16,7 @@
     $scope.updatePost = function(){
         $scope.post.$update( { id: $scope.post._id }, function(){
           notifier.notify('Your post has been updated');
+          $location.path('/blog');
         }, function(reason){
           notifier.error(reason.data);
         });
