@@ -2,7 +2,6 @@
 
 'use strict';
 
-
 var gulp = require('gulp'),
     nodemon = require('gulp-nodemon'),
     sass = require('gulp-sass'),
@@ -13,11 +12,11 @@ var gulp = require('gulp'),
 
 
 gulp.task('js', function () {
-  gulp.src(['public/app.js', 'public/app/**/*.js'])
+  gulp.src(['public/app/app.js', 'public/app/**/*.js'])
     .pipe(sourcemaps.init())
-      .pipe(jshint())
       .pipe(concat('main.js'))
-      // .pipe(uglify())
+      .pipe(jshint())
+      .pipe(uglify())
     .pipe(sourcemaps.write())
     .pipe(gulp.dest('public/dist'))
 });
@@ -36,7 +35,8 @@ gulp.task('watch', function() {
 gulp.task('serve', ['watch'], function () {
   nodemon({
     script: 'server.js',
-    ext: 'html js scss' })
+    ext: 'html js scss'
+  })
   .on('restart', function () {
       console.log('gulp restarted!');
     });
