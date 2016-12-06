@@ -26,8 +26,6 @@
           notifier.notify('Deleted from server');
           $location.path('/blog');
         });
-
       }
-
 
 }]);
