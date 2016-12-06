@@ -16,7 +16,7 @@ gulp.task('js', function () {
     .pipe(sourcemaps.init())
       .pipe(concat('main.js'))
       .pipe(jshint())
-      .pipe(uglify())
+      //.pipe(uglify())
     .pipe(sourcemaps.write())
     .pipe(gulp.dest('public/dist'))
 });
