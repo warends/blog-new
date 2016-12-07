@@ -1,6 +1,6 @@
 var mongoose = require('mongoose');
 
-var postSchema = mongoose.Schema ({
+var postSchema = new mongoose.Schema ({
   title: { type: String, required: '{PATH} is required', unique: true },
   slug: {type: String, required: '{PATH} is required', unique: true},
   categories: [String],
@@ -37,4 +37,7 @@ function createDefaultPost(){
   });
 };
 
-exports.createDefaultPost = createDefaultPost;
+module.exports = {
+  Post : Post,
+  createDefaultPost: createDefaultPost
+}

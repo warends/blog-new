@@ -1,6 +1,6 @@
 var express = require('express'),
     env = process.env.NODE_ENV = process.env.NODE_ENV || 'development',
-    routes = require('./app/config/routes');
+    routes = require('./app/routes');
 
 var app = express();
 

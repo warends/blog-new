@@ -1,7 +1,7 @@
 var mongoose = require('mongoose'),
     encryption = require('../utilities/encryption');
 
-var userSchema = mongoose.Schema ({
+var userSchema = new mongoose.Schema ({
   firstName: {type:String, required:'{PATH} is required'},
   lastName: {type:String, required:'{PATH} is required'},
   username: {
@@ -45,4 +45,7 @@ function createDefaultUser(){
 
 }
 
-exports.createDefaultUser = createDefaultUser;
+module.exports = {
+  User: User,
+  createDefaultUser: createDefaultUser
+}

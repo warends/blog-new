@@ -35,8 +35,7 @@ gulp.task('watch', function() {
 gulp.task('serve', ['watch'], function () {
   nodemon({
     script: 'server.js',
-    ext: 'html js scss',
-    tasks: ['sass'] })
+    ext: 'html js scss' })
   .on('restart', function () {
       console.log('restarted!');
     });

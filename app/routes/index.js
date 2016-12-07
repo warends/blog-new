@@ -1,7 +1,7 @@
-var express = require('express'),
-    home = require('./home'),
-    posts = require('./posts.js'),
-    users = require('./users.js'),
+var express = require('express');
+var home = require('./home'),
+    posts = require('./posts'),
+    users = require('./users'),
     router = express.Router();
 
 router.use('/', home);
@@ -32,7 +32,5 @@ router.use('/api/posts', posts);
   //     bootstrappedUser : req.user
   //   });
   // });
-
-}
 
 module.exports = router;
