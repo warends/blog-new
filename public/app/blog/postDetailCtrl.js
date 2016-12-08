@@ -1,4 +1,4 @@
-angular.module('willsBlog').controller('postDetailCtrl', ['$scope', 'mvCachedPost', 'mvPost', '$routeParams', function($scope, mvCachedPost, mvPost, $routeParams){
+angular.module('willsBlog').controller('postDetailCtrl', ['$scope', 'mvCachedPost', 'mvPost', '$routeParams', 'Meta',  function($scope, mvCachedPost, mvPost, $routeParams, Meta){
 
   window.scrollTo(0,0);
 
@@ -10,7 +10,11 @@ angular.module('willsBlog').controller('postDetailCtrl', ['$scope', 'mvCachedPos
   //   });
   // });
 
-   $scope.post = mvPost.get({ slug: $routeParams.slug });
-
+   $scope.post = mvPost.get({ slug: $routeParams.slug }, function(){
+     var title = $scope.post.title;
+     var desc = $scope.post.excerpt;
+     Meta.setTitle(title);
+     Meta.setDesc(desc);
+   });
 
 }]);

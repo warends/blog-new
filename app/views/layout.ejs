@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
+<html lang="en" ng-app="willsBlog">
+  <head ng-controller="metaCtrl">
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Will Arends Development - Web Development Denver, CO</title>
-    <meta name="description" content="I enjoy all things web development and am always actively learning the newest techniques and langauges. If you have a web design or development project, give me a shout, I would love to talk about it.">
+    <title ng-bind="Meta.title() + ' | Will Arends Development'"></title>
+    <meta name="description" content="{{ Meta.description() }}">
 
     <link href="/css/min/app.css" rel="stylesheet">
     <link rel="icon" type="image/png" href="img/favicon.png" />
@@ -28,7 +28,7 @@
     <![endif]-->
   </head>
 
-  <body data-spy="scroll" data-target=".navbar-collapse" ng-app="willsBlog">
+  <body data-spy="scroll" data-target=".navbar-collapse">
 
   <% include ./_includes/currentUser %>
 
