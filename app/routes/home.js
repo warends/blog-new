@@ -13,19 +13,13 @@ router.get('/', function(req, res){
   });
 });
 
-// app.all('/api/*', function(req, res){
-//   res.send(404);
-// });
+router.post('/login', auth.authenticate);
 
-// router.post('/login', auth.authenticate);
-//
-// router.post('/contact-form', contact.sendMail);
-//
-// router.post('/logout', function (req, res) {
-//   req.logout();
-//   res.end();
-// });
+router.post('/contact-form', contact.sendMail);
 
-
+router.post('/logout', function (req, res) {
+  req.logout();
+  res.end();
+});
 
 module.exports = router;

@@ -6236,7 +6236,7 @@ a:hover, a:focus {
 
 /*BLOG LATEST*/
 #blog-latest {
-  margin-top: 250px;
+  margin-top: 275px;
   padding-bottom: 2em; }
   @media (min-width: 768px) {
     #blog-latest {
@@ -6413,7 +6413,7 @@ a:hover, a:focus {
   z-index: 10; }
 
 #carousel-testimonials blockquote {
-  background: url(img/quote.png) no-repeat;
+  background: url("../../img/quote.png") no-repeat;
   background-position: center top;
   margin-top: 60px; }
 
@@ -6817,8 +6817,6 @@ button.toast-close-button {
     margin-top: -114px; }
   #carousel-testimonials blockquote p {
     padding: 61px 30px 40px 30px; }
-  #carousel-testimonials blockquote {
-    margin-top: 0; }
   .copywite {
     text-align: left; }
   .social {
@@ -6834,7 +6832,7 @@ button.toast-close-button {
   .heading {
     padding: 3em 0; }
   .testimonial .heading {
-    padding-bottom: 60px; }
+    padding-bottom: 0px; }
   .services .col-md-4 {
     padding-top: 60px;
     padding-bottom: 60px; }

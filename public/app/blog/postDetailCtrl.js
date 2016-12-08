@@ -9,6 +9,8 @@ angular.module('willsBlog').controller('postDetailCtrl', ['$scope', 'mvCachedPos
   //     }
   //   });
   // });
-  
-   $scope.post = mvPost.get({ id: $routeParams.id });
+
+   $scope.post = mvPost.get({ slug: $routeParams.slug });
+
+
 }]);

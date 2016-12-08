@@ -1,5 +1,7 @@
 angular.module('willsBlog').controller('loginCtrl', ['$scope', '$http', 'identity', 'notifier', 'mvAuth', '$location', function($scope, $http, identity, notifier, mvAuth, $location){
 
+    window.scrollTo(0,0);
+
     $scope.identity = identity;
 
     $scope.signIn = function(username, password){

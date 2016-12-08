@@ -2,7 +2,7 @@ var express = require('express'),
     router = express.Router(),
     Post = require('../models/Post').Post;
 
-//get all posts
+//GET ALL POSTS
 router.get('/', function(req, res){
   Post.find({}).exec(function(err, collection){
     if(err){ throw err; }
@@ -10,7 +10,14 @@ router.get('/', function(req, res){
   })
 });
 
-//create post
+//GET POST
+router.get('/:slug', function(req, res){
+  Post.findOne({ slug: req.params.slug}).exec(function(err, post){
+    res.send(post);
+  });
+});
+
+//CREATE POST
 router.post('/', function(req, res){
   var postData = req.body;
 
@@ -23,9 +30,9 @@ router.post('/', function(req, res){
   });
 });
 
-//update post
-router.put('/:id', function(req, res){
-  Post.findById(req.params.id, function(err, post){
+//UPDATE POST
+router.put('/:slug', function(req, res){
+  Post.findOne({'slug': req.params.slug}, function(err, post){
 
     if(err) { res.send(err); }
 
@@ -40,7 +47,7 @@ router.put('/:id', function(req, res){
 
     post.save(function(err){
       if(err){
-        res.send(400);
+        res.sendStatus(400);
         return res.send({reason:err.toString()});
       }
       res.send(req.post);
@@ -49,21 +56,14 @@ router.put('/:id', function(req, res){
   });
 });
 
-//delete post
-router.delete('/:id', function(req, res){
+//DELETE POST
+router.delete('/:slug', function(req, res){
   Post.remove({
     _id: req.params.id
   }, function(err, post){
     if(err) { res.send(err); }
 
     res.json({ message: 'Successfully Deleted Post'});
-  });
-});
-
-//get single post
-router.get('/:id', function(req, res){
-  Post.findOne({ _id: req.params.id}).exec(function(err, post){
-    res.send(post);
   });
 });
 

@@ -1,7 +1,7 @@
 var express = require('express'),
     router = express.Router(),
     auth = require('../config/auth'),
-    User = ('../models/User').User;
+    User = require('../models/User').User;
 
 //get Users
 router.get('/', auth.requiresRole('admin'), function(req, res){
@@ -11,7 +11,7 @@ router.get('/', auth.requiresRole('admin'), function(req, res){
 });
 
 //create user
-router.post('/api/users', function(req, res){
+router.post('/', function(req, res){
   var userData = req.body;
   userData.username = userData.username.toLowerCase();
   userData.salt = encryption.createSalt();
@@ -33,7 +33,7 @@ router.post('/api/users', function(req, res){
 });
 
 //update user
-router.put('/api/users', function(req, res){
+router.put('/', function(req, res){
   var userUpdates = req.body;
   if(req.user._id != userUpdates._id && !req.user.hasRole('admin')) {
     res.status(403);

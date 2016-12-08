@@ -139,7 +139,7 @@
 
 /*BLOG LATEST*/
 #blog-latest {
-	margin-top: 250px;
+	margin-top: 275px;
 	padding-bottom: 2em;
 	@include mq($S){
 		margin-top: 0;
@@ -326,7 +326,7 @@
 	z-index: 10;
 }
 #carousel-testimonials blockquote {
-	background: url(img/quote.png) no-repeat;
+	background: url('../../img/quote.png') no-repeat;
 	background-position: center top;
 	margin-top: 60px;
 }
