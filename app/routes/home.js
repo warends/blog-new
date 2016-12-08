@@ -7,12 +7,6 @@ router.get('/partials/*', function(req, res){
     res.render('../../public/app/' + req.params[0]);
 });
 
-router.get('/', function(req, res){
-  res.render('index', {
-    bootstrappedUser : req.user
-  });
-});
-
 router.post('/login', auth.authenticate);
 
 router.post('/contact-form', contact.sendMail);
