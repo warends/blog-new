@@ -23,7 +23,8 @@
     "angular-mocks": "^1.5.7",
     "ui-bootstrap": "^2.1.2",
     "angular-sanitize": "^1.5.8",
-    "gsap": "^1.19.0"
+    "gsap": "^1.19.0",
+    "angular-ui-router": "^0.3.2"
   },
   "resolutions": {
     "angular": "^1.5.6"

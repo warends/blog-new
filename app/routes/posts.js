@@ -1,14 +1,24 @@
-var Post = require('mongoose').model('Post');
+var express = require('express'),
+    router = express.Router(),
+    Post = require('../models/Post').Post;
 
 //GET ALL POSTS
-exports.getPosts = function(req, res){
+router.get('/', function(req, res){
   Post.find({}).exec(function(err, collection){
+    if(err){ throw err; }
     res.send(collection);
   })
-};
+});
+
+//GET POST
+router.get('/:slug', function(req, res){
+  Post.findOne({ slug: req.params.slug}).exec(function(err, post){
+    res.send(post);
+  });
+});
 
 //CREATE POST
-exports.createPost = function(req, res, next) {
+router.post('/', function(req, res){
   var postData = req.body;
 
   Post.create(postData, function(err, post){
@@ -18,19 +28,11 @@ exports.createPost = function(req, res, next) {
     }
     res.send(post);
   });
-};
-
-//GET POST
-exports.getPostById = function(req, res){
-  Post.findOne({ _id: req.params.id}).exec(function(err, post){
-    res.send(post);
-  });
-};
+});
 
 //UPDATE POST
-exports.updatePost = function(req, res){
-
-  Post.findById(req.params.id, function(err, post){
+router.put('/:slug', function(req, res){
+  Post.findOne({'slug': req.params.slug}, function(err, post){
 
     if(err) { res.send(err); }
 
@@ -45,18 +47,17 @@ exports.updatePost = function(req, res){
 
     post.save(function(err){
       if(err){
-        res.send(400);
+        res.sendStatus(400);
         return res.send({reason:err.toString()});
       }
       res.send(req.post);
     });
 
   });
-};
+});
 
 //DELETE POST
-exports.deletePost = function(req, res){
-
+router.delete('/:slug', function(req, res){
   Post.remove({
     _id: req.params.id
   }, function(err, post){
@@ -64,5 +65,7 @@ exports.deletePost = function(req, res){
 
     res.json({ message: 'Successfully Deleted Post'});
   });
+});
 
-};
+
+module.exports = router;

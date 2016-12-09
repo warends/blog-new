@@ -1,5 +1,7 @@
-angular.module('willsBlog').controller('mainCtrl', ['$scope', '$location', 'mvCachedPost', 'notifier' ,'TwitterService', '$http', function($scope, $location, mvCachedPost, notifier, TwitterService, $http){
+angular.module('willsBlog').controller('mainCtrl', ['$scope', '$location', 'mvCachedPost', 'notifier' ,'TwitterService', '$http', 'Meta', function($scope, $location, mvCachedPost, notifier, TwitterService, $http, Meta){
 
+  Meta.setTitle('Home');
+  Meta.setDesc('I enjoy all things web development and am always actively learning the newest techniques and langauges. If you have a web design or development project, give me a shout, I would love to talk about it.');
 
   $scope.services = [
     { name: 'Development',

@@ -1,6 +1,6 @@
- angular.module('willsBlog').controller('editPostCtrl', ['$scope', 'notifier', 'mvPost', '$q', '$location', '$routeParams', function($scope, notifier, mvPost, $q, $location, $routeParams){
+ angular.module('willsBlog').controller('editPostCtrl', ['$scope', 'notifier', 'mvPost', '$q', '$location', '$stateParams', function($scope, notifier, mvPost, $q, $location, $stateParams){
 
-    $scope.post = mvPost.get({ id: $routeParams.id });
+    $scope.post = mvPost.get({ slug: $stateParams.slug });
 
     $scope.post.data = {
         _id: $scope.post._id,
@@ -14,7 +14,7 @@
     }
 
     $scope.updatePost = function(){
-        $scope.post.$update( { id: $scope.post._id }, function(){
+        $scope.post.$update( { slug: $scope.post.slug }, function(){
           notifier.notify('Your post has been updated');
           $location.path('/blog');
         }, function(reason){
@@ -23,7 +23,7 @@
     }
 
     $scope.deletePost = function(){
-      $scope.post.$delete({ id: $scope.post._id }, function() {
+      $scope.post.$delete({ slug: $scope.post.slug }, function() {
         notifier.notify('Deleted from server');
         $location.path('/blog');
       });

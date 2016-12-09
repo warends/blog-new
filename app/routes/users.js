@@ -1,14 +1,17 @@
-var User = require('mongoose').model('User'),
-    encryption = require('../utilities/encryption');
+var express = require('express'),
+    router = express.Router(),
+    auth = require('../config/auth'),
+    User = require('../models/User').User;
 
-exports.getUsers = function(req, res){
-    User.find({}).exec(function(err, response){
-      res.send(response);
-    });
-};
+//get Users
+router.get('/', auth.requiresRole('admin'), function(req, res){
+  User.find({}).exec(function(err, response){
+    res.send(response);
+  });
+});
 
-exports.createUser = function(req, res, next) {
-
+//create user
+router.post('/', function(req, res){
   var userData = req.body;
   userData.username = userData.username.toLowerCase();
   userData.salt = encryption.createSalt();
@@ -27,10 +30,10 @@ exports.createUser = function(req, res, next) {
     });
 
   });
+});
 
-};
-
-exports.updateUser = function(req, res, next){
+//update user
+router.put('/', function(req, res){
   var userUpdates = req.body;
   if(req.user._id != userUpdates._id && !req.user.hasRole('admin')) {
     res.status(403);
@@ -51,4 +54,7 @@ exports.updateUser = function(req, res, next){
     }
       res.send(req.user);
   });
-};
+
+});
+
+module.exports = router;
