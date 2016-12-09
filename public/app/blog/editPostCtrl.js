@@ -1,6 +1,6 @@
- angular.module('willsBlog').controller('editPostCtrl', ['$scope', 'notifier', 'mvPost', '$q', '$location', '$routeParams', function($scope, notifier, mvPost, $q, $location, $routeParams){
+ angular.module('willsBlog').controller('editPostCtrl', ['$scope', 'notifier', 'mvPost', '$q', '$location', '$stateParams', function($scope, notifier, mvPost, $q, $location, $stateParams){
 
-    $scope.post = mvPost.get({ slug: $routeParams.slug });
+    $scope.post = mvPost.get({ slug: $stateParams.slug });
 
     $scope.post.data = {
         _id: $scope.post._id,

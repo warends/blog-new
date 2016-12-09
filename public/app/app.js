@@ -1,64 +1,91 @@
-angular.module('willsBlog', ['ngResource','ngAnimate','ngRoute','ngSanitize']);
+angular.module('willsBlog', ['ngResource', 'ngAnimate', 'ngSanitize', 'ui.router']);
 
-angular.module('willsBlog').config(['$routeProvider', '$locationProvider', function($routeProvider, $locationProvider){
+angular.module('willsBlog').config(['$locationProvider', '$stateProvider', '$urlRouterProvider', function($locationProvider, $stateProvider, $urlRouterProvider){
 
-  var routeRoleChecks = {
-    admin: function(mvAuth){
-        return mvAuth.authorizeCurrentUserForRoute('admin');
-    },
-    user: function(mvAuth){
-        return mvAuth.authorizeAutheticatedUserForRoute();
+    var routeRoleChecks = {
+      admin: function(mvAuth){
+          return mvAuth.authorizeCurrentUserForRoute('admin');
+      },
+      user: function(mvAuth){
+          return mvAuth.authorizeAutheticatedUserForRoute();
+      }
     }
-  }
+
+    $urlRouterProvider.otherwise('/');
 
     $locationProvider.html5Mode(true);
 
-    $routeProvider
-    .when('/', {
+    $stateProvider
+    .state('home', {
+      url: '/',
       templateUrl: '/partials/main/main',
       controller: 'mainCtrl'
     })
-    .when('/account', {
+    .state('account', {
+      url: '/account',
       templateUrl: '/partials/login/login',
       controller: 'loginCtrl'
     })
-    .when('/signup', {
+    .state('signup', {
+      url: '/signup',
       templateUrl: '/partials/login/signup',
       controller: 'signupCtrl'
     })
-    .when('/blog', {
+    .state('blog', {
+      url: '/blog',
       templateUrl: '/partials/blog/blog-list',
       controller: 'blogListCtrl'
     })
-    .when('/profile', {
+    .state('profile', {
+      url: '/profile',
       templateUrl: '/partials/admin/profile',
       controller: 'profileCtrl',
-      resolve: routeRoleChecks.user
+      resolve: {
+        routeRoleCheck: ['mvAuth', function(mvAuth){
+            return mvAuth.authorizeAutheticatedUserForRoute();
+        }
+      ]}
     })
-    .when('/posts/:slug', { //view single post
+    .state('postDetail', { //view single post
+      url: '/posts/:slug',
       templateUrl: '/partials/blog/post-detail',
       controller: 'postDetailCtrl'
     })
-    .when('/admin/new-post', {  //adding a new post
+    .state('newPost', {  //adding a new post
+      url: '/admin/new-post',
       templateUrl: '/partials/blog/new-post',
       controller: 'newPostCtrl',
-      resolve: routeRoleChecks.admin
+      resolve: {
+        routeRoleCheck: ['mvAuth', function(mvAuth){
+            return mvAuth.authorizeCurrentUserForRoute('admin');
+        }
+      ]}
     })
-    .when('/admin/:slug/edit', {  //edit post
+    .state('editPost', {  //edit post
+      url: '/admin/:slug/edit',
       templateUrl: '/partials/blog/edit-post',
       controller: 'editPostCtrl',
-      resolve: routeRoleChecks.admin
+      resolve: {
+        routeRoleCheck: ['mvAuth', function(mvAuth){
+            return mvAuth.authorizeCurrentUserForRoute('admin');
+        }
+      ]}
     })
-    .when('/admin/users', {
+    .state('users', {
+      url: '/admin/users',
       templateUrl: '/partials/admin/users-list',
       controller: 'userListCtrl',
-      resolve: routeRoleChecks.admin
+      resolve: {
+        routeRoleCheck: ['mvAuth', function(mvAuth){
+            return mvAuth.authorizeCurrentUserForRoute('admin');
+        }
+      ]}
     });
 
 }]);//end config
 
 
-angular.module('willsBlog').run(['$rootScope', '$location', '$routeParams', function($rootScope, $location, $routeParams){
+angular.module('willsBlog').run(['$rootScope', '$location', function($rootScope, $location){
 
   $rootScope.$on('$routeChangeError', function(evt, current, previous, rejection) {
       if(rejection === 'not authorized') {

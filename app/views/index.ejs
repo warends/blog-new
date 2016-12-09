@@ -24,7 +24,7 @@
           <li><a href="#about" ng-click="linkTo('/#about')">About</a></li>
           <li><a href="#projects" ng-click="linkTo('/#projects')">Projects</a></li>
           <li><a href="#services" ng-click="linkTo('/#services')">Services</a></li>
-          <li><a href="/blog">Blog</a></li>
+          <li><a ui-sref="blog">Blog</a></li>
           <li><a href="#contact" ng-click="linkTo('/#contact')">Contact</a></li>
         </ul>
       </div><!-- /.navbar-collapse -->
@@ -34,7 +34,7 @@
 </header><!-- end header-->
 
 <section id="content" ng-cloak>
-  <div ng-view></div>
+  <div ui-view></div>
 
 </section>
 
