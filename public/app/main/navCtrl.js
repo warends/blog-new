@@ -1,12 +1,24 @@
-angular.module('willsBlog').controller('navCtrl', ['$scope', '$location', '$anchorScroll', 'smoothScroll', function($scope, $location, $anchorScroll, smoothScroll){
+angular.module('willsBlog').controller('navCtrl', ['$scope', '$location', '$anchorScroll', '$document', function($scope, $location, $anchorScroll, $document){
   $scope.linkTo = function(id){
 
-      //$location.url('/' + eID);
-      //smoothScroll.scrollTo(eID);
+      var route = $location.url();
+      var offset = 60;
+      var duration = 800;
+      var element = angular.element(id);
 
+      if(route !== '/'){
+        //console.log('another route + ' + route);
+        $location.url('/', function(){
+          $document.scrollToElement(element, offset, duration);
+        });
 
-     $location.url(id);
-     $anchorScroll();
+      } else {
+        //console.log('same route');
+        $document.scrollToElement(element, offset, duration);
+      }
+
+     //$location.url(id);
+     //$anchorScroll();
   };
 
 }]);
