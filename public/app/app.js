@@ -31,8 +31,8 @@ angular.module('willsBlog').config(['$locationProvider', '$stateProvider', '$url
       templateUrl: '/partials/login/signup',
       controller: 'signupCtrl'
     })
-    .state('blog', {
-      url: '/blog',
+    .state('posts', {
+      url: '/posts',
       templateUrl: '/partials/blog/blog-list',
       controller: 'blogListCtrl'
     })
@@ -85,7 +85,9 @@ angular.module('willsBlog').config(['$locationProvider', '$stateProvider', '$url
 }]);//end config
 
 
-angular.module('willsBlog').run(['$rootScope', '$location', function($rootScope, $location){
+angular.module('willsBlog').run(['$rootScope', '$location', '$anchorScroll', function($rootScope, $location, $anchorScroll){
+
+  $anchorScroll.yOffset = 60;
 
   $rootScope.$on('$routeChangeError', function(evt, current, previous, rejection) {
       if(rejection === 'not authorized') {
