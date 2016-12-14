@@ -1,9 +1,7 @@
 angular.module('willsBlog').controller('navCtrl', ['$scope', '$location', '$anchorScroll', '$document', function($scope, $location, $anchorScroll, $document){
 
   $scope.scrollTop = function(){
-    $document.scrollTopAnimated(0).then(function() {
-      console.log('You just scrolled to the top!');
-    });
+    $document.scrollTopAnimated(0);
   }
   $scope.linkTo = function(id){
 
