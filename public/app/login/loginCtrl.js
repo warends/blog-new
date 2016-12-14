@@ -1,6 +1,5 @@
 angular.module('willsBlog').controller('loginCtrl', ['$scope', '$http', 'identity', 'notifier', 'mvAuth', '$location', 'Meta', function($scope, $http, identity, notifier, mvAuth, $location, Meta){
 
-    window.scrollTo(0,0);
     Meta.setTitle('Account');
 
     $scope.identity = identity;
