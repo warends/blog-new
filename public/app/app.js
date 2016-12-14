@@ -95,4 +95,8 @@ angular.module('willsBlog').run(['$rootScope', '$location', '$anchorScroll', fun
       }
   });
 
+  $rootScope.$on("$stateChangeSuccess", function (event, currentRoute, previousRoute) {
+    window.scrollTo(0, 0);
+  });
+
 }]);
