@@ -18,9 +18,9 @@ router.get('/:slug', function(req, res){
 });
 
 //CREATE POST
-router.post('/', function(req, res){
+router.post('/:slug', function(req, res){
   var postData = req.body;
-
+  console.log(postData);
   Post.create(postData, function(err, post){
     if(err) {
       res.status(400);
