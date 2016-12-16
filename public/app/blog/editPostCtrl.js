@@ -1,4 +1,4 @@
- angular.module('willsBlog').controller('editPostCtrl', ['$scope', 'notifier', 'mvPost', '$q', '$location', '$stateParams', function($scope, notifier, mvPost, $q, $location, $stateParams){
+ angular.module('willsBlog').controller('editPostCtrl', ['$scope', 'notifier', 'mvPost', '$q', '$location', '$stateParams', '$http', function($scope, notifier, mvPost, $q, $location, $stateParams, $http){
 
     $scope.post = mvPost.get({ slug: $stateParams.slug });
 
@@ -22,8 +22,8 @@
         });
     }
 
-    $scope.deletePost = function(){
-      $scope.post.$delete({ slug: $scope.post.slug }, function() {
+    $scope.deletePost = function(post){
+      post.$delete(function() {
         notifier.notify('Deleted from server');
         $location.path('/blog');
       });

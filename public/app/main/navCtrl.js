@@ -1,5 +1,4 @@
-angular.module('willsBlog').controller('navCtrl', ['$scope', '$location', '$anchorScroll', '$document', function($scope, $location, $anchorScroll, $document){
-
+angular.module('willsBlog').controller('navCtrl', ['$scope', '$location', '$document', function($scope, $location, $document){
   $scope.scrollTop = function(){
     $document.scrollTopAnimated(0);
   }
