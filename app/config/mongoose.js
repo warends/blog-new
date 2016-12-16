@@ -4,6 +4,7 @@ var mongoose = require('mongoose'),
 
 module.exports = function(config){
 
+  mongoose.Promise = global.Promise;
   mongoose.connect(config.db);
 
   var db = mongoose.connection;
@@ -12,8 +13,7 @@ module.exports = function(config){
         console.log('App DB Connected');
       });
 
-
       // userModel.createDefaultUser();
-      postModel.createDefaultPost();
+      //postModel.createDefaultPost();
 
 }

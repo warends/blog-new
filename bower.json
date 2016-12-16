@@ -23,7 +23,8 @@
     "angular-sanitize": "^1.5.8",
     "gsap": "^1.19.0",
     "angular-ui-router": "^0.3.2",
-    "angular-scroll": "^1.0.0"
+    "angular-scroll": "^1.0.0",
+    "textAngular": "^1.5.16"
   },
   "resolutions": {
     "angular": "^1.5.6"
