@@ -1,4 +1,4 @@
-angular.module('willsBlog', ['ngResource', 'ngAnimate', 'ngSanitize', 'ui.router']);
+angular.module('willsBlog', ['ngResource', 'ngAnimate', 'ngSanitize', 'ui.router', 'duScroll']);
 
 angular.module('willsBlog').config(['$locationProvider', '$stateProvider', '$urlRouterProvider', function($locationProvider, $stateProvider, $urlRouterProvider){
 
@@ -93,6 +93,10 @@ angular.module('willsBlog').run(['$rootScope', '$location', '$anchorScroll', fun
       if(rejection === 'not authorized') {
         $location.path('/');
       }
+  });
+
+  $rootScope.$on("$stateChangeSuccess", function (event, currentRoute, previousRoute) {
+    window.scrollTo(0, 0);
   });
 
 }]);

@@ -20,13 +20,22 @@ router.get('/:slug', function(req, res){
 //CREATE POST
 router.post('/:slug', function(req, res){
   var postData = req.body;
-  console.log(postData);
   Post.create(postData, function(err, post){
     if(err) {
       res.status(400);
       return res.send({reason: err.toString()});
     }
-    res.send(post);
+    return res.send(post);
+  });
+});
+
+//DELETE POST
+router.delete('/:slug', function(req, res){
+  Post.remove({
+    slug: req.params.slug
+  }, function(err, post){
+    if(err) { res.send(err); }
+    return res.send('Successfully Deleted Post');
   });
 });
 
@@ -34,7 +43,7 @@ router.post('/:slug', function(req, res){
 router.put('/:slug', function(req, res){
   Post.findOne({'slug': req.params.slug}, function(err, post){
 
-    if(err) { res.send(err); }
+    if(err) { return res.send(err); }
 
     var updatedPost = req.body;
     post.title = updatedPost.title;
@@ -50,20 +59,9 @@ router.put('/:slug', function(req, res){
         res.sendStatus(400);
         return res.send({reason:err.toString()});
       }
-      res.send(req.post);
+      return res.send(req.post);
     });
 
-  });
-});
-
-//DELETE POST
-router.delete('/:slug', function(req, res){
-  Post.remove({
-    _id: req.params.id
-  }, function(err, post){
-    if(err) { res.send(err); }
-
-    res.json({ message: 'Successfully Deleted Post'});
   });
 });
 

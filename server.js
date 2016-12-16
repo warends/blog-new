@@ -12,8 +12,6 @@ require('./app/config/mongoose')(config);
 
 require('./app/config/passport')();
 
-//require('./app/config/routes')(app);
-
 app.use('/', routes);
 
 app.listen(config.port);
