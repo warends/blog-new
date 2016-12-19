@@ -1,4 +1,4 @@
-angular.module('willsBlog', ['ngResource', 'ngAnimate', 'ngSanitize', 'ui.router', 'duScroll']);
+angular.module('willsBlog', ['ngResource', 'ngAnimate', 'ngSanitize', 'ui.router', 'duScroll', 'textAngular']);
 
 angular.module('willsBlog').config(['$locationProvider', '$stateProvider', '$urlRouterProvider', function($locationProvider, $stateProvider, $urlRouterProvider){
 

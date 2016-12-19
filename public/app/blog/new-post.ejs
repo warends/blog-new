@@ -22,13 +22,17 @@
           <label for="excerpt">Excerpt:</label>
           <textarea rows="4" name="body" ng-model="post.excerpt" class="form-control" required/></textarea>
         </div>
-        <!-- <div text-angular ng-model="htmlVariable">
 
-        </div> -->
         <div class="form-group">
           <label for="body">Body:</label>
-          <textarea rows="8" name="body" ng-model="post.body" class="form-control" required/></textarea>
+          <div text-angular ng-model="post.body"></div>
         </div>
+
+
+        <!-- <div class="form-group">
+          <label for="body">Body:</label>
+          <textarea rows="8" name="body" ng-model="post.body" class="form-control" required/></textarea>
+        </div> -->
         <div class="form-group">
           <label for="author">Author:</label>
           <input type="text" name="author" ng-model="post.author" class="form-control" required/>
