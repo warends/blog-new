@@ -8,23 +8,25 @@ var gulp = require('gulp'),
     jshint = require('gulp-jshint'),
     concat = require('gulp-concat'),
     sourcemaps = require('gulp-sourcemaps'),
-    uglify = require('gulp-uglify');
+    uglify = require('gulp-uglify'),
+    cleanCSS = require('gulp-clean-css');
 
 
 gulp.task('js', function () {
   gulp.src(['public/app/app.js', 'public/app/**/*.js'])
     .pipe(sourcemaps.init())
-      .pipe(concat('main.js'))
+      .pipe(concat('main.min.js'))
       .pipe(jshint())
       .pipe(uglify())
     .pipe(sourcemaps.write())
-    .pipe(gulp.dest('public/dist'))
+    .pipe(gulp.dest('public/dist/js'))
 });
 
 gulp.task('sass', function () {
   return gulp.src('public/css/scss/**/*.scss')
     .pipe(sass().on('error', sass.logError))
-    .pipe(gulp.dest('public/css/min'));
+    .pipe(cleanCSS({compatibility: 'ie8'}))
+    .pipe(gulp.dest('public/dist/styles'));
 });
 
 gulp.task('watch', function() {

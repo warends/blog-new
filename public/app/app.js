@@ -87,8 +87,6 @@ angular.module('willsBlog').config(['$locationProvider', '$stateProvider', '$url
 
 angular.module('willsBlog').run(['$rootScope', '$location', '$anchorScroll', function($rootScope, $location, $anchorScroll){
 
-  $anchorScroll.yOffset = 60;
-
   $rootScope.$on('$routeChangeError', function(evt, current, previous, rejection) {
       if(rejection === 'not authorized') {
         $location.path('/');
