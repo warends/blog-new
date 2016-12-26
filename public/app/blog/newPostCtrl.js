@@ -8,9 +8,8 @@ angular.module('willsBlog').controller('newPostCtrl', ['$scope', 'notifier', 'mv
         $location.path('/blog');
     });
   }
-
   $scope.cancel = function(){
     $location.path('/blog');
-  };
+  }
 
 }]);
