@@ -1,5 +1,4 @@
 .ng-modal-overlay {
-  /* A dark translucent div that covers the whole screen */
   position:fixed;
   z-index:9999;
   top:0;
@@ -10,7 +9,6 @@
   opacity: 0.6;
 }
 .ng-modal-dialog {
-  /* A centered div above the overlay with a box shadow. */
   z-index:10000;
   position: fixed;
   width: 90%; /* Default */
