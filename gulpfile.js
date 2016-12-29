@@ -17,7 +17,7 @@ gulp.task('js', function () {
     .pipe(sourcemaps.init())
       .pipe(concat('main.min.js'))
       .pipe(jshint())
-      //.pipe(uglify())
+      .pipe(uglify())
     .pipe(sourcemaps.write())
     .pipe(gulp.dest('public/dist/js'))
 });
