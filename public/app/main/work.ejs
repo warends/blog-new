@@ -13,78 +13,20 @@
 
     <div class="gallery clearfix">
 
-        <div class="gallery-inner col-sm-3 col-xs-12">
+        <div class="gallery-inner col-sm-3 col-xs-12" ng-repeat="project in projects">
           <div class="row">
-              <img src="img/gallery/tendril.png" class="img-responsive">
+              <img ng-src="{{project.backgroundImg}}" class="img-responsive">
               <div class="caption">
                 <div class="caption-heading">
-                  <h4>Tendril Inc.</h4>
+                  <h4>{{project.name}}</h4>
                 </div>
                 <div class="btn-trigger btn-group">
-                    <a ng-click="toggleTendril()" class="btn svg web-link">Link</a>
-                    <a href="https://www.tendrilinc.com" target="_blank" class="btn svg more-info"></a>
+                    <a ng-click="project.clickFunc()" class="btn svg web-link">Link</a>
+                    <a ng-hide="project.noLink" href="{{project.link}}" target="_blank" class="btn svg more-info"></a>
                 </div>
               </div><!-- end caption -->
-              <global-modal show='tendrilShown'>
-                <img class="img-responsive" src="img/gallery/tendril-mockup.png" />
-              </global-modal>
-          </div>
-
-        </div><!--end gallery-Inner-->
-
-
-        <div class="gallery-inner col-sm-3 col-xs-12">
-          <div class="row">
-            <img src="img/gallery/crown-offroad.jpg" class="img-responsive">
-              <div class="caption">
-              <div class="caption-heading ">
-                <h4>Crown Offroad</h4>
-              </div>
-              <div class="btn-trigger btn-group">
-                  <a ng-click="toggleCrown()" class="btn svg web-link">Link</a>
-                  <a href="http://crownoffroad.com/" target="_blank" class="btn svg more-info"></a>
-
-              </div>
-            </div><!-- end caption -->
-            <global-modal show='crownShow'>
-              <img class="img-responsive" src="img/gallery/crown-offroad-mockup.jpg" />
-            </global-modal>
-          </div>
-        </div><!--end gallery-Inner-->
-
-
-        <div class="gallery-inner col-sm-3 col-xs-12">
-          <div class="row">
-            <img src="img/gallery/wires.jpg" class="img-responsive">
-              <div class="caption">
-              <div class="caption-heading">
-                <h4>Colorado Broadband Portal</h4>
-              </div>
-              <div class="btn-trigger btn-group">
-                  <a ng-click="toggleBroad()" class="btn svg web-link">Link</a>
-                  <a href="http://broadband.co.gov/" target="_blank" class="btn svg more-info"></a>
-
-              </div>
-            </div><!-- end caption -->
-            <global-modal show='broadShow'>
-              <img class="img-responsive" src="img/gallery/broadband.jpg" />
-            </global-modal>
-          </div>
-        </div><!--end gallery-Inner-->
-
-        <div class="gallery-inner col-sm-3 col-xs-12">
-          <div class="row">
-              <img src="img/gallery/adiplayer.jpg" class="img-responsive">
-              <div class="caption">
-                <div class="caption-heading">
-                  <h4>adidas adiPlayer</h4>
-                </div>
-                <div class="btn-trigger btn-group">
-                    <a ng-click="toggleAdi()" class="btn svg web-link">Link</a>
-                </div>
-              </div><!-- end caption -->
-              <global-modal show='adiShow'>
-                <img class="img-responsive" src="img/gallery/adiplayer_mockup.jpg" />
+              <global-modal show="project.modal">
+                <img class="img-responsive" ng-src="{{project.modalImg}}" />
               </global-modal>
           </div>
 
