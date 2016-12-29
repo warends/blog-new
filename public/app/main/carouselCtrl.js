@@ -11,7 +11,6 @@ angular.module('willsBlog').controller('carouselCtrl', ['$scope', function($scop
     { name: 'SEO',
     svg: 'seo-svg',
     desc: 'Having a modern design and user friendly website is great, but if customers can`t find your business, it wont matter much.  We design and develop every aspect of the website with search engine optimization in mind and so your customers can find you among the competition.  Also through research and analytics we can develop, plan and deploy the best SEO and marketing practices to increase conversions and retention.' }
-
   ];
 
   $scope.currentIndex = 0;

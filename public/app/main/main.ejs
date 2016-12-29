@@ -4,18 +4,171 @@
       </div>
 </div><!--end home-->
 
+<!--ABOUT-->
+<div id="about" class="padded-vert-2x services">
+  <div class="container">
+    <div class="row text-center">
+      <div class="services-web col-sm-4" ng-repeat="service in services">
+        <div class="svg {{service.svg}}"></div>
+          <h4>{{service.name}}</h4>
+          <p>{{service.description}}</p>
+          <a class="more design" ng-click="showDetails = !showDetails">More</a>
+          <div class="more-details" ng-class="{'hidden-stuff': !showDetails }">
+            <p>{{service.more}}</p>
+          </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!--end about-->
 
 
-<div ng-include="'partials/main/about'"></div>
+<!--WORK-->
+<div class="latest-work padded-vertical" id="projects" ng-controller="workCtrl">
+    <div class="heading container">
+        <div class="row">
+          <div class="col-md-6">
+              <h1>Projects</h1>
+          </div>
+        </div>
+    </div> <!-- end heading -->
 
-<div ng-include="'partials/main/work'"></div>
+    <div class="gallery clearfix">
+        <div class="gallery-inner col-sm-3 col-xs-12" ng-repeat="project in projects">
+          <div class="row">
+              <img ng-src="{{project.backgroundImg}}" class="img-responsive">
+              <div class="caption">
+                <div class="caption-heading">
+                  <h4>{{project.name}}</h4>
+                </div>
+                <div class="btn-trigger btn-group">
+                    <a ng-click="project.clickFunc()" class="btn svg web-link">Link</a>
+                    <a ng-hide="project.noLink" href="{{project.link}}" target="_blank" class="btn svg more-info"></a>
+                </div>
+              </div><!-- end caption -->
+              <global-modal show="project.modal">
+                <img class="img-responsive" ng-src="{{project.modalImg}}" />
+              </global-modal>
+          </div>
+        </div><!--end gallery-Inner-->
+    </div><!-- end gallery -->
+</div><!--end Work-->
 
-<div ng-include="'partials/main/services'"></div>
+<!-- SERVICES -->
+<div class="creative-process padded-vertical" id="services">
 
-<div ng-include="'partials/main/blog-latest'"></div>
+    <div class="heading container">
+          <div class="row">
+            <div class="col-md-6">
+                <h1>Services</h1>
+            </div>
+          </div>
+    </div><!-- end heading   -->
 
-<div ng-include="'partials/main/testimonial'"></div>
+    <div class="container">
+      <div class="row" ng-controller="carouselCtrl">
+        <div id="carousel-creative" class="carousel slide">
 
+              <ol class="carousel-indicators">
+                <li ng-repeat="slide in slides" ng-class="{'active':isCurrentSlideIndex($index)}" ng-click="setCurrentSlideIndex($index);">{{slide.name}}</li>
+              </ol>
+
+              <!-- Wrapper for slides -->
+              <div class="carousel-inner slide-animation" ng-hide="!isCurrentSlideIndex($index)" ng-repeat="slide in slides">
+                <div class="item active text-center">
+                    <div class="row">
+                      <div class="col-sm-6 carousel-pic">
+                        <div class="{{slide.svg}}"></div>
+                      </div>
+                      <div class="col-sm-6">
+                        <h4>{{slide.name}}</h4>
+                        <p>{{slide.desc}}</p>
+                      </div>
+                    </div>
+                </div><!--end item-->
+
+
+        </div><!-- end carousel -->
+      </div>
+    </div>
+  </div>
+</div><!--end services-->
+
+
+<!--BLOG LATEST-->
+<div id="blog-latest">
+  <div class="heading container">
+        <div class="row">
+            <div class="col-md-6">
+              <h1>Latest Posts</h1>
+            </div>
+        </div>
+  </div>
+  <div class="container">
+    <div class="col-xs-12 row" ng-repeat="post in posts">
+      <h3><a href ="/posts/{{post.slug}}">{{post.title}}</a></h3>
+      <h6>{{post.postedDate | date}}</h6>
+      <p>{{post.excerpt}}</p>
+    </div>
+
+    <div class="row col-xs-12">
+      <h5><a href="/blog">View All Posts</a></h5>
+    </div>
+  </div>
+</div><!--end blog latest-->
+
+
+<!--TESTIMONIAL-->
+<div class="testimonial">
+      <div class="heading container">
+            <div class="row">
+                  <div class="col-md-6">
+                      <h1>Testimonials</h1>
+                  </div>
+            </div>
+      </div><!-- end heading -->
+      <div class="container">
+          <div class="row">
+              <div id="carousel-testimonials" class="carousel slide" data-ride="carousel">
+                <!-- Indicators -->
+                <ol class="carousel-indicators testimonial-indicators">
+                  <li data-target="#carousel-testimonials" data-slide-to="0" class="active"><img src="img/logos/crown-offroad.png"></li>
+                  <!--<li data-target="#carousel-testimonials" data-slide-to="1"><img src="img/logos/1wd.png"></li>-->
+                </ol>
+                <!-- Wrapper for slides -->
+                <div class="carousel-inner" role="listbox">
+                    <div class="item active text-center">
+                      <div class="row">
+                            <blockquote>
+                              <p>"In today's technological age, the first thing a new business needs is an online presence. I turned to Will Arends for guidance and expertise in the development of my very first website. Will was able to take my basic requirements and craft a fully functional website that far exceeded any of my expectations. What I did not know was that his experience and expertise in the field far surpasses simple website development. Will was able to help steer me in directions that no only improved the website itself, but help scope and channel my business model the right direction. I constantly receive compliments on the quality and ease of use of my site and I fully attribute my new business' success to the website Will developed and the many valuable lessons I have learned from Will."</p>
+                              <cite>- Chris Steward, Owner Crown Offroad</cite>
+                            </blockquote>
+                      </div>
+                    </div><!--end item-->
+
+                </div><!--end carousel-inner-->
+              </div><!--end carousel-->
+          </div><!--end row-->
+      </div>  <!-- end container -->
+</div><!--end testimonial-->
+
+<!--CONTACT-->
 <div ng-include="'partials/main/contact'"></div>
 
-<div ng-include="'partials/main/blurb'"></div>
+<!--BLURB-->
+<div class="blurb padded-vertical">
+      <div class="container">
+          <div class="row text-center">
+              <div class="col-sm-2 headshot">
+                  <img src="img/Will-Headshot.png">
+              </div>
+
+              <div class="col-sm-6 bio">
+                <p>My skills include the newest techniques and languages in web development. An active learner, I am a member of several of Denver's programing groups. I enjoy bringing clients ideas and dreams to life on the web. In my off time I head to the mountains for outdoor activities including snowboarding, camping and hiking and more. If you have any questions about a project please feel free to contact me and I would love to talk about it</p>
+              </div>
+              <div class="col-sm-4 twitter">
+                <a class="twitter-timeline" data-height="300" href="https://twitter.com/willarends">Tweets by willarends</a> <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+              </div>
+          </div>
+      </div><!--end container-->
+</div><!--end blurb-->
