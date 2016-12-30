@@ -7,7 +7,7 @@
 @import 'toastr';
 @import 'modal';
 @import 'posts';
-@import 'font-awesome/stylesheets/font-awesome';
+@import 'fonts/font-awesome/stylesheets/font-awesome';
 
 /*media queries*/
 @media (min-width: 480px) {
@@ -15,7 +15,6 @@
 		margin-bottom: 20px;
 	}
 }
-
 @media(min-width: 768px) {
 	.navbar-default .navbar-nav>.active>a, .navbar-default .navbar-nav>.active>a:hover, .navbar-default .navbar-nav>.active>a:focus {
 		border-bottom: none;
