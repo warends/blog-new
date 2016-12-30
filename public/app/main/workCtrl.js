@@ -18,9 +18,9 @@ angular.module('willsBlog').controller('workCtrl', ['$scope', function($scope){
       clickFunc: toggleCrown = function() {
         this.modal = !this.modal;
       },
-      backgroundImg: 'img/gallery/crown-offroad.jpg',
+      backgroundImg: 'img/gallery/crown-offroad.png',
       modal: false,
-      modalImg: 'img/gallery/crown-offroad-mockup.jpg',
+      modalImg: 'img/gallery/crown-offroad-mockup.png',
       noLink: false
     },
     {
@@ -29,9 +29,9 @@ angular.module('willsBlog').controller('workCtrl', ['$scope', function($scope){
       clickFunc: $scope.toggleBroad = function() {
         this.modal = !this.modal;
       },
-      backgroundImg: 'img/gallery/wires.jpg',
+      backgroundImg: 'img/gallery/wires.png',
       modal: false,
-      modalImg: 'img/gallery/broadband.jpg',
+      modalImg: 'img/gallery/broadband.png',
       noLink: false
     },
     {
@@ -40,9 +40,9 @@ angular.module('willsBlog').controller('workCtrl', ['$scope', function($scope){
       clickFunc: toggleAdi = function() {
         this.modal = !this.modal;
       },
-      backgroundImg: 'img/gallery/adiplayer.jpg',
+      backgroundImg: 'img/gallery/adiplayer.png',
       modal: false,
-      modalImg: 'img/gallery/adiplayer_mockup.jpg',
+      modalImg: 'img/gallery/adiplayer_mockup.png',
       noLink: true
     }
   ]
