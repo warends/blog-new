@@ -4,6 +4,7 @@ var express = require('express'),
     engine = require('ejs-locals'),
     cookieParser = require('cookie-parser'),
     session = require('express-session'),
+    compression = require('compression'),
     passport = require('passport');
 
 module.exports = function(app, config){
@@ -25,5 +26,6 @@ module.exports = function(app, config){
   app.use(passport.initialize());
   app.use(passport.session());
   app.use(express.static(config.rootPath + '/public'));
+  app.use(compression());
 
 }
