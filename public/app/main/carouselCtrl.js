@@ -6,11 +6,11 @@ angular.module('willsBlog').controller('carouselCtrl', ['$scope', function($scop
 
     { name: 'ECommerce',
     svg: 'ecomm-svg',
-    desc: 'Do you have a new product you are looking to bring to market and need an e-commerce site or just looking for more modern feel to an existing site?  By utilizing robust ecommerce platforms, we can design and develop a site that will scale with your business and needs all in time to meet your busy deadlines. ' },
+    desc: 'Do you have a new product you are looking to bring to market and need an e-commerce site or just looking for more modern feel to an existing site?  By utilizing robust ecommerce platforms, I can design and develop a site that will scale with your business and needs all in time to meet your busy deadlines. ' },
 
     { name: 'SEO',
     svg: 'seo-svg',
-    desc: 'Having a modern design and user friendly website is great, but if customers can`t find your business, it wont matter much.  We design and develop every aspect of the website with search engine optimization in mind and so your customers can find you among the competition.  Also through research and analytics we can develop, plan and deploy the best SEO and marketing practices to increase conversions and retention.' }
+    desc: 'Having a modern design and user friendly website is great, but if customers can`t find your business, it wont matter much.  I design and develop every aspect of the website with search engine optimization in mind and so your customers can find you among the competition.  Also through research and analytics I can develop, plan and deploy the best SEO and marketing practices to increase conversions and retention.' }
   ];
 
   $scope.currentIndex = 0;
