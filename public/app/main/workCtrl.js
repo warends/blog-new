@@ -7,7 +7,7 @@ angular.module('willsBlog').controller('workCtrl', ['$scope', function($scope){
       clickFunc: toggleTendril = function(){
         this.modal = !this.modal;
       },
-      backgroundImg: 'img/gallery/tendril.png',
+      backgroundImg: 'img/gallery/tendril.jpg',
       modal: false,
       modalImg: 'img/gallery/tendril-mockup.png',
       noLink: false
@@ -18,7 +18,7 @@ angular.module('willsBlog').controller('workCtrl', ['$scope', function($scope){
       clickFunc: toggleCrown = function() {
         this.modal = !this.modal;
       },
-      backgroundImg: 'img/gallery/crown-offroad.png',
+      backgroundImg: 'img/gallery/crown-offroad.jpg',
       modal: false,
       modalImg: 'img/gallery/crown-offroad-mockup.png',
       noLink: false
@@ -29,7 +29,7 @@ angular.module('willsBlog').controller('workCtrl', ['$scope', function($scope){
       clickFunc: $scope.toggleBroad = function() {
         this.modal = !this.modal;
       },
-      backgroundImg: 'img/gallery/wires.png',
+      backgroundImg: 'img/gallery/wires.jpg',
       modal: false,
       modalImg: 'img/gallery/broadband.png',
       noLink: false
@@ -40,7 +40,7 @@ angular.module('willsBlog').controller('workCtrl', ['$scope', function($scope){
       clickFunc: toggleAdi = function() {
         this.modal = !this.modal;
       },
-      backgroundImg: 'img/gallery/adiplayer.png',
+      backgroundImg: 'img/gallery/adiplayer.jpg',
       modal: false,
       modalImg: 'img/gallery/adiplayer_mockup.png',
       noLink: true

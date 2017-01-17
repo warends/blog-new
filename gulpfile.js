@@ -17,16 +17,13 @@ gulp.task('js', function () {
     .pipe(sourcemaps.init())
       .pipe(concat('main.min.js'))
       .pipe(jshint())
-      //.pipe(uglify())
     .pipe(sourcemaps.write())
     .pipe(gulp.dest('public/dist/js'))
 });
 
 gulp.task('js-prod', function () {
   gulp.src(['public/dist/js/main.min.js'])
-    .pipe(sourcemaps.init())
       .pipe(uglify())
-    .pipe(sourcemaps.write())
     .pipe(gulp.dest('public/dist/js'))
 });
 

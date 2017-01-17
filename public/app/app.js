@@ -12,7 +12,6 @@ angular.module('willsBlog').config(['$locationProvider', '$stateProvider', '$url
     }
 
     $urlRouterProvider.otherwise('/');
-
     $locationProvider.html5Mode(true);
 
     $stateProvider

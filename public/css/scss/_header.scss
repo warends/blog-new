@@ -125,22 +125,6 @@ header {
 		position: absolute;
 		text-indent: -9999px
   }
-	.contact-link {
-		position: absolute;
-		top: 71%;
-		right: 12%;
-		transform: rotate(8deg);
-		font-size: 46px;
-		color: $grey-blue;
-		line-height: 1;
-		&:hover{
-			border: 2px solid $orange;
-			border-radius: 4px;
-			background: $orange;
-			color: white;
-			text-decoration: none;
-		}
-	}
  .btn-default {
 	position: relative;
 	top: 200px;

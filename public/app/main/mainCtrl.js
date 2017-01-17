@@ -1,4 +1,12 @@
-angular.module('willsBlog').controller('mainCtrl', ['$scope', '$location', 'mvCachedPost', 'notifier' ,'TwitterService', '$http', 'Meta', function($scope, $location, mvCachedPost, notifier, TwitterService, $http, Meta){
+angular.module('willsBlog').controller('mainCtrl', ['$scope', '$location', 'mvCachedPost', 'notifier' ,'TwitterService', '$http', 'Meta',  function($scope, $location, mvCachedPost, notifier, TwitterService, $http, Meta){
+
+
+  var $bgobj = $('#home');
+  $(window).scroll(function() {
+      var yPos = -( $(window).scrollTop() / $bgobj.data('speed'));
+      var coords = '50% '+ yPos + 'px';
+      $bgobj.css({ backgroundPosition: coords });
+  });
 
   Meta.setTitle('Home');
   Meta.setDesc('I enjoy all things web development and am always actively learning the newest techniques and langauges. If you have a web design or development project, give me a shout, I would love to talk about it.');
@@ -63,7 +71,5 @@ angular.module('willsBlog').controller('mainCtrl', ['$scope', '$location', 'mvCa
 	};
 
   //$scope.getUser();
-
-
 
 }]);
