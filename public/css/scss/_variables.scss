@@ -5,12 +5,14 @@
   @media ($media-query) { @content; }
 }
 
+$breakpoint-xs: 550px;
 $breakpoint-s: 768px;
 $breakpoint-m: 992px;
 $breakpoint-l: 1200px;
 
 
 // Media Queries
+$XS: 'min-width:'+ $breakpoint-xs;
 $S: 'min-width:'+ $breakpoint-s;
 $M: 'min-width:'+ $breakpoint-m;
 $L: 'min-width:'+ $breakpoint-l;

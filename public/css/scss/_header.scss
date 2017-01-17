@@ -177,3 +177,14 @@ header {
 	from{ opacity: 0;}
 	to {opacity: 1;}
 }
+.collapse {
+	display: none;
+	height: 0;
+	transition: height .3s, visibility .1s;
+}
+.collapse.in{
+	overflow-y: hidden;
+	height: 300px;
+	display: block;
+	transition: height .4s, visibility .3s;
+}
