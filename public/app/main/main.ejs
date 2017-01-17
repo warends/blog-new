@@ -3,7 +3,8 @@
         <h1>Will Arends Developement</h1>
           <a href="#contact" class="btn btn-default btn-lg">Get A Free Quote</a>
       </div>
-</section><!--end home-->
+</section>
+
 
 <!--ABOUT-->
 <section id="about" class="padded-vert-2x services">
@@ -21,18 +22,16 @@
     </div>
   </div>
 </section>
-<!--end about-->
-
 
 <!--WORK-->
-<section class="latest-work padded-vertical" id="projects" ng-controller="workCtrl">
+<section class="latest-work padded-top" id="projects" ng-controller="workCtrl">
     <div class="heading container">
         <div class="row">
           <div class="col-md-6">
               <h1>Projects</h1>
           </div>
         </div>
-    </div> <!-- end heading -->
+    </div>
 
     <div class="gallery clearfix">
         <div class="gallery-inner col-sm-3 col-xs-12" ng-repeat="project in projects">
@@ -46,25 +45,24 @@
                     <a ng-click="project.clickFunc()" class="btn svg web-link">Link</a>
                     <a ng-hide="project.noLink" href="{{project.link}}" target="_blank" class="btn svg more-info"></a>
                 </div>
-              </div><!-- end caption -->
+              </div>
               <global-modal show="project.modal">
                 <img class="img-responsive" ng-src="{{project.modalImg}}" />
               </global-modal>
           </div>
-        </div><!--end gallery-Inner-->
-    </div><!-- end gallery -->
-</section><!--end Work-->
+        </div>
+    </div>
+</section>
 
 <!-- SERVICES -->
-<section class="creative-process padded-vertical" id="services">
-
+<section class="creative-process padded-bottom" id="services">
     <div class="heading container">
           <div class="row">
             <div class="col-md-6">
                 <h1>Services</h1>
             </div>
           </div>
-    </div><!-- end heading   -->
+    </div>
 
     <div class="container">
       <div class="row" ng-controller="carouselCtrl">
@@ -77,7 +75,7 @@
               <!-- Wrapper for slides -->
               <div class="carousel-inner slide-animation" ng-hide="!isCurrentSlideIndex($index)" ng-repeat="slide in slides">
                 <div class="item active text-center">
-                    <div class="row">
+                    <!-- <div class="row"> -->
                       <div class="col-sm-6 carousel-pic">
                         <div class="{{slide.svg}}"></div>
                       </div>
@@ -85,15 +83,13 @@
                         <h4>{{slide.name}}</h4>
                         <p>{{slide.desc}}</p>
                       </div>
-                    </div>
-                </div><!--end item-->
-
-
-        </div><!-- end carousel -->
+                    <!-- </div> -->
+                </div>
+            </div>
+        </div>
       </div>
-    </div>
   </div>
-</section><!--end services-->
+</section>
 
 
 <!--BLOG LATEST-->
@@ -116,8 +112,7 @@
       <h5><a href="/blog">View All Posts</a></h5>
     </div>
   </div>
-</section><!--end blog latest-->
-
+</section>
 
 <!--TESTIMONIAL-->
 <section class="testimonial">
@@ -127,31 +122,31 @@
                       <h1>Testimonials</h1>
                   </div>
             </div>
-      </div><!-- end heading -->
+      </div>
+
       <div class="container">
           <div class="row">
               <div id="carousel-testimonials" class="carousel slide" data-ride="carousel">
                 <!-- Indicators -->
                 <ol class="carousel-indicators testimonial-indicators">
                   <li data-target="#carousel-testimonials" data-slide-to="0" class="active"><img src="img/logos/crown-offroad.png"></li>
-                  <!--<li data-target="#carousel-testimonials" data-slide-to="1"><img src="img/logos/1wd.png"></li>-->
                 </ol>
                 <!-- Wrapper for slides -->
                 <div class="carousel-inner" role="listbox">
+
                     <div class="item active text-center">
-                      <div class="row">
                             <blockquote>
                               <p>"In today's technological age, the first thing a new business needs is an online presence. I turned to Will Arends for guidance and expertise in the development of my very first website. Will was able to take my basic requirements and craft a fully functional website that far exceeded any of my expectations. What I did not know was that his experience and expertise in the field far surpasses simple website development. Will was able to help steer me in directions that no only improved the website itself, but help scope and channel my business model the right direction. I constantly receive compliments on the quality and ease of use of my site and I fully attribute my new business' success to the website Will developed and the many valuable lessons I have learned from Will."</p>
                               <cite>- Chris Steward, Owner Crown Offroad</cite>
                             </blockquote>
-                      </div>
                     </div><!--end item-->
 
-                </div><!--end carousel-inner-->
+                </div>
               </div><!--end carousel-->
-          </div><!--end row-->
-      </div>  <!-- end container -->
-</section><!--end testimonial-->
+          </div>
+      </div>
+</section>
+
 
 <!--CONTACT-->
 <div ng-include="'partials/main/contact'"></div>
@@ -168,8 +163,9 @@
                 <p>My skills include the newest techniques and languages in web development. An active learner, I am a member of several of Denver's programing groups. I enjoy bringing clients ideas and dreams to life on the web. In my off time I head to the mountains for outdoor activities including snowboarding, camping and hiking and more. If you have any questions about a project please feel free to contact me and I would love to talk about it</p>
               </div>
               <div class="col-sm-4 twitter">
-                <a class="twitter-timeline" data-height="300" href="https://twitter.com/willarends">Tweets by willarends</a> <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+                <a class="twitter-timeline" data-height="300" href="https://twitter.com/willarends">Tweets by willarends</a>
+                <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
               </div>
           </div>
-      </div><!--end container-->
-</section><!--end blurb-->
+      </div>
+</section>

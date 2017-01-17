@@ -16,15 +16,14 @@
   ],
   "dependencies": {
     "jquery": "^2.2.4",
-    "toastr": "^2.1.2",
     "angular-resource": "^1.5.6",
     "bootstrap": "^3.3.6",
     "angular-mocks": "^1.5.7",
-    "ui-bootstrap": "^2.1.2",
     "angular-sanitize": "^1.5.8",
     "gsap": "^1.19.0",
     "angular-ui-router": "^0.3.2",
-    "angular-scroll": "^1.0.0"
+    "angular-scroll": "^1.0.0",
+    "notific8": "^4.3.0"
   },
   "resolutions": {
     "angular": "^1.5.6"

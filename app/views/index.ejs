@@ -7,7 +7,7 @@
 
   <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header">
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse" ng-click="showMenu()">
             <span class="sr-only">Toggle navigation</span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
@@ -21,11 +21,11 @@
 
         <ul class="nav navbar-nav navbar-right">
           <li du-scrollspy="home"><a href="/" ng-click="scrollTop()">Home</a></li>
-          <li><a href="#about" ng-click="linkTo('#about')" du-smooth-scroll offset="60" du-scrollspy>About</a></li>
-          <li><a href="#projects" ng-click="linkTo('#projects')" du-smooth-scroll offset="60" du-scrollspy>Projects</a></li>
-          <li><a href="#services" ng-click="linkTo('#services')" du-smooth-scroll offset="60" du-scrollspy>Services</a></li>
+          <li><a href="#about" ng-click="linkTo('about')" du-smooth-scroll offset="60" du-scrollspy>About</a></li>
+          <li><a href="#projects" ng-click="linkTo('projects')" du-smooth-scroll offset="60" du-scrollspy>Projects</a></li>
+          <li><a href="#services" ng-click="linkTo('services')" du-smooth-scroll offset="60" du-scrollspy>Services</a></li>
           <li><a ui-sref="posts">Blog</a></li>
-          <li><a href="#contact" ng-click="linkTo('#contact')" du-smooth-scroll offset="60" du-scrollspy>Contact</a></li>
+          <li><a href="#contact" ng-click="linkTo('contact')" du-smooth-scroll offset="60" du-scrollspy>Contact</a></li>
         </ul>
       </div><!-- /.navbar-collapse -->
     </div> <!--/.container-fluid -->

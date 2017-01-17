@@ -1,6 +1,5 @@
 angular.module('willsBlog').controller('loginCtrl', ['$scope', '$http', 'identity', 'notifier', 'mvAuth', '$location', 'Meta', function($scope, $http, identity, notifier, mvAuth, $location, Meta){
 
-    window.scrollTo(0,0);
     Meta.setTitle('Account');
 
     $scope.identity = identity;
@@ -12,7 +11,7 @@ angular.module('willsBlog').controller('loginCtrl', ['$scope', '$http', 'identit
           $location.url('/account');
           $scope.actShown = false;
         } else {
-          notifier.notify('Username/Password Incorrect');
+          notifier.error('Username/Password Incorrect');
         }
       });
     };

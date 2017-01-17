@@ -1,0 +1,159 @@
+
+.notific8-container {
+  display: block;
+  margin: 0;
+  padding: 0;
+  position: fixed; }
+  .notific8-container.top {
+    top: 0; }
+  .notific8-container.bottom {
+    bottom: 0; }
+  .notific8-container.top.right, .notific8-container.bottom.right {
+    right: 0; }
+  .notific8-container.top.left, .notific8-container.bottom.left {
+    left: 0; }
+
+.notific8-notification {
+  box-sizing: border-box;
+  overflow: hidden;
+  position: relative; }
+  .notific8-notification:hover .notific8-close {
+    display: block; }
+
+.notific8-close {
+  cursor: pointer;
+  display: none;
+  position: absolute; }
+  .notific8-close.sticky {
+    display: block;
+    position: absolute;
+    text-align: center; }
+
+.right .notific8-notification {
+  clear: right;
+  float: right; }
+
+.left .notific8-notification {
+  clear: left;
+  float: left; }
+
+.top .notific8-notification {
+  margin-top: 0.625em; }
+
+.bottom .notific8-notification {
+  margin-bottom: 0.625em; }
+
+
+
+.notific8-notification.family-atomic,
+.notific8-notification.atomic {
+  border-left-width: 3.2142857143em;
+  border-radius: 3px;
+  font-size: 0.875em;
+  min-height: 5em;
+  padding: 0;
+  transition: all .15s ease-in-out;
+  width: 31.25em; }
+  .notific8-notification.family-atomic .notific8-heading,
+  .notific8-notification.atomic .notific8-heading {
+    padding: .75em; }
+  .notific8-notification.family-atomic .notific8-message-content,
+  .notific8-notification.atomic .notific8-message-content {
+    width: 100%; }
+  .notific8-notification.family-atomic .notific8-message,
+  .notific8-notification.atomic .notific8-message {
+    font-size: 18px;
+    color: $black;
+    font-family: $font-reg;
+    padding: 1em; }
+  .notific8-notification.family-atomic .notific8-close,
+  .notific8-notification.atomic .notific8-close {
+    background-color: transparent;
+    border: none;
+    right: .5em;
+    top: .325em; }
+    .notific8-notification.family-atomic .notific8-close.sticky,
+    .notific8-notification.atomic .notific8-close.sticky {
+      font-size: 1em;
+      }
+
+.right .notific8-notification.family-atomic,
+.right .notific8-notification.atomic {
+  margin-right: -32.25em; }
+  .right .notific8-notification.family-atomic .notific8-heading,
+  .right .notific8-notification.atomic .notific8-heading {
+    border-top-right-radius: 3px; }
+  .right .notific8-notification.family-atomic.open,
+  .right .notific8-notification.atomic.open {
+    margin-right: .625em; }
+
+.left .notific8-notification.family-atomic,
+.left .notific8-notification.atomic {
+  margin-left: -32.25em; }
+  .left .notific8-notification.family-atomic.open,
+  .left .notific8-notification.atomic.open {
+    margin-left: .625em; }
+
+.notific8-notification.family-atomic.cerulean,
+.notific8-notification.atomic.cerulean {
+  background-color: #c9e0f2;
+  border-color: #4F99D3;
+  color: #454545; }
+  .notific8-notification.family-atomic.cerulean .notific8-heading,
+  .notific8-notification.atomic.cerulean .notific8-heading {
+    background-color: #a1c8e7;
+    border-bottom: solid 1px #78b1dd; }
+
+.notific8-notification.family-atomic.tomato,
+.notific8-notification.atomic.tomato {
+  background-color: #eeb9ba;
+  border-color: #D03E41;
+  color: #454545; }
+  .notific8-notification.family-atomic.tomato .notific8-heading,
+  .notific8-notification.atomic.tomato .notific8-heading {
+    background-color: #e49092;
+    border-bottom: solid 1px #da6769; }
+
+.notific8-notification.family-atomic.mustard,
+.notific8-notification.atomic.mustard {
+  background-color: #f8f5df;
+  border-color: #DDCE61;
+  color: #454545; }
+  .notific8-notification.family-atomic.mustard .notific8-heading,
+  .notific8-notification.atomic.mustard .notific8-heading {
+    background-color: #efe8b5;
+    border-bottom: solid 1px #e6db8b; }
+
+.notific8-notification.family-atomic.pear,
+.notific8-notification.atomic.pear {
+  background-color: #dfeec5;
+  border-color: #9ECC4E;
+  color: #454545; }
+  .notific8-notification.family-atomic.pear .notific8-heading,
+  .notific8-notification.atomic.pear .notific8-heading {
+    background-color: #c9e39d;
+    border-bottom: solid 1px #b4d776; }
+
+.notific8-notification.family-atomic.amethyst,
+.notific8-notification.atomic.amethyst {
+  background-color: #ab73ca;
+  border-color: #5D2D77;
+  color: #eee; }
+  .notific8-notification.family-atomic.amethyst .notific8-heading,
+  .notific8-notification.atomic.amethyst .notific8-heading {
+    background-color: #954ebc;
+    border-bottom: solid 1px #7a3b9c; }
+
+.notific8-notification.family-atomic.onyx,
+.notific8-notification.atomic.onyx {
+  background-color: #929292;
+  border-color: #454545;
+  color: #eee; }
+  .notific8-notification.family-atomic.onyx .notific8-heading,
+  .notific8-notification.atomic.onyx .notific8-heading {
+    background-color: #787878;
+    border-bottom: solid 1px #5f5f5f; }
+
+
+
+/*# sourceMappingURL=notific8.css.map */

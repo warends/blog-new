@@ -5,18 +5,23 @@
   @media ($media-query) { @content; }
 }
 
+$breakpoint-xs: 550px;
 $breakpoint-s: 768px;
 $breakpoint-m: 992px;
 $breakpoint-l: 1200px;
 
 
 // Media Queries
+$XS: 'min-width:'+ $breakpoint-xs;
 $S: 'min-width:'+ $breakpoint-s;
 $M: 'min-width:'+ $breakpoint-m;
 $L: 'min-width:'+ $breakpoint-l;
 
 $navy-blue: #2C3E50;
 $blue: #3498db;
+$black: #333;
 $light-grey: #edf1f4;
 $grey-blue: #566473;
 $orange: #f39c12;
+$font-bold: 'cloud-bold';
+$font-reg: 'cloud-light';
