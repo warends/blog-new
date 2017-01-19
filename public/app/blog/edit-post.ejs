@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container padded-bottom">
   <div class="row">
     <div class="col-sm-12">
       <h1>Edit Post</h1>
@@ -32,11 +32,11 @@
           <input type="text" name="author" ng-model="post.author" class="form-control" />
         </div>
         <div class="form-group">
-          <input type="submit" class="btn btn-primary" ng-disabled="editPostForm.$invalid" value="Update" />
-          <button class="btn btn-danger" ng-click="cancel()">Cancel</button>
-          <button class="btn btn-danger pull-right" ng-click="deletePost(post)">Delete</button>
+          <input type="submit" class="btn btn-primary pull-left" ng-disabled="editPostForm.$invalid" value="Update" />
         </div>
       </form>
+      <button class="btn btn-danger pull-right" ng-click="deletePost()">Delete</button>
+      <button style="margin-right: 20px;" class="btn btn-warning pull-right" ng-click="cancel()">Cancel</button>
     </div>
   </div>
 </div>

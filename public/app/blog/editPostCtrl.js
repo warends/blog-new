@@ -15,18 +15,22 @@
 
     $scope.updatePost = function(){
         $scope.post.$update( { slug: $scope.post.slug }, function(){
-          notifier.notify('Your post has been updated');
+          notifier.notify('Post has been updated');
           $location.path('/blog');
-        }, function(reason){
-          notifier.error(reason.data);
+        }, function(message){
+          notifier.error(message.data);
         });
     }
 
-    $scope.deletePost = function(post){
-      post.$delete(function() {
-        notifier.notify('Deleted from server');
+    $scope.deletePost = function(){
+      $scope.post.$delete(function() {
+        notifier.notify('Post has been deleted');
         $location.path('/blog');
       });
+    }
+
+    $scope.cancel = function(){
+      $location.path('/posts');
     }
 
 }]);

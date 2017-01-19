@@ -22,7 +22,7 @@ router.post('/', function(req, res){
         err = new Error('Duplicate Username');
       }
       res.status(400);
-      return res.send({reason: err.toString()});
+      return res.send({message: err.toString()});
     }
     req.logIn(user, function(err){
       if(err) {return next(err);}

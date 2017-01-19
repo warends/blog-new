@@ -10,22 +10,23 @@ router.get('/', function(req, res){
   })
 });
 
-//GET POST
-router.get('/:slug', function(req, res){
-  Post.findOne({ slug: req.params.slug}).exec(function(err, post){
-    res.send(post);
-  });
-});
-
 //CREATE POST
 router.post('/:slug', function(req, res){
   var postData = req.body;
   Post.create(postData, function(err, post){
     if(err) {
       res.status(400);
-      return res.send({reason: err.toString()});
+      res.send({message: err.toString()});
     }
-    return res.send(post);
+    res.send(post);
+  });
+});
+
+//GET POST
+router.get('/:slug', function(req, res){
+  Post.findOne({ slug: req.params.slug}).exec(function(err, post){
+    if(err) {res.send(err)};
+    res.send(post);
   });
 });
 
@@ -35,15 +36,14 @@ router.delete('/:slug', function(req, res){
     slug: req.params.slug
   }, function(err, post){
     if(err) { res.send(err); }
-    return res.send('Successfully Deleted Post');
+    res.json({message:'Successfully Deleted Post', post});
   });
 });
 
 //UPDATE POST
 router.put('/:slug', function(req, res){
-  Post.findOne({'slug': req.params.slug}, function(err, post){
-
-    if(err) { return res.send(err); }
+  Post.findOne({slug : req.params.slug}, function(err, post){
+    if(err) { res.send(err); }
 
     var updatedPost = req.body;
     post.title = updatedPost.title;
@@ -57,9 +57,9 @@ router.put('/:slug', function(req, res){
     post.save(function(err){
       if(err){
         res.sendStatus(400);
-        return res.send({reason:err.toString()});
+        res.send({message: err.toString()});
       }
-      return res.send(req.post);
+      res.send({message: 'Post Updated!', post});
     });
 
   });

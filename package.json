@@ -2,13 +2,13 @@
   "name": "will_arends_design",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha --timeout 10000"
   },
   "engines": {
-    "node": "4.4.3",
-    "npm": "3.8.6"
+    "node": "6.9.4",
+    "npm": "3.10.10"
   },
   "author": "will arends",
   "license": "ISC",
@@ -31,6 +31,8 @@
     "twitter-js-client": "0.0.5"
   },
   "devDependencies": {
+    "chai": "^3.5.0",
+    "chai-http": "^3.0.0",
     "gulp": "^3.9.1",
     "gulp-clean-css": "^2.3.2",
     "gulp-concat": "^2.6.0",
@@ -39,11 +41,7 @@
     "gulp-sass": "^2.3.1",
     "gulp-sourcemaps": "^1.6.0",
     "gulp-uglify": "^2.0.0",
-    "jshint": "^2.9.2",
-    "karma": "^0.13.22",
-    "karma-chai-plugins": "^0.7.0",
-    "karma-chrome-launcher": "^1.0.1",
-    "karma-mocha": "^1.0.1",
-    "mocha": "^2.5.3"
+    "jshint": "^2.9.4",
+    "mocha": "^3.2.0"
   }
 }

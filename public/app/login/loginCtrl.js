@@ -36,8 +36,8 @@ angular.module('willsBlog').controller('loginCtrl', ['$scope', '$http', 'identit
         .then(function(){
           notifier.notify('User account created');
           $location.path('/');
-      }, function(reason){
-        notifier.error(reason);
+      }, function(message){
+        notifier.error(message);
       });
     };
 
