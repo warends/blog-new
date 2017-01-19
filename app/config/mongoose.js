@@ -15,6 +15,6 @@ module.exports = function(config){
 
 
       // userModel.createDefaultUser();
-      postModel.createDefaultPost();
+      //postModel.createDefaultPost();
 
 }

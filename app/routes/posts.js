@@ -59,7 +59,7 @@ router.put('/:slug', function(req, res){
         res.sendStatus(400);
         res.send({message: err.toString()});
       }
-      res.send({message: 'Post Updated!', post});
+      res.send(post);
     });
 
   });

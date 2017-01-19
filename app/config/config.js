@@ -7,6 +7,11 @@ module.exports = {
       db: 'mongodb://localhost/pluralsight',
       port: process.env.PORT || 8080
   },
+  test: {
+      rootPath: rootPath,
+      db: 'mongodb://localhost/WADtest',
+      port: process.env.PORT || 8080
+  },
   production: {
       rootPath: rootPath,
       db: 'mongodb://willadmin:wills817@ds011278.mlab.com:11278/wills-test',
