@@ -1,6 +1,7 @@
 var express = require('express'),
     router = express.Router(),
     auth = require('../config/auth'),
+    encryption = require('../utilities/encryption'),
     User = require('../models/User').User;
 
 //get Users
@@ -22,7 +23,7 @@ router.post('/', function(req, res){
         err = new Error('Duplicate Username');
       }
       res.status(400);
-      return res.send({message: err.toString()});
+      return res.send(err.toString());
     }
     req.logIn(user, function(err){
       if(err) {return next(err);}

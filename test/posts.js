@@ -9,10 +9,10 @@ let mongoose = require('mongoose'),
 
 chai.use(chaiHttp);
 
-//Our parent block
+//parent block
 describe('Posts', () => {
 
-    beforeEach((done) => { //Before each test we empty the database
+    beforeEach((done) => { //empty the database
         Post.remove({}, (err) => {
            done();
         });
@@ -20,7 +20,7 @@ describe('Posts', () => {
 
   //GET ROUTE
   describe('/GET post', () => {
-      it('it should GET all the posts', (done) => {
+      it('should GET all the posts', (done) => {
         chai.request(server)
             .get('/api/posts')
             .end((err, res) => {
@@ -141,7 +141,6 @@ describe('Posts', () => {
             .end((err, res) => {
               res.should.have.status(200);
               res.body.should.be.a('object');
-              //res.body.should.have.property('message').eql('Successfully Deleted Post');
               res.should.have.property('ok').eql(true);
               done();
             });
