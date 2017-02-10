@@ -1,7 +1,7 @@
 <section id="home" class="text-center" data-type="background" data-speed="10">
       <div class="container">
         <h1>Will Arends Developement</h1>
-          <a href="#contact" class="btn btn-default btn-lg">Get A Free Quote</a>
+          <a href="#contact" ng-click="linkTo('contact')" du-smooth-scroll offset="60" class="btn btn-default btn-lg">Get A Free Quote</a>
       </div>
 </section>
 
@@ -75,7 +75,6 @@
               <!-- Wrapper for slides -->
               <div class="carousel-inner slide-animation" ng-hide="!isCurrentSlideIndex($index)" ng-repeat="slide in slides">
                 <div class="item active text-center">
-                    <!-- <div class="row"> -->
                       <div class="col-sm-6 carousel-pic">
                         <div class="{{slide.svg}}"></div>
                       </div>
@@ -83,7 +82,6 @@
                         <h4>{{slide.name}}</h4>
                         <p>{{slide.desc}}</p>
                       </div>
-                    <!-- </div> -->
                 </div>
             </div>
         </div>

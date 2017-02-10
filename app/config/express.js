@@ -13,7 +13,10 @@ module.exports = function(app, config){
   app.set('views', config.rootPath + '/app/views');
   app.set('view engine', 'ejs');
 
-  app.use(logger('dev'));
+  console.log(process.env.NODE_ENV);
+  if(process.env.NODE_ENV !== 'test'){
+    app.use(logger('dev'));
+  }
   app.use(cookieParser());
   app.use(bodyParser.urlencoded({extended: true}));
   app.use(bodyParser.json());
