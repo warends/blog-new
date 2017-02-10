@@ -13,7 +13,6 @@ module.exports = function(app, config){
   app.set('views', config.rootPath + '/app/views');
   app.set('view engine', 'ejs');
 
-  console.log(process.env.NODE_ENV);
   if(process.env.NODE_ENV !== 'test'){
     app.use(logger('dev'));
   }

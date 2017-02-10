@@ -6,7 +6,6 @@ angular.module('willsBlog').factory('mvCachedPost', ['mvPost', function(mvPost){
       if(!postList){
         postList = mvPost.query();
       }
-
       return postList;
     }
   }

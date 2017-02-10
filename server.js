@@ -15,6 +15,6 @@ require('./app/config/passport')();
 app.use('/', routes);
 
 app.listen(config.port);
-console.log('Server is running on port ' + config.port);
+console.log('Server is running on port ' + config.port + 'and running environment ' + process.env.NODE_ENV.toUpperCase());
 
 module.exports = app;

@@ -16,7 +16,7 @@
     $scope.updatePost = function(){
         $scope.post.$update( { slug: $scope.post.slug }, function(){
           notifier.notify('Post has been updated');
-          $location.path('/blog');
+          $location.path('/posts');
         }, function(message){
           notifier.error(message.data);
         });
@@ -25,7 +25,7 @@
     $scope.deletePost = function(){
       $scope.post.$delete(function() {
         notifier.notify('Post has been deleted');
-        $location.path('/blog');
+        $location.path('/posts');
       });
     }
 
