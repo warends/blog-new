@@ -10,7 +10,6 @@ var nodemailer = require('nodemailer'),
 
 exports.sendMail = function(req, res){
   var data = req.body;
-
   var mailOptions = {
     from: data.contactEmail,
     to: 'willarends@gmail.com',
@@ -18,17 +17,36 @@ exports.sendMail = function(req, res){
     //text: data.contactMessage,
     html: data.contactMessage + '<br><br><p>Email: ' + data.contactEmail + '<br>Company: ' + data.contactCompany + '<br>Name: ' + data.contactName + '</p>'
   }
-
-
-  transporter.sendMail(mailOptions, function(error, info){
-    if(error){
-      console.log(error);
-      res.json({yo: 'error'});
+  transporter.sendMail(mailOptions, function(err, info){
+    if(err){
+      console.log(err);
+      res.json({message: err.toString()});
     } else {
       console.log('Message Sent: ' + info.response);
       res.json(data);
     }
   });
 
-  //res.json(data);
+};
+
+exports.newMessage = function(req, res){
+  //not req and res, should be comment data?
+  var data = req.body;
+  var mailOptions = {
+    from: 'info@willarendsdesign.com',
+    to: 'willarends@gmail.com',
+    subject: 'You Have a New Comment on Your Post',
+    //text: data.contactMessage,
+    html: 'You Have a New Comment on Your Post<br><br><p>Name: ' + data.comment.firstName + ' ' + data.comment.lastName + '<br>Comment: ' + data.comment.contet + '</p>'
+  }
+  transporter.sendMail(mailOptions, function(err, info){
+    if(err){
+      console.log(err);
+      res.json({message: err.toString()});
+    } else {
+      console.log('Message Sent: ' + info.response);
+      res.json(data);
+    }
+  });
+
 };

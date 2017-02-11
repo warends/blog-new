@@ -1,5 +1,6 @@
 var express = require('express'),
     router = express.Router(),
+    contact = require('../controllers/contact'),
     Post = require('../models/Post').Post;
 
 //GET ALL POSTS
@@ -83,7 +84,9 @@ router.post('/comments/:slug', function(req, res){
     post.comments.push(comment);
     post.save(function(err){
       if(err) throw err;
-      //console.log(post);
+      res.send({message: comment.firstName});
+      //email me about new comment
+      //contact.newMessage();
     });
   });
 });

@@ -28,13 +28,4 @@ angular.module('willsBlog').controller('postDetailCtrl', ['$scope', 'mvCachedPos
       });
   };
 
-
-  // $scope.post.$update({slug: $scope.post.slug}, function(){
-  //   notifier.notify('Thanks for your comment!');
-  //   //refresh comments section
-  // }, function(message){
-  //   notifier.error(message.data);
-  // });
-
-
 }]);

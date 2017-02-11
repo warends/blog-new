@@ -16,25 +16,25 @@ var postSchema = new mongoose.Schema ({
 var Post = mongoose.model('Post', postSchema);
 
 
-function createDefaultComment(){
-  var query = {slug: 'what-is-your-process'}
-  Post.findOne(query).exec(function(err, post){
-    console.log(post);
-  //   var comment = post.comments.create({
-  //     content: 'This article is sweet!',
-  //     date: Date.now(),
-  //     firstName: 'Hayley',
-  //     lastName: 'Bagwell'
-  //   })
-  //   post.comments.push(comment);
-  //   post.save(function(err){
-  //     if(err) throw err;
-  //     console.log(post);
-  //   });
-  });
-};
+// function createDefaultComment(){
+//   var query = {slug: 'what-is-your-process'}
+//   Post.findOne(query).exec(function(err, post){
+//     console.log(post);
+//     var comment = post.comments.create({
+//       content: 'This article is sweet!',
+//       date: Date.now(),
+//       firstName: 'Hayley',
+//       lastName: 'Bagwell'
+//     })
+//     post.comments.push(comment);
+//     post.save(function(err){
+//       if(err) throw err;
+//       console.log(post);
+//     });
+//   });
+// };
 
 module.exports = {
-  Post: Post,
-  createDefaultComment: createDefaultComment
+  Post: Post
+  //createDefaultComment: createDefaultComment
 }
