@@ -19,18 +19,18 @@ var Post = mongoose.model('Post', postSchema);
 function createDefaultComment(){
   var query = {slug: 'what-is-your-process'}
   Post.findOne(query).exec(function(err, post){
-    //console.log(post);
-    var comment = post.comments.create({
-      content: 'This article is sweet!',
-      date: Date.now(),
-      firstName: 'Hayley',
-      lastName: 'Bagwell'
-    })
-    post.comments.push(comment);
-    post.save(function(err){
-      if(err) throw err;
-      console.log(post);
-    });
+    console.log(post);
+  //   var comment = post.comments.create({
+  //     content: 'This article is sweet!',
+  //     date: Date.now(),
+  //     firstName: 'Hayley',
+  //     lastName: 'Bagwell'
+  //   })
+  //   post.comments.push(comment);
+  //   post.save(function(err){
+  //     if(err) throw err;
+  //     console.log(post);
+  //   });
   });
 };
 

@@ -1,6 +1,4 @@
-angular.module('willsBlog').controller('postDetailCtrl', ['$scope', 'mvCachedPost', 'mvPost', '$stateParams', 'Meta',  function($scope, mvCachedPost, mvPost, $stateParams, Meta){
-
-  window.scrollTo(0,0);
+angular.module('willsBlog').controller('postDetailCtrl', ['$scope', 'mvCachedPost', 'mvPost', '$stateParams', 'Meta', 'notifier', 'CommentService', function($scope, mvCachedPost, mvPost, $stateParams, Meta, notifier, CommentService){
 
   mvCachedPost.query().$promise.then(function(collection){
     collection.forEach(function(post){
@@ -13,6 +11,30 @@ angular.module('willsBlog').controller('postDetailCtrl', ['$scope', 'mvCachedPos
       }
     });
   });
+
+  $scope.submitComment = function(){
+    var comment = {
+      'content': $scope.comment.content,
+      'firstName': $scope.comment.firstName,
+      'lastName': $scope.comment.lastName,
+    };
+
+    var slug = $stateParams.slug;
+    CommentService.postComment(comment, slug)
+      .then(function(){
+        $scope.commentForm.$setPristine();
+      }, function(){
+        //console.log('error');
+      });
+  };
+
+
+  // $scope.post.$update({slug: $scope.post.slug}, function(){
+  //   notifier.notify('Thanks for your comment!');
+  //   //refresh comments section
+  // }, function(message){
+  //   notifier.error(message.data);
+  // });
 
 
 }]);

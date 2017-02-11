@@ -65,5 +65,28 @@ router.put('/:slug', function(req, res){
   });
 });
 
+//ADD COMMENT
+router.post('/comments/:slug', function(req, res){
+  console.log('Got it');
+  Post.findOne({slug : req.params.slug}).exec(function(err, post){
+    if(err) res.json(err);
+
+    var newComment = req.body;
+    console.log('NEW COMMENT');
+    console.log(newComment);
+    var comment = post.comments.create({
+      content: newComment.content,
+      date: Date.now(),
+      firstName: newComment.firstName,
+      lastName: newComment.lastName
+    })
+    post.comments.push(comment);
+    post.save(function(err){
+      if(err) throw err;
+      //console.log(post);
+    });
+  });
+});
+
 
 module.exports = router;
