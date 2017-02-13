@@ -3,40 +3,19 @@
     <div class="col-sm-12">
       <h1>Edit Post</h1>
       <form name="editPostForm" ng-submit="updatePost()">
-        <div class="form-group">
-          <label for="title">Title:</label>
-          <input type="text" name="title" ng-model="post.title" class="form-control" />
-        </div>
-        <div class="form-group">
-          <label for="slug">Slug:</label>
-          <input type="text" name="slug" ng-model="post.slug" class="form-control" required/>
-        </div>
-        <div class="form-group">
-          <label for="categories">Categories:</label>
-          <input type="text" name="categories" ng-model="post.categories" class="form-control"/>
-        </div>
-        <div class="form-group">
-          <label for="headerImage">Header Image</label>
-          <input type="file" id="headerImage">
-        </div>
-        <div class="form-group">
-          <label for="excerpt">Excerpt:</label>
-          <textarea rows="4" name="body" ng-model="post.excerpt" class="form-control" /></textarea>
-        </div>
-        <div class="form-group">
-          <label for="body">Body:</label>
-          <textarea rows="8" name="body" ng-model="post.body" class="form-control" required/></textarea>
-        </div>
-        <div class="form-group">
-          <label for="author">Author:</label>
-          <input type="text" name="author" ng-model="post.author" class="form-control" />
-        </div>
+        <div ng-include="'partials/blog/post-form'"></div>
         <div class="form-group">
           <input type="submit" class="btn btn-primary pull-left" ng-disabled="editPostForm.$invalid" value="Update" />
         </div>
       </form>
       <button class="btn btn-danger pull-right" ng-click="deletePost()">Delete</button>
       <button style="margin-right: 20px;" class="btn btn-warning pull-right" ng-click="cancel()">Cancel</button>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-12">
+      <h2 class="padded-top">Edit Comments</h2>
+      <comment-list></comment-list>
     </div>
   </div>
 </div>

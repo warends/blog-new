@@ -68,13 +68,10 @@ router.put('/:slug', function(req, res){
 
 //ADD COMMENT
 router.post('/comments/:slug', function(req, res){
-  console.log('Got it');
   Post.findOne({slug : req.params.slug}).exec(function(err, post){
     if(err) res.json(err);
 
     var newComment = req.body;
-    console.log('NEW COMMENT');
-    console.log(newComment);
     var comment = post.comments.create({
       content: newComment.content,
       date: Date.now(),
@@ -84,12 +81,26 @@ router.post('/comments/:slug', function(req, res){
     post.comments.push(comment);
     post.save(function(err){
       if(err) throw err;
+      contact.newMessage(comment);
       res.send({message: comment.firstName});
-      //email me about new comment
-      //contact.newMessage();
     });
   });
 });
 
+//DELETE A COMMENT
+router.put('/comments/:slug', function(req, res){
+  Post.findOne({slug : req.params.slug}).exec(function(err, post){
+    if(err) res.json(err);
+
+    var commentId = req.body._id;
+    var cArray = post.comments;
+    var pos = cArray.map(function(e) { console.log(e._id); return e._id.toString(); }).indexOf(commentId);
+    cArray.splice(pos, 1);
+    post.save(function(err){
+      if(err) res.status(400).send({ error: 'Something failed!' })
+      res.send({message: 'Comment number ' + (pos+1) + 'deleted'});
+    });
+  });
+});
 
 module.exports = router;

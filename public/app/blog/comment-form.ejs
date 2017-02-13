@@ -22,11 +22,3 @@
     </div>
   </form>
 </div>
-
-<hr>
-
-<h4>{{post.comments.length}} Comments</h4>
-<div class="comment-box" ng-repeat="comment in post.comments">
-    <h5>{{comment.firstName}} :<small> {{comment.date | date}}</small></h5>
-    <p>{{comment.content}}</p>
-</div>

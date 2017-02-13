@@ -29,23 +29,19 @@ exports.sendMail = function(req, res){
 
 };
 
-exports.newMessage = function(req, res){
-  //not req and res, should be comment data?
-  var data = req.body;
+exports.newMessage = function(comment){
   var mailOptions = {
     from: 'info@willarendsdesign.com',
     to: 'willarends@gmail.com',
     subject: 'You Have a New Comment on Your Post',
     //text: data.contactMessage,
-    html: 'You Have a New Comment on Your Post<br><br><p>Name: ' + data.comment.firstName + ' ' + data.comment.lastName + '<br>Comment: ' + data.comment.contet + '</p>'
+    html: 'You Have a New Comment on Your Post<br><br><p>Name: ' + comment.firstName + ' ' + comment.lastName + '<br>Comment: ' + comment.content + '</p>'
   }
   transporter.sendMail(mailOptions, function(err, info){
     if(err){
       console.log(err);
-      res.json({message: err.toString()});
     } else {
       console.log('Message Sent: ' + info.response);
-      res.json(data);
     }
   });
 

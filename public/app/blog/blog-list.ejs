@@ -10,7 +10,7 @@
         <!-- <h5 class="categories" ng-repeat="cat in post.categories">{{cat}},</h5> -->
         <h6>{{post.postedDate | date}}</h6>
         <p>{{post.excerpt}}</p>
-        <p ng-show="identity.currentUser.isAdmin()"><a <a href="/admin/{{post.slug}}/edit">Edit</a></p>
+        <p ng-show="identity.currentUser.isAdmin()"><a href="/admin/{{post.slug}}/edit">Edit</a></p>
       </div>
     </div>
 

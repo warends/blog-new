@@ -1,4 +1,6 @@
- angular.module('willsBlog').controller('editPostCtrl', ['$scope', 'notifier', 'mvPost', '$q', '$location', '$stateParams', '$http', function($scope, notifier, mvPost, $q, $location, $stateParams, $http){
+ angular.module('willsBlog').controller('editPostCtrl', [ '$scope','notifier','mvPost','$q','$location','$stateParams','$http','identity','CommentService', function($scope, notifier, mvPost, $q, $location, $stateParams, $http, identity, CommentService){
+
+    $scope.identity = identity;
 
     $scope.post = mvPost.get({ slug: $stateParams.slug });
 
@@ -27,6 +29,11 @@
         notifier.notify('Post has been deleted');
         $location.path('/posts');
       });
+    }
+
+    $scope.deleteComment = function(comment){
+      var slug = $stateParams.slug;
+      CommentService.deleteComment(comment, slug);
     }
 
     $scope.cancel = function(){
