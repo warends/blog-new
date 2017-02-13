@@ -81,7 +81,8 @@ router.post('/comments/:slug', function(req, res){
     post.comments.push(comment);
     post.save(function(err){
       if(err) throw err;
-      contact.newMessage(comment);
+      var title = post.title;
+      contact.newMessage(comment, title);
       res.send({message: comment.firstName});
     });
   });
@@ -98,7 +99,7 @@ router.put('/comments/:slug', function(req, res){
     cArray.splice(pos, 1);
     post.save(function(err){
       if(err) res.status(400).send({ error: 'Something failed!' })
-      res.send({message: 'Comment number ' + (pos+1) + 'deleted'});
+      res.send({message: (pos+1)});
     });
   });
 });

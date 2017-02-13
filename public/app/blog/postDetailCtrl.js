@@ -15,6 +15,7 @@ angular.module('willsBlog').controller('postDetailCtrl', ['$scope', 'mvCachedPos
   $scope.submitComment = function(){
     var comment = {
       'content': $scope.comment.content,
+      'date': Date.now(),
       'firstName': $scope.comment.firstName,
       'lastName': $scope.comment.lastName,
     };
@@ -22,9 +23,11 @@ angular.module('willsBlog').controller('postDetailCtrl', ['$scope', 'mvCachedPos
     var slug = $stateParams.slug;
     CommentService.postComment(comment, slug)
       .then(function(){
-        $scope.commentForm.$setPristine();
+        $scope.post.comments.push(comment);
+        $scope.comment.content= "";
+        $scope.comment.firstName= "";
+        $scope.comment.lastName= "";
       }, function(){
-        //console.log('error');
       });
   };
 

@@ -29,13 +29,13 @@ exports.sendMail = function(req, res){
 
 };
 
-exports.newMessage = function(comment){
+exports.newMessage = function(comment, title){
   var mailOptions = {
     from: 'info@willarendsdesign.com',
     to: 'willarends@gmail.com',
     subject: 'You Have a New Comment on Your Post',
     //text: data.contactMessage,
-    html: 'You Have a New Comment on Your Post<br><br><p>Name: ' + comment.firstName + ' ' + comment.lastName + '<br>Comment: ' + comment.content + '</p>'
+    html: 'You Have a New Comment on Your Post ' + title + '<br><br><p>Name: ' + comment.firstName + ' ' + comment.lastName + '<br>Comment: ' + comment.content + '</p>'
   }
   transporter.sendMail(mailOptions, function(err, info){
     if(err){
