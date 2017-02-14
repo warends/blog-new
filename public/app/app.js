@@ -1,4 +1,4 @@
-angular.module('willsBlog', ['ngResource', 'ngAnimate', 'ngSanitize', 'ui.router', 'duScroll']);
+angular.module('willsBlog', ['ngResource', 'ngAnimate', 'ngSanitize', 'ui.router', 'duScroll', 'gist']);
 
 angular.module('willsBlog').config(['$locationProvider', '$stateProvider', '$urlRouterProvider', function($locationProvider, $stateProvider, $urlRouterProvider){
 
@@ -12,6 +12,7 @@ angular.module('willsBlog').config(['$locationProvider', '$stateProvider', '$url
     }
 
     $urlRouterProvider.otherwise('/');
+
     $locationProvider.html5Mode(true);
 
     $stateProvider
@@ -45,12 +46,12 @@ angular.module('willsBlog').config(['$locationProvider', '$stateProvider', '$url
         }
       ]}
     })
-    .state('postDetail', { //view single post
+    .state('postDetail', {
       url: '/posts/:slug',
       templateUrl: '/partials/blog/post-detail',
       controller: 'postDetailCtrl'
     })
-    .state('newPost', {  //adding a new post
+    .state('newPost', {
       url: '/admin/new-post',
       templateUrl: '/partials/blog/new-post',
       controller: 'newPostCtrl',
@@ -60,7 +61,7 @@ angular.module('willsBlog').config(['$locationProvider', '$stateProvider', '$url
         }
       ]}
     })
-    .state('editPost', {  //edit post
+    .state('editPost', {
       url: '/admin/:slug/edit',
       templateUrl: '/partials/blog/edit-post',
       controller: 'editPostCtrl',
@@ -85,6 +86,8 @@ angular.module('willsBlog').config(['$locationProvider', '$stateProvider', '$url
 
 
 angular.module('willsBlog').run(['$rootScope', '$location', '$anchorScroll', function($rootScope, $location, $anchorScroll){
+
+  $anchorScroll.yOffset = 60;
 
   $rootScope.$on('$routeChangeError', function(evt, current, previous, rejection) {
       if(rejection === 'not authorized') {

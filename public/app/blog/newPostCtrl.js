@@ -8,6 +8,16 @@ angular.module('willsBlog').controller('newPostCtrl', ['$scope', 'notifier', 'mv
         $location.path('/blog');
     });
   }
+
+  $scope.post.gists = [];
+  $scope.addGist = function(newGist){
+    $scope.post.gists.push(newGist);
+  }
+
+  $scope.removeGist = function(newGist){
+    $scope.post.gists.pop();
+  }
+
   $scope.cancel = function(){
     $location.path('/blog');
   }

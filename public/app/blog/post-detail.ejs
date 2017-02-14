@@ -1,5 +1,6 @@
 <div class="container">
   <div class="row">
+    <!--MAIN CONTENT-->
     <div class="col-sm-8 post">
 
       <div class="post-detials">
@@ -9,8 +10,19 @@
       </div>
 
       <div class="post-content" ng-bind-html="post.body"></div>
+
+      <div ng-if="post.gists.length >= 1">
+        <gist id="{{post.gists[0]}}"></gist>
+      </div>
       <p class="lead author padded-vertical">- {{post.author}}</p>
+
+      <comment-form></comment-form>
+      <div class="comment-list">
+          <comment-list></comment-list>
+      </div>
     </div>
+
+    <!--SIDEBAR-->
     <div class="col-sm-4">
       <div class="share">
         <h3>Share</h3>

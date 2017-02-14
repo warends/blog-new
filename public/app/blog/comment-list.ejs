@@ -1,0 +1,8 @@
+
+<hr />
+<h4 class="padded-bottom" ng-if="post.comments.length > 0">{{post.comments.length}} Comments</h4>
+<div class="comment-box" ng-repeat="comment in post.comments">
+    <a ng-show="identity.currentUser.isAdmin()" ng-click="deleteComment(comment)" class="pull-right"><i class="fa fa-trash" aria-hidden="true"></i></a>
+    <h5>{{comment.firstName}}:<small> {{comment.date | date}}</small></h5>
+    <p>{{comment.content}}</p>
+</div>

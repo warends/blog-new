@@ -1,0 +1,37 @@
+{
+  "name": "angular-gist",
+  "version": "2.0.0",
+  "homepage": "https://github.com/scottcorgan/angular-gist",
+  "authors": [
+    "Scott Corgan <scottcorgan@gmail.com>",
+    "Darío Cravero <dario@contentkingdom.co>"
+  ],
+  "description": "AngularJS directive for embedding Github gists",
+  "main": "angular-gist.js",
+  "keywords": [
+    "angular",
+    "github",
+    "gist"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests",
+    "Gruntfile.js",
+    ".gitignore",
+    "package.json"
+  ],
+  "_release": "2.0.0",
+  "_resolution": {
+    "type": "version",
+    "tag": "2.0.0",
+    "commit": "edc9132d7f781543cbb3dbe9ada67440f670b043"
+  },
+  "_source": "https://github.com/scottcorgan/angular-gist.git",
+  "_target": "^2.0.0",
+  "_originalSource": "angular-gist",
+  "_direct": true
+}

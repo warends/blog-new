@@ -1,0 +1,36 @@
+<div class="form-group">
+  <label for="title">Title:</label>
+  <input type="text" name="title" ng-model="post.title" class="form-control" required/>
+</div>
+<div class="form-group">
+  <label for="slug">Slug:</label>
+  <input type="text" name="slug" ng-model="post.slug" class="form-control" required/>
+</div>
+<div class="form-group">
+  <label for="categories">Categories:</label>
+  <input type="text" name="categories" ng-model="post.categories" class="form-control"/>
+</div>
+<!-- <div class="form-group">
+  <label for="headerImage">Header Image</label>
+  <input type="file" id="headerImage">
+</div> -->
+<div class="form-group">
+  <label for="excerpt">Excerpt:</label>
+  <textarea rows="4" name="body" ng-model="post.excerpt" class="form-control" required/></textarea>
+</div>
+<div class="form-group">
+  <label for="body">Body:</label>
+  <textarea rows="8" name="body" ng-model="post.body" class="form-control" required/></textarea>
+</div>
+<div class="form-group">
+  <label for="author">Author:</label>
+  <input type="text" name="author" ng-model="post.author" class="form-control" required/>
+</div>
+<div class="form-group">
+  <label for="gist">Gists: <a ng-repeat="gist in post.gists">{{gist}}, </a></label>
+  <div class="input-group">
+    <input type="text" name="gist" ng-model="gist" class="form-control"/>
+    <div class="input-group-addon" ng-click="addGist(gist)"><i class="fa fa-plus"></i></div>
+    <div class="input-group-addon" ng-click="removeGist(gist)"><i class="fa fa-minus"></i></div>
+  </div>
+</div>

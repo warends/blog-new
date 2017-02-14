@@ -1,20 +1,34 @@
-angular.module('willsBlog').controller('postDetailCtrl', ['$scope', 'mvCachedPost', 'mvPost', '$stateParams', 'Meta',  function($scope, mvCachedPost, mvPost, $stateParams, Meta){
+angular.module('willsBlog').controller('postDetailCtrl', ['$scope', 'mvCachedPost', 'mvPost', '$stateParams', 'Meta', 'notifier', 'CommentService', function($scope, mvCachedPost, mvPost, $stateParams, Meta, notifier, CommentService){
 
-  window.scrollTo(0,0);
+  mvCachedPost.query().$promise.then(function(collection){
+    collection.forEach(function(post){
+      if(post.slug === $stateParams.slug){
+        $scope.post = post;
+        var title = $scope.post.title,
+            desc = $scope.post.excerpt;
+        Meta.setTitle(title);
+        Meta.setDesc(desc);
+      }
+    });
+  });
 
-  // mvCachedPost.query().$promise.then(function(collection){
-  //   collection.forEach(function(post){
-  //     if(post._id === $stateParams.id){
-  //       $scope.post = post;
-  //     }
-  //   });
-  // });
+  $scope.submitComment = function(){
+    var comment = {
+      'content': $scope.comment.content,
+      'date': Date.now(),
+      'firstName': $scope.comment.firstName,
+      'lastName': $scope.comment.lastName,
+    };
 
-   $scope.post = mvPost.get({ slug: $stateParams.slug }, function(){
-     var title = $scope.post.title;
-     var desc = $scope.post.excerpt;
-     Meta.setTitle(title);
-     Meta.setDesc(desc);
-   });
+    var slug = $stateParams.slug;
+    CommentService.postComment(comment, slug)
+      .then(function(){
+        $scope.post.comments.push(comment);
+        $scope.comment.content= "";
+        $scope.comment.firstName= "";
+        $scope.comment.lastName= "";
+      }, function(){
+      });
+  };
 
 }]);

@@ -11,18 +11,38 @@
   }
   }
 }
-
 .categories {
   display: inline-block;
   margin-right:10px;
   color: $blue;
 }
-
 .share {
   h4 {
     margin: 0 1em 0 0;
   }
   a {
     margin-right: 1em;
+  }
+}
+.comment-post-box{
+  color: white;
+  border-radius: 4px 4px 0 0;
+  background-color: $grey-blue;
+  padding: 20px;
+  h4{
+    color: white;
+  }
+}
+.comment-list{
+  padding: 20px;
+  border-radius: 0 0 4px 4px;
+  background-color: $light-grey;
+  margin-bottom: 2em;
+  .comment-box{
+    background-color: #fff;
+    padding:10px;
+    border-radius: 4px;
+    margin: 20px 0;
+    color: $black;
   }
 }

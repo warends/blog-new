@@ -1,5 +1,6 @@
 var express = require('express'),
     router = express.Router(),
+    contact = require('../controllers/contact'),
     Post = require('../models/Post').Post;
 
 //GET ALL POSTS
@@ -53,6 +54,7 @@ router.put('/:slug', function(req, res){
     post.body = updatedPost.body;
     post.author = updatedPost.author;
     post.postedDate = Date.now();
+    post.gists = updatedPost.gists;
 
     post.save(function(err){
       if(err){
@@ -65,5 +67,42 @@ router.put('/:slug', function(req, res){
   });
 });
 
+//ADD COMMENT
+router.post('/comments/:slug', function(req, res){
+  Post.findOne({slug : req.params.slug}).exec(function(err, post){
+    if(err) res.json(err);
+
+    var newComment = req.body;
+    var comment = post.comments.create({
+      content: newComment.content,
+      date: Date.now(),
+      firstName: newComment.firstName,
+      lastName: newComment.lastName
+    })
+    post.comments.push(comment);
+    post.save(function(err){
+      if(err) throw err;
+      var title = post.title;
+      contact.newMessage(comment, title);
+      res.send({message: comment.firstName});
+    });
+  });
+});
+
+//DELETE A COMMENT
+router.put('/comments/:slug', function(req, res){
+  Post.findOne({slug : req.params.slug}).exec(function(err, post){
+    if(err) res.json(err);
+
+    var commentId = req.body._id;
+    var cArray = post.comments;
+    var pos = cArray.map(function(e) { console.log(e._id); return e._id.toString(); }).indexOf(commentId);
+    cArray.splice(pos, 1);
+    post.save(function(err){
+      if(err) res.status(400).send({ error: 'Something failed!' })
+      res.send({message: (pos+1)});
+    });
+  });
+});
 
 module.exports = router;
