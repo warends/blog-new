@@ -54,6 +54,7 @@ router.put('/:slug', function(req, res){
     post.body = updatedPost.body;
     post.author = updatedPost.author;
     post.postedDate = Date.now();
+    post.gists = updatedPost.gists;
 
     post.save(function(err){
       if(err){

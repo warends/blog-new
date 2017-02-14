@@ -1,18 +1,31 @@
- angular.module('willsBlog').controller('editPostCtrl', [ '$scope','notifier','mvPost','$q','$location','$stateParams','$http','identity','CommentService', function($scope, notifier, mvPost, $q, $location, $stateParams, $http, identity, CommentService){
+ angular.module('willsBlog').controller('editPostCtrl', [ '$scope','notifier','mvPost','$q','$location','$stateParams','$http','identity','CommentService', 'Meta', function($scope, notifier, mvPost, $q, $location, $stateParams, $http, identity, CommentService, Meta){
+
+   Meta.setTitle('Edit Post');
 
     $scope.identity = identity;
 
-    $scope.post = mvPost.get({ slug: $stateParams.slug });
+    $scope.post = mvPost.get({ slug: $stateParams.slug }, function(){
+      $scope.gistList = $scope.post.gists;
+    });
+
+    $scope.addGist = function(newGist){
+      $scope.posts.gists.push(newGist);
+    }
+
+    $scope.removeGist = function(newGist){
+      $scope.posts.gists.pop();
+    }
 
     $scope.post.data = {
         _id: $scope.post._id,
         title : $scope.post.title,
         slug: $scope.post.slug,
         categories : $scope.post.categories,
-        headerImage : $scope.post.headerImage,
         excerpt : $scope.post.excerpt,
         body : $scope.post.body,
-        author: $scope.post.author
+        author: $scope.post.author,
+        postedDate: Date.now(),
+        gists: $scope.post.gists
     }
 
     $scope.updatePost = function(){

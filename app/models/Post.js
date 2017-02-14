@@ -5,12 +5,12 @@ var postSchema = new mongoose.Schema ({
   title: { type: String, required: '{PATH} is required', unique: true },
   slug: {type: String, required: '{PATH} is required', unique: true},
   categories: [String],
-  headerImage : {data: Buffer, contentType: String},
   excerpt: { type: String, required: '{PATH} is required' },
   body: { type: String, required: '{PATH} is required' },
   author: { type: String, required: '{PATH} is required' },
   postedDate: { type: Date, default: Date.now},
-  comments: [CommentSchema]
+  comments: [CommentSchema],
+  gists: [String]
 });
 
 var Post = mongoose.model('Post', postSchema);
