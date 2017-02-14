@@ -7,8 +7,9 @@ angular.module('willsBlog').controller('blogListCtrl', ['$scope', 'mvCachedPost'
   $scope.identity = identity;
 
   $scope.sortOptions= [
-    {value: 'title', text: 'Sort by Title'},
-    {value: 'published', text: 'Published Date'}];
+    {value: 'published', text: 'Published Date'},
+    {value: 'title', text: 'Sort by Title'}
+  ]
 
   $scope.sortOrder = $scope.sortOptions[0].value;
 }]);

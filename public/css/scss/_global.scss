@@ -28,13 +28,16 @@ section#content{
 }
 body {
 	font-family: $font-reg, Helvetica, Arial;
-	font-size: 16px;
 	color: #333;
 	letter-spacing: 1px;
   -webkit-font-smoothing: antialiased;
 }
 p {
+  font-size: 16px;
 	line-height: 30px;
+  @include mq($M){
+    font-size: 18px;
+  }
 }
 h1, h2, h3, h4, h5, h6 {
 	color: #333;
@@ -81,6 +84,9 @@ a:hover, a:focus {
 }
 .padded-bottom{
   padding-bottom: 1em;
+}
+.padded-bottom-2x{
+  padding-bottom: 2em;
 }
 .padded-horizontal{
   padding: 0 1em;
