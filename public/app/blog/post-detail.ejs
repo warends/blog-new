@@ -11,7 +11,7 @@
 
       <div class="post-content" ng-bind-html="post.body"></div>
 
-      <div ng-if="post.gists.length = 1">
+      <div ng-if="post.gists.length >= 1">
         <gist id="{{post.gists[0]}}"></gist>
       </div>
       <p class="lead author padded-vertical">- {{post.author}}</p>
