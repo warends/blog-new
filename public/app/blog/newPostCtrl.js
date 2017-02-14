@@ -12,11 +12,10 @@ angular.module('willsBlog').controller('newPostCtrl', ['$scope', 'notifier', 'mv
   $scope.post.gists = [];
   $scope.addGist = function(newGist){
     $scope.post.gists.push(newGist);
-    console.log($scope.post.gists);
   }
 
   $scope.removeGist = function(newGist){
-    $scope.posts.gists.pop();
+    $scope.post.gists.pop();
   }
 
   $scope.cancel = function(){

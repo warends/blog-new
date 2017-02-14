@@ -5,15 +5,15 @@
     $scope.identity = identity;
 
     $scope.post = mvPost.get({ slug: $stateParams.slug }, function(){
-      $scope.gistList = $scope.post.gists;
+      //$scope.gistList = $scope.post.gists;
     });
 
     $scope.addGist = function(newGist){
-      $scope.posts.gists.push(newGist);
+      $scope.post.gists.push(newGist);
     }
 
-    $scope.removeGist = function(newGist){
-      $scope.posts.gists.pop();
+    $scope.removeGist = function(){
+      $scope.post.gists.pop();
     }
 
     $scope.post.data = {
