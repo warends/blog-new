@@ -84,7 +84,7 @@ router.post('/comments/:slug', function(req, res){
       if(err) throw err;
       var title = post.title;
       contact.newMessage(comment, title);
-      res.send({message: comment.firstName});
+      res.send({message: comment.fullName});
     });
   });
 });

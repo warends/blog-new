@@ -7,4 +7,8 @@ var CommentSchema = new mongoose.Schema({
   lastName: {type: String, required: true}
 });
 
+CommentSchema.virtual('fullName').get(function(){
+  return this.firstName + ' ' + this.lastName;
+});
+
 module.exports = CommentSchema;
