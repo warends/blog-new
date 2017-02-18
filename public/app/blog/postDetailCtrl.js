@@ -11,7 +11,6 @@ angular.module('willsBlog').controller('postDetailCtrl', ['$scope', 'mvCachedPos
       }
     });
   });
-
   $scope.submitComment = function(){
     var comment = {
       'content': $scope.comment.content,
@@ -19,7 +18,6 @@ angular.module('willsBlog').controller('postDetailCtrl', ['$scope', 'mvCachedPos
       'firstName': $scope.comment.firstName,
       'lastName': $scope.comment.lastName,
     };
-
     var slug = $stateParams.slug;
     CommentService.postComment(comment, slug)
       .then(function(){
