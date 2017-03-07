@@ -12,7 +12,7 @@ router.use(function(req, res){
   res.render('index', {
     bootstrappedUser : req.user
   });
-})
+});
 
   // app.post('/twitter/user', twitter.getUserData);
 

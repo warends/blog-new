@@ -1,0 +1,127 @@
+/*
+*
+* GENERAL
+*
+*/
+
+body{
+  font-family: Lato, sans-serif;
+  font-size: 20px;
+}
+
+a:link {color: white;text-decoration: underline};
+
+/*
+*
+* COMPONENTS
+*
+*/
+
+
+/* slice */
+.slice {
+  overflow: hidden;
+}
+.slice--first {
+  position: relative;
+  height: 100vh;
+}
+.slice--second{
+  padding: 40px;
+  background: #f0f0f0;
+}
+.slice--third{
+  padding: 100px 0;
+}
+.slice--fourth{
+  padding: 50px;
+  background: #202b33;
+  color: white;
+}
+.slice__content{
+  position: relative;
+  z-index: 2;
+}
+.slice--first .slice__content {
+  top:50%;
+  transform: translateY(-50%);
+  position: absolute;
+}
+.slice__bg{
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+}
+.slice__bgElem{
+  position: absolute;
+  background-size: cover;
+  width: inherit;
+  height: inherit;
+}
+.slice__bgElem--el1{
+  background-image: url('../img/1.jpg');
+}
+.slice__bgElem--el2{
+  background-image: url('../img/2.jpg');
+}
+.slice__bgElem--el3{
+  background-image: url('../img/3.jpg');
+}
+.slice__bgElem--el4{
+  background-image: url('../img/4.jpg');
+}
+
+/* text */
+.text{
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+.text--title{
+  font-family: Oswald;
+  font-size: 60px;
+  text-decoration: underline;
+  color: white;
+  text-transform: uppercase;
+  margin: 0 0 20px;
+}
+
+.text--desc{
+  font-family: Lato;
+  font-size: 25px;
+  color: white;
+}
+
+/* figure */
+.figure{
+  display: inline-block;
+  border: 1px solid #ccc;
+}
+
+
+.loader{
+  display : block;
+  position : fixed;
+  z-index: 100;
+  background-image : url('http://loadinggif.com/images/image-selection/3.gif');
+  background-color:#666;
+  opacity : 0.4;
+  background-repeat : no-repeat;
+  background-position : center;
+  left : 0;
+  bottom : 0;
+  right : 0;
+  top : 0;
+}
+
+/*
+*
+* TRUMPS
+*
+*/
+
+.inlineblock-reset {
+  font-size: 0;
+}

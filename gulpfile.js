@@ -9,7 +9,8 @@ var gulp = require('gulp'),
     concat = require('gulp-concat'),
     sourcemaps = require('gulp-sourcemaps'),
     uglify = require('gulp-uglify'),
-    cleanCSS = require('gulp-clean-css');
+    cleanCSS = require('gulp-clean-css'),
+    vendor = require('gulp-concat-vendor');
 
 
 gulp.task('js', function () {
@@ -24,6 +25,12 @@ gulp.task('js', function () {
 gulp.task('js-prod', function () {
   gulp.src(['public/dist/js/main.min.js'])
       .pipe(uglify())
+    .pipe(gulp.dest('public/dist/js'))
+});
+
+gulp.task('js-vendor', function () {
+  gulp.src(['public/vendor/*'])
+      .pipe(vendor('vendor.js'))
     .pipe(gulp.dest('public/dist/js'))
 });
 

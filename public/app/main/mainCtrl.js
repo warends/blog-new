@@ -8,6 +8,20 @@ angular.module('willsBlog').controller('mainCtrl', ['$scope', '$location', 'mvCa
       $bgobj.css({ backgroundPosition: coords });
   });
 
+  $scope.aboutOptions = {
+    origin: 'top',
+    distance: '150px',
+    easing: 'ease-in-out',
+    delay: 30,
+    scale: 1,
+    duration: 1000,
+    // reset: true,
+    sequence: {
+       selector: '.services-web',
+       interval: 300
+     }
+  };
+
   Meta.setTitle('Home');
   Meta.setDesc('I enjoy all things web development and am always actively learning the newest techniques and langauges. If you have a web design or development project, give me a shout, I would love to talk about it.');
 

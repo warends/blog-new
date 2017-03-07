@@ -1,0 +1,37 @@
+{
+  "name": "ngScrollReveal",
+  "homepage": "www.karimabdelcadir.com",
+  "description": "angular wrapper for the native js library scrollReveal.js",
+  "authors": [
+    "Karim Abdelcadir <kinotto88@yahoo.it>"
+  ],
+  "main": "src/ngScrollReveal.js",
+  "keywords": [
+    "scrollreveal",
+    "effects",
+    "angular",
+    "ScrollReveal",
+    "css"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "scrollreveal": "^3.3.2"
+  },
+  "_release": "55cc044e0c",
+  "_resolution": {
+    "type": "branch",
+    "branch": "master",
+    "commit": "55cc044e0c961cd3d08b8d1c4298b53122f5c94b"
+  },
+  "_source": "https://github.com/kinotto/ngScrollReveal.git",
+  "_target": "*",
+  "_originalSource": "ngScrollReveal",
+  "_direct": true
+}

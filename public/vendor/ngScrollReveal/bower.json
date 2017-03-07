@@ -1,0 +1,28 @@
+{
+  "name": "ngScrollReveal",
+  "version": "1.0",
+  "homepage": "www.karimabdelcadir.com",
+  "description": "angular wrapper for the native js library scrollReveal.js",
+  "authors": [
+    "Karim Abdelcadir <kinotto88@yahoo.it>"
+  ],
+  "main": "src/ngScrollReveal.js",
+  "keywords": [
+    "scrollreveal",
+    "effects",
+    "angular",
+    "ScrollReveal",
+    "css"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "scrollreveal": "^3.3.2"
+  }
+}

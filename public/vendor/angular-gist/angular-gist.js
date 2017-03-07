@@ -21,19 +21,19 @@ angular.module('gist')
             'document.body.scrollHeight + \'px\'"><script type="text/javascript">' +
             '!function(){"use strict";window.retargetLinks=function(){ var gists=' +
             'document.getElementsByClassName("gist");for(var i=0,links;i<gists.length;i++){' +
-            'links=gists[i].getElementsByTagName("a");for(var j=0;j<links.length;j++){ ' +
+            'links=gists[i].getElementsByTagName("a");for(var j=0;j<links.length;j++){ ' + 
             'links[j].setAttribute("target","_blank");}}}}();</script><script type="text/javascript" ' +
             'src="https://gist.github.com/' + gistId + '.js" onload="retargetLinks()"></script></body></html>';
           var doc = iframe.document;
-          if (iframe.contentDocument)
+          if (iframe.contentDocument) 
             doc = iframe.contentDocument;
-          else if (iframe.contentWindow)
+          else if (iframe.contentWindow) 
             doc = iframe.contentWindow.document;
-
+        
           doc.open();
           doc.writeln(iframeHtml);
           doc.close();
-        },200);
+        },0);
       }
     };
   }]);
