@@ -15,16 +15,13 @@
     "tests"
   ],
   "dependencies": {
-    "jquery": "^2.2.4",
     "angular": "^1.5.6",
     "angular-resource": "^1.5.6",
     "angular-sanitize": "^1.5.8",
-    "gsap": "^1.19.0",
     "angular-ui-router": "^0.3.2",
     "angular-scroll": "^1.0.0",
     "notific8": "^4.3.0",
     "angular-gist": "^2.0.0",
-    "ngScrollReveal": "*",
-    "angular-animate": "1.5.6"
+    "ngScrollReveal": "*"
   }
 }

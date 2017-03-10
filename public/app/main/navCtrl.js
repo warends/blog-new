@@ -1,6 +1,7 @@
 angular.module('willsBlog').controller('navCtrl', ['$scope', '$location', '$document', function($scope, $location, $document){
   $scope.showMenu = function(){
       angular.element(document.getElementsByClassName('collapse')).toggleClass('in');
+      angular.element(document.getElementsByClassName('navbar-toggle')).toggleClass('open');
   };
 
   $scope.scrollTop = function(){

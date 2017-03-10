@@ -1,10 +1,11 @@
-angular.module('willsBlog').controller('mainCtrl', ['$scope', '$location', 'mvCachedPost', 'notifier' ,'TwitterService', '$http', 'Meta',  function($scope, $location, mvCachedPost, notifier, TwitterService, $http, Meta){
+angular.module('willsBlog').controller('mainCtrl', ['$scope', '$location', 'mvCachedPost', 'notifier' ,'$window', '$http', 'Meta',  function($scope, $location, mvCachedPost, notifier, $window, $http, Meta){
 
-
-  var $bgobj = $('#home');
   $(window).scroll(function() {
+      var $bgobj = $('#home');
+      var windowSize = $window.innerWidth;
+      var xPos = (windowSize > 768) ? xPos = '50' : xPos = '20';
       var yPos = -( $(window).scrollTop() / $bgobj.data('speed'));
-      var coords = '50% '+ yPos + 'px';
+      var coords = xPos + '% '+ yPos + 'px';
       $bgobj.css({ backgroundPosition: coords });
   });
 

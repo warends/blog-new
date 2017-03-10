@@ -66,16 +66,17 @@
           </div>
     </div>
 
-    <div class="container">
+    <div class="container" id="carousel-creative">
       <div class="row" ng-controller="carouselCtrl">
-        <div id="carousel-creative" class="carousel slide">
 
-              <ol class="carousel-indicators">
-                <li ng-repeat="slide in slides" ng-class="{'active':isCurrentSlideIndex($index)}" ng-click="setCurrentSlideIndex($index);">{{slide.name}}</li>
-              </ol>
+        <!--slide indicators-->
+        <ol class="carousel-indicators">
+          <li ng-repeat="slide in slides" ng-class="{'active':isCurrentSlideIndex($index)}" ng-click="setCurrentSlideIndex($index);">{{slide.name}}</li>
+        </ol>
 
+        <div class="carousel">
               <!-- Wrapper for slides -->
-              <div class="carousel-inner slide-animation" ng-hide="!isCurrentSlideIndex($index)" ng-repeat="slide in slides">
+              <div class="carousel-inner slide-animation" ng-class="{active: isCurrentSlideIndex($index), remove: !isCurrentSlideIndex($index)}" ng-repeat="slide in slides">
                 <div class="item active text-center">
                       <div class="col-sm-6 carousel-pic">
                         <div class="{{slide.svg}}"></div>

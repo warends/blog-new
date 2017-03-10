@@ -20,11 +20,14 @@
 
 }
 .more-details {
-	height: 100px;
+	height: 150px;
   transition: height .7s;
   overflow: hidden;
 	&.hidden-stuff{
 		height: 0px;
+	}
+	@include mq($M){
+		height: 100px;
 	}
 }
 .svg {
@@ -149,8 +152,8 @@
 .creative-process {
 	background: $light-grey;
 	margin: 0;
-	.carousel-inner{
-		background-color: #edf1f4;
+	.sliders{
+		overflow: hidden;
 	}
 }
 .carousel-indicators {
@@ -213,6 +216,7 @@
 }
 
 #carousel-creative {
+	position: relative;
 	height: 800px;
 	@include mq($XS){
 		height: 700px;
@@ -223,11 +227,45 @@
 	@include mq($M){
 		height: 400px;
 	}
+	.carousel {
+		height: 800px;
+		overflow: hidden;
+		@include mq($S){
+			height: 530px;
+		}
+		@include mq($M){
+			height: 400px;
+		}
+		@include mq($L){
+			height: 300px;
+		}
+	}
 	.carousel-inner{
+		background-color: #edf1f4;
 		position: absolute;
+		transition: all 1s;
+		left: 800px;
+		@include mq($M){
+			left: 1500px
+		}
+		&.active{
+			left: 0;
+			opacity: 1;
+		}
+		&.remove {
+			left: 800px;
+			opacity: 0;
+			@include mq($M){
+				left: 1500px;
+			}
+
+		}
 	}
 	.item {
-	padding-top: 60px;
+		padding-top: 60px;
+		@include mq($M){
+			padding-top: 20px;
+		}
 		.row{
 			margin: 0;
 		}
@@ -240,7 +278,7 @@
 		p{
 			padding: 0 30px;
 		}
-}
+	}
 }
 .ecomm-svg {
 	margin: 0 auto;

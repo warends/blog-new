@@ -10,6 +10,8 @@ var gulp = require('gulp'),
     sourcemaps = require('gulp-sourcemaps'),
     uglify = require('gulp-uglify'),
     cleanCSS = require('gulp-clean-css'),
+    clean = require('gulp-clean'),
+    gutil = require('gulp-util'),
     vendor = require('gulp-concat-vendor');
 
 
@@ -22,16 +24,23 @@ gulp.task('js', function () {
     .pipe(gulp.dest('public/dist/js'))
 });
 
-gulp.task('js-prod', function () {
+gulp.task('prod', function () {
   gulp.src(['public/dist/js/main.min.js'])
       .pipe(uglify())
     .pipe(gulp.dest('public/dist/js'))
 });
 
-gulp.task('js-vendor', function () {
+gulp.task('vendor', function () {
   gulp.src(['public/vendor/*'])
-      .pipe(vendor('vendor.js'))
+      .pipe(vendor('vendor.min.js'))
+      .pipe(uglify())
     .pipe(gulp.dest('public/dist/js'))
+    .on('error', gutil.log);
+});
+
+gulp.task('clean', function () {
+  return gulp.src('public/dist/js', {read: false})
+    .pipe(clean());
 });
 
 gulp.task('sass', function () {
