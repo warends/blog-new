@@ -1,4 +1,4 @@
-angular.module('willsBlog').controller('PostDetailController', ['$scope', 'CachedPostService', 'PostService', '$stateParams', 'Meta', 'NotifierService', 'CommentService', function($scope, CachedPostService, PostService, $stateParams, Meta, notifier, CommentService){
+angular.module('blog.detail', []).controller('PostDetailController', ['$scope', 'CachedPostService', 'PostService', '$stateParams', 'Meta', 'NotifierService', 'CommentService', function($scope, CachedPostService, PostService, $stateParams, Meta, notifier, CommentService){
 
   CachedPostService.query().$promise.then(function(collection){
     collection.forEach(function(post){
@@ -11,6 +11,7 @@ angular.module('willsBlog').controller('PostDetailController', ['$scope', 'Cache
       }
     });
   });
+
   $scope.submitComment = function(){
     var comment = {
       'content': $scope.comment.content,

@@ -3,7 +3,7 @@ var nodemailer = require('nodemailer'),
       service: 'Gmail',
       auth: {
         user: 'willarends@gmail.com',
-        pass: 'Stapless!'
+        pass: process.env.GMAIL_KEY
       }
     });
 

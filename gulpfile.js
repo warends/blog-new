@@ -36,8 +36,10 @@ gulp.task('prod', function () {
 
 gulp.task('vendor', function () {
   gulp.src(['public/vendor/*'])
+    .pipe(sourcemaps.init())
       .pipe(vendor('vendor.min.js'))
       .pipe(uglify())
+    .pipe(sourcemaps.write())
     .pipe(gulp.dest('public/dist/js'))
     .on('error', gutil.log);
 });

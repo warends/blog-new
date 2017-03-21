@@ -1,4 +1,4 @@
-angular.module('willsBlog').controller('NewPostController', ['$scope', 'NotifierService', 'PostService', '$location', function($scope, notifier, PostService, $location){
+angular.module('blog.new', []).controller('NewPostController', ['$scope', 'NotifierService', 'PostService', '$location', function($scope, notifier, PostService, $location){
 
   $scope.post = new PostService();
 

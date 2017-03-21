@@ -1,4 +1,4 @@
- angular.module('willsBlog').controller('EditPostController', [ '$scope','NotifierService','PostService','$q','$location','$stateParams','$http','IdentityService','CommentService', 'Meta', function($scope, notifier, PostService, $q, $location, $stateParams, $http, identity, CommentService, Meta){
+ angular.module('blog.edit', []).controller('EditPostController', [ '$scope', '$location', '$stateParams', 'NotifierService', 'PostService', 'IdentityService', 'CommentService', 'Meta', function($scope, $location, $stateParams, notifier, PostService, identity, CommentService, Meta){
 
    Meta.setTitle('Edit Post');
 
@@ -10,11 +10,11 @@
 
     $scope.addGist = function(newGist){
       $scope.post.gists.push(newGist);
-    }
+    };
 
     $scope.removeGist = function(){
       $scope.post.gists.pop();
-    }
+    };
 
     $scope.post.data = {
         _id: $scope.post._id,
@@ -26,7 +26,7 @@
         author: $scope.post.author,
         postedDate: Date.now(),
         gists: $scope.post.gists
-    }
+    };
 
     $scope.updatePost = function(){
         $scope.post.$update( { slug: $scope.post.slug }, function(){
@@ -35,22 +35,27 @@
         }, function(message){
           notifier.error(message.data);
         });
-    }
+    };
 
     $scope.deletePost = function(){
       $scope.post.$delete(function() {
         notifier.notify('Post has been deleted');
         $location.path('/posts');
       });
-    }
+    };
 
     $scope.deleteComment = function(comment){
       var slug = $stateParams.slug;
-      CommentService.deleteComment(comment, slug);
-    }
+      CommentService.deleteComment(comment, slug)
+        .then(function(){
+          $scope.post.comments.pop();
+        }, function(){
+
+        });
+    };
 
     $scope.cancel = function(){
       $location.path('/posts');
-    }
+    };
 
 }]);

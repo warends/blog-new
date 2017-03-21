@@ -57,12 +57,11 @@ angular.module('willsBlog').controller('MainController', ['$scope', '$location',
     });
 
     $http.post('/contact-form', data)
-      .success(function(data, status, headers, config){
-        notifier.notify('Thank you for your message ' + data.contactName);
+      .then(function(message, status, headers, config){
+        notifier.notify('Thank you for your message ' + message.data.contactName);
            $scope.form.contactForm.$setPristine();
            $scope.form.contactForm.$setUntouched();
-      })
-      .error(function(data, status, headers, config){
+      }, function(message, status, headers, config){
         notifier.notify('There was an error processing your request. Please try again');
       });
       this.contactName = null;

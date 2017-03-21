@@ -2,7 +2,7 @@ describe('Users Factory', () => {
 
   var Users;
 
-  beforeEach(angular.mock.module('mvUser'));
+  beforeEach(angular.mock.module('users.service'));
 
   beforeEach(inject((_Users_) => {
     Users = _Users_;

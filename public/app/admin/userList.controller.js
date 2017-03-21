@@ -1,3 +1,3 @@
-angular.module('willsBlog').controller('UserListController', ['$scope', 'UserFactory', function($scope, UserFactory){
-  $scope.users = UserFactory.query();
+angular.module('willsBlog').controller('UserListController', ['$scope', 'UserService', function($scope, UserService){
+  $scope.users = UserService.query();
 }]);

@@ -25,6 +25,4 @@ userSchema.methods = {
 
 var User = mongoose.model('User', userSchema);
 
-module.exports = {
-  User: User
-}
+module.exports = User;

@@ -1,4 +1,4 @@
-angular.module('users.service', []).factory('UserFactory', ['$resource', function($resource){
+angular.module('users.service', []).factory('UserService', ['$resource', function($resource){
 
   var UserResource = $resource('/api/users/:id', {_id : '@id'}, {
     update: {method: 'PUT', isArray: false}

@@ -1,13 +1,13 @@
-angular.module('willsBlog', ['users', 'ngResource', 'ngSanitize', 'ui.router', 'duScroll', 'gist', 'ngScrollReveal']);
+angular.module('willsBlog', ['users', 'blog', 'ngResource', 'ngSanitize', 'ui.router', 'duScroll', 'gist', 'ngScrollReveal']);
 
 angular.module('willsBlog').config(['$locationProvider', '$stateProvider', '$urlRouterProvider', function($locationProvider, $stateProvider, $urlRouterProvider){
 
     var routeRoleChecks = {
-      admin: function(AuthFactory){
-          return AuthFactory.authorizeCurrentUserForRoute('admin');
+      admin: function(AuthService){
+          return AuthService.authorizeCurrentUserForRoute('admin');
       },
-      user: function(AuthFactory){
-          return AuthFactory.authorizeAutheticatedUserForRoute();
+      user: function(AuthService){
+          return AuthService.authorizeAutheticatedUserForRoute();
       }
     }
 
@@ -26,11 +26,6 @@ angular.module('willsBlog').config(['$locationProvider', '$stateProvider', '$url
       templateUrl: '/partials/login/login',
       controller: 'LoginController'
     })
-    .state('signup', {
-      url: '/signup',
-      templateUrl: '/partials/login/signup',
-      controller: 'SignupController'
-    })
     .state('posts', {
       url: '/posts',
       templateUrl: '/partials/blog/blog-list',
@@ -41,8 +36,8 @@ angular.module('willsBlog').config(['$locationProvider', '$stateProvider', '$url
       templateUrl: '/partials/admin/profile',
       controller: 'ProfileController',
       resolve: {
-        routeRoleCheck: ['AuthFactory', function(AuthFactory){
-            return AuthFactory.authorizeAutheticatedUserForRoute();
+        routeRoleCheck: ['AuthService', function(AuthService){
+            return AuthService.authorizeAutheticatedUserForRoute();
         }
       ]}
     })
@@ -56,8 +51,8 @@ angular.module('willsBlog').config(['$locationProvider', '$stateProvider', '$url
       templateUrl: '/partials/blog/new-post',
       controller: 'NewPostController',
       resolve: {
-        routeRoleCheck: ['AuthFactory', function(AuthFactory){
-            return AuthFactory.authorizeCurrentUserForRoute('admin');
+        routeRoleCheck: ['AuthService', function(AuthService){
+            return AuthService.authorizeCurrentUserForRoute('admin');
         }
       ]}
     })
@@ -66,8 +61,8 @@ angular.module('willsBlog').config(['$locationProvider', '$stateProvider', '$url
       templateUrl: '/partials/blog/edit-post',
       controller: 'EditPostController',
       resolve: {
-        routeRoleCheck: ['AuthFactory', function(AuthFactory){
-            return AuthFactory.authorizeCurrentUserForRoute('admin');
+        routeRoleCheck: ['AuthService', function(AuthService){
+            return AuthService.authorizeCurrentUserForRoute('admin');
         }
       ]}
     })
@@ -76,8 +71,8 @@ angular.module('willsBlog').config(['$locationProvider', '$stateProvider', '$url
       templateUrl: '/partials/admin/users-list',
       controller: 'UserListController',
       resolve: {
-        routeRoleCheck: ['AuthFactory', function(AuthFactory){
-            return AuthFactory.authorizeCurrentUserForRoute('admin');
+        routeRoleCheck: ['AuthService', function(AuthService){
+            return AuthService.authorizeCurrentUserForRoute('admin');
         }
       ]}
     });

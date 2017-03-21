@@ -1,4 +1,4 @@
-angular.module('willsBlog').controller('ProfileController', ['$scope', 'AuthFactory', 'IdentityService', 'NotifierService', function($scope, AuthFactory, identity, notifier){
+angular.module('willsBlog').controller('ProfileController', ['$scope', 'AuthService', 'IdentityService', 'NotifierService', function($scope, AuthService, identity, notifier){
   $scope.username = identity.currentUser.username;
   $scope.fName = identity.currentUser.firstName;
   $scope.lName = identity.currentUser.lastName;
@@ -14,7 +14,7 @@ angular.module('willsBlog').controller('ProfileController', ['$scope', 'AuthFact
        newUserData.password = $scope.password;
       }
 
-      AuthFactory.updateCurrentUser(newUserData)
+      AuthService.updateCurrentUser(newUserData)
         .then(function(){
           notifier.notify('Your information has been updated');
         }, function(reason){

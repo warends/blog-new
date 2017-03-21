@@ -1,4 +1,4 @@
-angular.module('willsBlog').controller('BlogListController', ['$scope', 'CachedPostService', 'IdentityService', '$location', 'Meta',  function($scope, CachedPostService, identity, $location, Meta){
+angular.module('blog.list', []).controller('BlogListController', ['$scope', 'CachedPostService', 'IdentityService', '$location', 'Meta',  function($scope, CachedPostService, identity, $location, Meta){
 
   Meta.setTitle('Blog');
 

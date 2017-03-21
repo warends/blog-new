@@ -1,11 +1,11 @@
-angular.module('willsBlog').controller('LoginController', ['$scope', '$http', 'IdentityService', 'NotifierService', 'AuthFactory', '$location', 'Meta', function($scope, $http, identity, notifier, AuthFactory, $location, Meta){
+angular.module('users.login', []).controller('LoginController', ['$scope', 'IdentityService', 'NotifierService', 'AuthService', '$location', 'Meta', function($scope, identity, notifier, AuthService, $location, Meta){
 
     Meta.setTitle('Account');
 
     $scope.identity = identity;
 
     $scope.signIn = function(username, password){
-      AuthFactory.authenticateUser(username, password).then(function(success){
+      AuthService.authenticateUser(username, password).then(function(success){
         if(success){
           notifier.notify('You have signed in');
           $location.url('/account');
@@ -17,7 +17,7 @@ angular.module('willsBlog').controller('LoginController', ['$scope', '$http', 'I
     };
 
     $scope.signOut = function(){
-      AuthFactory.logoutUser().then(function() {
+      AuthService.logoutUser().then(function() {
         $scope.username = '';
         $scope.password = '';
         notifier.notify('You have logged out');
@@ -25,22 +25,21 @@ angular.module('willsBlog').controller('LoginController', ['$scope', '$http', 'I
       });
     };
 
-    $scope.signup = function(){
+    $scope.signup = function(firstName, lastName, username, password){
       var newUserData = {
-        username: $scope.username,
-        firstName: $scope.fName,
-        lastName: $scope.lName,
-        password: $scope.password
+        'username': username,
+        'firstName': firstName,
+        'lastName': lastName,
+        'password': password
       };
-      AuthFactory.createUser(newUserData)
+      AuthService.createUser(newUserData)
         .then(function(){
-          notifier.notify('User account created');
+          notifier.notify('User Account Created');
           $location.path('/');
       }, function(message){
         notifier.error(message);
       });
     };
-
     $scope.cancel = function(){
       $location.path('/');
     };
