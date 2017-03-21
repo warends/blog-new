@@ -1,6 +1,6 @@
-angular.module('willsBlog').controller('newPostCtrl', ['$scope', 'notifier', 'mvPost', '$location', function($scope, notifier, mvPost, $location){
+angular.module('willsBlog').controller('NewPostController', ['$scope', 'NotifierService', 'PostService', '$location', function($scope, notifier, PostService, $location){
 
-  $scope.post = new mvPost();
+  $scope.post = new PostService();
 
   $scope.createNewPost = function(){
     $scope.post.$save(function(){

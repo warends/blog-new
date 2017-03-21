@@ -1,11 +1,11 @@
-angular.module('willsBlog').controller('loginCtrl', ['$scope', '$http', 'identity', 'notifier', 'mvAuth', '$location', 'Meta', function($scope, $http, identity, notifier, mvAuth, $location, Meta){
+angular.module('willsBlog').controller('LoginController', ['$scope', '$http', 'IdentityService', 'NotifierService', 'AuthFactory', '$location', 'Meta', function($scope, $http, identity, notifier, AuthFactory, $location, Meta){
 
     Meta.setTitle('Account');
 
     $scope.identity = identity;
 
     $scope.signIn = function(username, password){
-      mvAuth.authenticateUser(username, password).then(function(success){
+      AuthFactory.authenticateUser(username, password).then(function(success){
         if(success){
           notifier.notify('You have signed in');
           $location.url('/account');
@@ -17,7 +17,7 @@ angular.module('willsBlog').controller('loginCtrl', ['$scope', '$http', 'identit
     };
 
     $scope.signOut = function(){
-      mvAuth.logoutUser().then(function() {
+      AuthFactory.logoutUser().then(function() {
         $scope.username = '';
         $scope.password = '';
         notifier.notify('You have logged out');
@@ -32,7 +32,7 @@ angular.module('willsBlog').controller('loginCtrl', ['$scope', '$http', 'identit
         lastName: $scope.lName,
         password: $scope.password
       };
-      mvAuth.createUser(newUserData)
+      AuthFactory.createUser(newUserData)
         .then(function(){
           notifier.notify('User account created');
           $location.path('/');

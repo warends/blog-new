@@ -1,4 +1,4 @@
-angular.module('willsBlog').service('CommentService', ['$http', 'notifier', function($http, notifier){
+angular.module('willsBlog').service('CommentService', ['$http', 'NotifierService', function($http, notifier){
 
   this.postComment = function(data, slug){
     return $http.post('/api/posts/comments/' + slug, data)

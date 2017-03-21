@@ -1,5 +1,5 @@
 
-angular.module('willsBlog').factory('mvAuth', ['$http', 'identity', '$q', 'mvUser', function($http, identity, $q, mvUser){
+angular.module('willsBlog').factory('AuthFactory', ['$http', 'IdentityService', '$q', 'UserFactory', function($http, identity, $q, UserFactory){
 
   return {
     // this thing working
@@ -12,7 +12,7 @@ angular.module('willsBlog').factory('mvAuth', ['$http', 'identity', '$q', 'mvUse
       }).then(function(response){
         if (response.data.success){
 
-          var user = new mvUser();
+          var user = new UserFactory();
           angular.extend(user, response.data.user);
           identity.currentUser = user;
           deferred.resolve(true);
@@ -53,7 +53,7 @@ angular.module('willsBlog').factory('mvAuth', ['$http', 'identity', '$q', 'mvUse
     },
 
     createUser : function(newUserData) {
-       var newUser = new mvUser(newUserData);
+       var newUser = new UserFactory(newUserData);
        var deferred = $q.defer();
 
        newUser.$save().then(function(){

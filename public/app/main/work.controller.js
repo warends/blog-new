@@ -1,4 +1,4 @@
-angular.module('willsBlog').controller('workCtrl', ['$scope', function($scope){
+angular.module('willsBlog').controller('WorkController', ['$scope', function($scope){
 
   $scope.options = {
     origin: 'left',

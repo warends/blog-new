@@ -1,6 +1,6 @@
-angular.module('willsBlog').controller('postDetailCtrl', ['$scope', 'mvCachedPost', 'mvPost', '$stateParams', 'Meta', 'notifier', 'CommentService', function($scope, mvCachedPost, mvPost, $stateParams, Meta, notifier, CommentService){
+angular.module('willsBlog').controller('PostDetailController', ['$scope', 'CachedPostService', 'PostService', '$stateParams', 'Meta', 'NotifierService', 'CommentService', function($scope, CachedPostService, PostService, $stateParams, Meta, notifier, CommentService){
 
-  mvCachedPost.query().$promise.then(function(collection){
+  CachedPostService.query().$promise.then(function(collection){
     collection.forEach(function(post){
       if(post.slug === $stateParams.slug){
         $scope.post = post;

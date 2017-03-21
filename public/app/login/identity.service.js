@@ -1,8 +1,8 @@
-angular.module('willsBlog').factory('identity', ['$window', 'mvUser', function($window, mvUser){
+angular.module('willsBlog').factory('IdentityService', ['$window', 'UserFactory', function($window, UserFactory){
 
   var currentUser;
   if(!!$window.bootstrappedUserObject) {
-    currentUser = new mvUser();
+    currentUser = new UserFactory();
     angular.extend(currentUser, $window.bootstrappedUserObject);
   }
   return {

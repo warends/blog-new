@@ -1,10 +1,10 @@
- angular.module('willsBlog').controller('editPostCtrl', [ '$scope','notifier','mvPost','$q','$location','$stateParams','$http','identity','CommentService', 'Meta', function($scope, notifier, mvPost, $q, $location, $stateParams, $http, identity, CommentService, Meta){
+ angular.module('willsBlog').controller('EditPostController', [ '$scope','NotifierService','PostService','$q','$location','$stateParams','$http','IdentityService','CommentService', 'Meta', function($scope, notifier, PostService, $q, $location, $stateParams, $http, identity, CommentService, Meta){
 
    Meta.setTitle('Edit Post');
 
     $scope.identity = identity;
 
-    $scope.post = mvPost.get({ slug: $stateParams.slug }, function(){
+    $scope.post = PostService.get({ slug: $stateParams.slug }, function(){
       //$scope.gistList = $scope.post.gists;
     });
 

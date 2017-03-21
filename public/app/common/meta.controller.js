@@ -8,7 +8,7 @@ angular.module('willsBlog').factory('Meta', function(){
     setDesc : function(newDesc) { desc = newDesc}
   }
 })
-.controller('metaCtrl', ['$scope', 'Meta', function($scope, Meta){
+.controller('MetaController', ['$scope', 'Meta', function($scope, Meta){
   $scope.Meta = Meta;
   $scope.metaDesc = Meta;
 }]);

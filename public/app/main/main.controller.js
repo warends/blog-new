@@ -1,4 +1,4 @@
-angular.module('willsBlog').controller('mainCtrl', ['$scope', '$location', 'mvCachedPost', 'notifier' ,'$window', '$http', 'Meta',  function($scope, $location, mvCachedPost, notifier, $window, $http, Meta){
+angular.module('willsBlog').controller('MainController', ['$scope', '$location', 'CachedPostService', 'NotifierService' ,'$window', '$http', 'Meta',  function($scope, $location, CachedPostService, notifier, $window, $http, Meta){
 
   $(window).scroll(function() {
       var $bgobj = $('#home');
@@ -44,7 +44,7 @@ angular.module('willsBlog').controller('mainCtrl', ['$scope', '$location', 'mvCa
 
   ];
 
-  $scope.posts = mvCachedPost.query();
+  $scope.posts = CachedPostService.query();
 
   $scope.form = {};
 

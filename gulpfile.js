@@ -16,7 +16,11 @@ var gulp = require('gulp'),
 
 
 gulp.task('js', function () {
-  gulp.src(['public/app/app.js', 'public/app/**/*.js'])
+  gulp.src([
+      'public/app/app.js',
+      '!public/app/**/*.spec.js',
+      'public/app/**/*.js'
+    ])
     .pipe(sourcemaps.init())
       .pipe(concat('main.min.js'))
       .pipe(jshint())

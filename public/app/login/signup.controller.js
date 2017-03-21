@@ -1,4 +1,4 @@
-angular.module('willsBlog').controller('signupCtrl', ['$scope', 'mvAuth', 'notifier', '$location', function($scope, mvAuth, notifier, $location){
+angular.module('willsBlog').controller('SignupController', ['$scope', 'AuthFactory', 'NotifierService', '$location', function($scope, AuthFactory, notifier, $location){
     $scope.signup = function(){
 
       var newUserData = {
@@ -7,7 +7,7 @@ angular.module('willsBlog').controller('signupCtrl', ['$scope', 'mvAuth', 'notif
         lastName: $scope.lName,
         password: $scope.password
       };
-      mvAuth.createUser(newUserData)
+      AuthFactory.createUser(newUserData)
         .then(function(){
           notifier.notify('User account created');
           $location.path('/');

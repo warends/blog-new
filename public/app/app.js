@@ -1,13 +1,13 @@
-angular.module('willsBlog', ['ngResource', 'ngSanitize', 'ui.router', 'duScroll', 'gist', 'ngScrollReveal']);
+angular.module('willsBlog', ['users', 'ngResource', 'ngSanitize', 'ui.router', 'duScroll', 'gist', 'ngScrollReveal']);
 
 angular.module('willsBlog').config(['$locationProvider', '$stateProvider', '$urlRouterProvider', function($locationProvider, $stateProvider, $urlRouterProvider){
 
     var routeRoleChecks = {
-      admin: function(mvAuth){
-          return mvAuth.authorizeCurrentUserForRoute('admin');
+      admin: function(AuthFactory){
+          return AuthFactory.authorizeCurrentUserForRoute('admin');
       },
-      user: function(mvAuth){
-          return mvAuth.authorizeAutheticatedUserForRoute();
+      user: function(AuthFactory){
+          return AuthFactory.authorizeAutheticatedUserForRoute();
       }
     }
 
@@ -19,65 +19,65 @@ angular.module('willsBlog').config(['$locationProvider', '$stateProvider', '$url
     .state('home', {
       url: '/',
       templateUrl: '/partials/main/main',
-      controller: 'mainCtrl'
+      controller: 'MainController'
     })
     .state('account', {
       url: '/account',
       templateUrl: '/partials/login/login',
-      controller: 'loginCtrl'
+      controller: 'LoginController'
     })
     .state('signup', {
       url: '/signup',
       templateUrl: '/partials/login/signup',
-      controller: 'signupCtrl'
+      controller: 'SignupController'
     })
     .state('posts', {
       url: '/posts',
       templateUrl: '/partials/blog/blog-list',
-      controller: 'blogListCtrl'
+      controller: 'BlogListController'
     })
     .state('profile', {
       url: '/profile',
       templateUrl: '/partials/admin/profile',
-      controller: 'profileCtrl',
+      controller: 'ProfileController',
       resolve: {
-        routeRoleCheck: ['mvAuth', function(mvAuth){
-            return mvAuth.authorizeAutheticatedUserForRoute();
+        routeRoleCheck: ['AuthFactory', function(AuthFactory){
+            return AuthFactory.authorizeAutheticatedUserForRoute();
         }
       ]}
     })
     .state('postDetail', {
       url: '/posts/:slug',
       templateUrl: '/partials/blog/post-detail',
-      controller: 'postDetailCtrl'
+      controller: 'PostDetailController'
     })
     .state('newPost', {
       url: '/admin/new-post',
       templateUrl: '/partials/blog/new-post',
-      controller: 'newPostCtrl',
+      controller: 'NewPostController',
       resolve: {
-        routeRoleCheck: ['mvAuth', function(mvAuth){
-            return mvAuth.authorizeCurrentUserForRoute('admin');
+        routeRoleCheck: ['AuthFactory', function(AuthFactory){
+            return AuthFactory.authorizeCurrentUserForRoute('admin');
         }
       ]}
     })
     .state('editPost', {
       url: '/admin/:slug/edit',
       templateUrl: '/partials/blog/edit-post',
-      controller: 'editPostCtrl',
+      controller: 'EditPostController',
       resolve: {
-        routeRoleCheck: ['mvAuth', function(mvAuth){
-            return mvAuth.authorizeCurrentUserForRoute('admin');
+        routeRoleCheck: ['AuthFactory', function(AuthFactory){
+            return AuthFactory.authorizeCurrentUserForRoute('admin');
         }
       ]}
     })
     .state('users', {
       url: '/admin/users',
       templateUrl: '/partials/admin/users-list',
-      controller: 'userListCtrl',
+      controller: 'UserListController',
       resolve: {
-        routeRoleCheck: ['mvAuth', function(mvAuth){
-            return mvAuth.authorizeCurrentUserForRoute('admin');
+        routeRoleCheck: ['AuthFactory', function(AuthFactory){
+            return AuthFactory.authorizeCurrentUserForRoute('admin');
         }
       ]}
     });

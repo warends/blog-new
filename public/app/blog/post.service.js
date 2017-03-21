@@ -1,4 +1,4 @@
-angular.module('willsBlog').factory('mvPost', ['$resource', function($resource){
+angular.module('willsBlog').factory('PostService', ['$resource', function($resource){
 
   return $resource('/api/posts/:slug', {slug: '@slug'}, {
     update : {
