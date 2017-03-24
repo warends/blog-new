@@ -1,11 +1,11 @@
-angular.module('blog.new', []).controller('NewPostController', ['$scope', 'NotifierService', 'PostService', '$location', function($scope, notifier, PostService, $location){
+angular.module('post.new', []).controller('NewPostController', ['$scope', 'NotifierService', 'PostService', '$location', function($scope, notifier, PostService, $location){
 
   $scope.post = new PostService();
 
   $scope.createNewPost = function(){
     $scope.post.$save(function(){
         notifier.notify('New Post Created');
-        $location.path('/blog');
+        $location.path('/posts');
     });
   }
 

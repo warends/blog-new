@@ -1,4 +1,4 @@
-angular.module('blog.detail', []).controller('PostDetailController', ['$scope', 'CachedPostService', 'PostService', '$stateParams', 'Meta', 'NotifierService', 'CommentService', function($scope, CachedPostService, PostService, $stateParams, Meta, notifier, CommentService){
+angular.module('post.detail', []).controller('PostDetailController', ['$scope', 'CachedPostService', 'PostService', '$stateParams', 'Meta', 'NotifierService', 'CommentService', function($scope, CachedPostService, PostService, $stateParams, Meta, notifier, CommentService){
 
   CachedPostService.query().$promise.then(function(collection){
     collection.forEach(function(post){

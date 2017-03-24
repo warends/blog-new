@@ -24,6 +24,6 @@
     "ngScrollReveal": "*"
   },
   "devDependencies": {
-    "angular-mocks": "^1.6.3"
+    
   }
 }

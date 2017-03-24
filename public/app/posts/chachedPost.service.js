@@ -1,4 +1,4 @@
-angular.module('blog.cache', []).factory('CachedPostService', ['PostService', function(PostService){
+angular.module('post.cache', []).factory('CachedPostService', ['PostService', function(PostService){
   var postList;
 
   return {

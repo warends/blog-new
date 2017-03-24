@@ -1,6 +1,6 @@
-angular.module('blog.list', []).controller('BlogListController', ['$scope', 'CachedPostService', 'IdentityService', '$location', 'Meta',  function($scope, CachedPostService, identity, $location, Meta){
+angular.module('post.list', []).controller('PostListController', ['$scope', 'CachedPostService', 'IdentityService', '$location', 'Meta',  function($scope, CachedPostService, identity, $location, Meta){
 
-  Meta.setTitle('Blog');
+  Meta.setTitle('Posts');
 
   $scope.posts = CachedPostService.query();
 

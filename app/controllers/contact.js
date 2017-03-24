@@ -8,7 +8,7 @@ var generator = require('xoauth2').createXOAuth2Generator({
   accessToken: 'ya29.GlsWBFZmSut6xdXbPHG4Conerz62LEQi0vLdcqbNDll2-NKTRgsXGtQ4yZcwdKdhP_wzXubvGDpNEkxxRvYsUlApsmaFXPjXLzjvBzKrMFGi-zDfrngjs8xdxm1_'
 });
 
-// listen for token updates (if refreshToken is set) you probably want to store these to a db
+//listen for token updates (if refreshToken is set) you probably want to store these to a db
 generator.on('token', function(token){
     console.log('New token for %s: %s', token.user, token.accessToken);
 });

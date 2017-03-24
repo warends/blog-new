@@ -1,4 +1,4 @@
- angular.module('blog.edit', []).controller('EditPostController', [ '$scope', '$location', '$stateParams', 'NotifierService', 'PostService', 'IdentityService', 'CommentService', 'Meta', function($scope, $location, $stateParams, notifier, PostService, identity, CommentService, Meta){
+ angular.module('post.edit', []).controller('EditPostController', [ '$scope', '$location', '$stateParams', 'NotifierService', 'PostService', 'IdentityService', 'CommentService', 'Meta', function($scope, $location, $stateParams, notifier, PostService, identity, CommentService, Meta){
 
    Meta.setTitle('Edit Post');
 

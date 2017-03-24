@@ -1,4 +1,4 @@
-angular.module('willsBlog', ['users', 'blog', 'ngResource', 'ngSanitize', 'ui.router', 'duScroll', 'gist', 'ngScrollReveal']);
+angular.module('willsBlog', ['users', 'post', 'ngResource', 'ngSanitize', 'ui.router', 'duScroll', 'gist', 'ngScrollReveal']);
 
 angular.module('willsBlog').config(['$locationProvider', '$stateProvider', '$urlRouterProvider', function($locationProvider, $stateProvider, $urlRouterProvider){
 
@@ -28,8 +28,8 @@ angular.module('willsBlog').config(['$locationProvider', '$stateProvider', '$url
     })
     .state('posts', {
       url: '/posts',
-      templateUrl: '/partials/blog/blog-list',
-      controller: 'BlogListController'
+      templateUrl: '/partials/posts/post-list',
+      controller: 'PostListController'
     })
     .state('profile', {
       url: '/profile',
@@ -43,12 +43,12 @@ angular.module('willsBlog').config(['$locationProvider', '$stateProvider', '$url
     })
     .state('postDetail', {
       url: '/posts/:slug',
-      templateUrl: '/partials/blog/post-detail',
+      templateUrl: '/partials/posts/post-detail',
       controller: 'PostDetailController'
     })
     .state('newPost', {
       url: '/admin/new-post',
-      templateUrl: '/partials/blog/new-post',
+      templateUrl: '/partials/posts/new-post',
       controller: 'NewPostController',
       resolve: {
         routeRoleCheck: ['AuthService', function(AuthService){
@@ -58,7 +58,7 @@ angular.module('willsBlog').config(['$locationProvider', '$stateProvider', '$url
     })
     .state('editPost', {
       url: '/admin/:slug/edit',
-      templateUrl: '/partials/blog/edit-post',
+      templateUrl: '/partials/posts/edit-post',
       controller: 'EditPostController',
       resolve: {
         routeRoleCheck: ['AuthService', function(AuthService){

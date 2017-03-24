@@ -1,4 +1,4 @@
-angular.module('blog.comments', []).service('CommentService', ['$http', 'NotifierService', function($http, notifier){
+angular.module('post.comments', []).service('CommentService', ['$http', 'NotifierService', function($http, notifier){
 
   this.postComment = function(data, slug){
     return $http.post('/api/posts/comments/' + slug, data)
