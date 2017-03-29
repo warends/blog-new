@@ -1,6 +1,6 @@
 angular.module('willsBlog').value('notific8', notific8);
 
-angular.module('willsBlog').factory('NotifierService', ['notific8', function(notific8){
+angular.module('common.notifier', []).factory('NotifierService', ['notific8', function(notific8){
 
   notific8('configure', {
     life: 3000,

@@ -1,6 +1,6 @@
  angular.module('post.edit', []).controller('EditPostController', [ '$scope', '$location', '$stateParams', 'NotifierService', 'PostService', 'IdentityService', 'CommentService', 'Meta', function($scope, $location, $stateParams, notifier, PostService, identity, CommentService, Meta){
 
-   Meta.setTitle('Edit Post');
+    Meta.setTitle('Edit Post');
 
     $scope.identity = identity;
 
@@ -11,7 +11,6 @@
     $scope.addGist = function(newGist){
       $scope.post.gists.push(newGist);
     };
-
     $scope.removeGist = function(){
       $scope.post.gists.pop();
     };

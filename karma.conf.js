@@ -23,6 +23,8 @@ module.exports = function(config) {
       'public/app/login/user.service.js',
       'public/app/posts/postList.controller.js',
       'public/app/posts/post.service.js',
+      'public/app/posts/CachedPostService.js',
+      'public/app/posts/comment.service.js',
       'public/dist/js/main.min.js',
       'public/app/login/*.spec.js',
       'public/app/posts/*.spec.js'

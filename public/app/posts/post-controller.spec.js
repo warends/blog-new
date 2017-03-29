@@ -1,35 +1,33 @@
 describe('Posts Controller', () => {
 
-  var $controller, PostController, scope, PostService;
+  var $controller, PostController, scope, CachedPostService, stateParams;
 
   var postList = 'What is your process?';
 
-  beforeEach(angular.mock.module('post.list'));
+  beforeEach(angular.mock.module('post.detail'));
   beforeEach(angular.mock.module('post.service'));
+  beforeEach(angular.mock.module('post.cache'));
+  beforeEach(angular.mock.module('common.meta'));
 
-  beforeEach(inject((_$rootScope_, _$controller_, _PostService_) => {
+  beforeEach(inject((_$rootScope_, _$controller_, _CachedPostService_) => {
     scope = _$rootScope_.$new();
     $controller = _$controller_;
-    PostService = _PostService_;
+    CachedPostService = _CachedPostService_;
+    stateParams = {slug: 'what-is-your-process'};
 
-    spyOn(PostService, 'query').and.callFake(function() {
-      return postList;
-    });
+    spyOn(CachedPostService, 'query').and.callThrough();
 
-    PostController = $controller('PostListController', {
+    PostController = $controller('PostDetailController', {
       $scope: scope,
-      Posts: PostService
+      Posts: CachedPostService,
+      $stateParams: stateParams
     });
 
   }));
 
-  it('should be defined', () => {
-    expect(PostController).toBeDefined();
-  });
-
-  it('should initialize with a call to PostService.query()', function() {
-    expect(PostService.query).toHaveBeenCalled();
-    //expect(PostController.$scope.posts[0].title).toEqual(postList);
+  it('should be defined and call services', function() {
+    expect($controller).toBeDefined();
+    expect(CachedPostService.query).toHaveBeenCalled();
   });
 
 

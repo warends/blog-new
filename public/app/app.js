@@ -1,4 +1,4 @@
-angular.module('willsBlog', ['users', 'post', 'ngResource', 'ngSanitize', 'ui.router', 'duScroll', 'gist', 'ngScrollReveal']);
+angular.module('willsBlog', ['users', 'post', 'common', 'ngResource', 'ngSanitize', 'ui.router', 'duScroll', 'gist', 'ngScrollReveal']);
 
 angular.module('willsBlog').config(['$locationProvider', '$stateProvider', '$urlRouterProvider', function($locationProvider, $stateProvider, $urlRouterProvider){
 
