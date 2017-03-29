@@ -1,7 +1,7 @@
 {
   "name": "will-arends-dev",
   "description": "",
-  "main": "index.js",
+  "main": "server.js",
   "authors": [
     "will arends"
   ],
@@ -11,8 +11,7 @@
     "**/.*",
     "node_modules",
     "bower_components",
-    "test",
-    "tests"
+    "test"
   ],
   "dependencies": {
     "angular": "^1.5.6",
@@ -23,5 +22,8 @@
     "notific8": "^4.3.0",
     "angular-gist": "^2.0.0",
     "ngScrollReveal": "*"
+  },
+  "devDependencies": {
+
   }
 }

@@ -96,7 +96,7 @@ router.put('/comments/:slug', function(req, res){
 
     var commentId = req.body._id;
     var cArray = post.comments;
-    var pos = cArray.map(function(e) { console.log(e._id); return e._id.toString(); }).indexOf(commentId);
+    var pos = cArray.map(function(comment) { return comment._id.toString(); }).indexOf(commentId);
     cArray.splice(pos, 1);
     post.save(function(err){
       if(err) res.status(400).send({ error: 'Something failed!' })

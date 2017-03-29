@@ -16,7 +16,11 @@ var gulp = require('gulp'),
 
 
 gulp.task('js', function () {
-  gulp.src(['public/app/app.js', 'public/app/**/*.js'])
+  gulp.src([
+      'public/app/app.js',
+      '!public/app/**/*.spec.js',
+      'public/app/**/*.js'
+    ])
     .pipe(sourcemaps.init())
       .pipe(concat('main.min.js'))
       .pipe(jshint())
@@ -32,8 +36,10 @@ gulp.task('prod', function () {
 
 gulp.task('vendor', function () {
   gulp.src(['public/vendor/*'])
+    .pipe(sourcemaps.init())
       .pipe(vendor('vendor.min.js'))
       .pipe(uglify())
+    .pipe(sourcemaps.write())
     .pipe(gulp.dest('public/dist/js'))
     .on('error', gutil.log);
 });

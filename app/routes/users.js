@@ -2,7 +2,7 @@ var express = require('express'),
     router = express.Router(),
     auth = require('../config/auth'),
     encryption = require('../utilities/encryption'),
-    User = require('../models/User').User;
+    User = require('../models/User');
 
 //get Users
 router.get('/', auth.requiresRole('admin'), function(req, res){
@@ -14,6 +14,7 @@ router.get('/', auth.requiresRole('admin'), function(req, res){
 //create user
 router.post('/', function(req, res){
   var userData = req.body;
+  console.log(userData);
   userData.username = userData.username.toLowerCase();
   userData.salt = encryption.createSalt();
   userData.hashed_pwd = encryption.hashPwd(userData.salt, userData.password);
