@@ -30,20 +30,20 @@ angular.module('willsBlog').controller('WorkController', ['$scope', function($sc
       noLink: false
     },
     {
-      name: 'Crown Offroad',
-      link: 'http://crownoffroad.com',
-      clickFunc: toggleCrown = function() {
+      name: 'Hayley Bagwell Interior Design',
+      link: 'http://www.hbedesign.com/',
+      clickFunc: toggleHB = function() {
         this.modal = !this.modal;
       },
-      backgroundImg: 'img/gallery/crown-offroad.png',
+      backgroundImg: 'img/gallery/hbe-design.png',
       modal: false,
-      modalImg: 'img/gallery/crown-offroad-mockup.png',
+      modalImg: 'img/gallery/hbe-design-responsive.png',
       noLink: false
     },
     {
       name: 'Colorado Broadband Portal',
       link: 'http://broadband.co.gov',
-      clickFunc: $scope.toggleBroad = function() {
+      clickFunc: toggleBroad = function() {
         this.modal = !this.modal;
       },
       backgroundImg: 'img/gallery/wires.png',
