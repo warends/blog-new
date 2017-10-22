@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<url><loc>http://www.willarendsdev.com</loc><priority>0.5</priority></url>
+<url><loc>http://www.willarendsdev.com/#about</loc><priority>0.5</priority></url>
+<url><loc>http://www.willarendsdev.com/#projects</loc><priority>0.5</priority></url>
+<url><loc>http://www.willarendsdev.com/#services</loc><priority>0.5</priority></url>
+<url><loc>http://www.willarendsdev.com/posts</loc><priority>0.5</priority></url>
+<url><loc>http://www.willarendsdev.com/#contact</loc><priority>0.5</priority></url>
+<url><loc>http://www.willarendsdev.com/posts/vanilla-js-modal</loc><priority>0.5</priority></url>
+<url><loc>http://www.willarendsdev.com/posts/multi-page-scrolling</loc><priority>0.5</priority></url>
+<url><loc>http://www.willarendsdev.com/posts/find-oddnum-in-array</loc><priority>0.5</priority></url>
+<url><loc>http://www.willarendsdev.com/posts/what-is-your-process</loc><priority>0.5</priority></url>
+</urlset>
