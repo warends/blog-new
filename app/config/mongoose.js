@@ -4,8 +4,10 @@ var mongoose = require('mongoose'),
 
 module.exports = function(config){
 
-  mongoose.Promise = global.Promise;
-  mongoose.connect(config.db);
+  mongoose.connect(config.db, {
+      useMongoClient: true,
+      promiseLibrary: global.Promise
+  });
 
   var db = mongoose.connection;
       db.on('error', console.error.bind(console, 'connection error...'));

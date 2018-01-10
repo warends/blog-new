@@ -4,7 +4,7 @@ var path = require('path'),
 module.exports = {
   development : {
       rootPath: rootPath,
-      db: 'mongodb://localhost/pluralsight',
+      db: 'mongodb://localhost/wills-test',
       port: process.env.PORT || 8080
   },
   test: {
