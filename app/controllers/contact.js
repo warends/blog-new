@@ -1,6 +1,6 @@
 var nodemailer = require('nodemailer');
 
-console.log('sending email as ' + process.env.WAD_GMAIL_USER);
+console.log('sending email as ' + process.env.WAD_EMAIL_USER);
 
 // var generator = require('xoauth2').createXOAuth2Generator({
 //   user: 'willarends@gmail.com',
@@ -16,12 +16,12 @@ console.log('sending email as ' + process.env.WAD_GMAIL_USER);
 // });
 
 var transporter = nodemailer.createTransport({
-      host: 'smtp.gmail.com',
+      host: 'smtpout.secureserver.net',
       port: 465,
       secure: true,
       auth: {
-        user: process.env.WAD_GMAIL_USER,
-        pass: process.env.WAD_GMAIL_PW
+        user: process.env.WAD_EMAIL_USER,
+        pass: process.env.WAD_EMAIL_PW
     }
 });
 
