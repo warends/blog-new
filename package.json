@@ -33,7 +33,7 @@
   },
   "devDependencies": {
     "chai": "^3.5.0",
-    "chai-http": "^3.0.0",
+    "chai-http": "^4.3.0",
     "gulp": "^3.9.1",
     "gulp-clean": "^0.3.2",
     "gulp-clean-css": "^2.3.2",
