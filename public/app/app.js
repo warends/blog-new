@@ -1,4 +1,4 @@
-angular.module('willsBlog', ['users', 'post', 'common', 'ngResource', 'ngSanitize', 'ui.router', 'duScroll', 'gist', 'ngScrollReveal']);
+angular.module('willsBlog', ['users', 'common', 'ngResource', 'ngSanitize', 'ui.router', 'duScroll', 'gist', 'ngScrollReveal']);
 
 angular.module('willsBlog').config(['$locationProvider', '$stateProvider', '$urlRouterProvider', function($locationProvider, $stateProvider, $urlRouterProvider){
 
@@ -25,11 +25,6 @@ angular.module('willsBlog').config(['$locationProvider', '$stateProvider', '$url
       url: '/account',
       templateUrl: '/partials/login/login',
       controller: 'LoginController'
-    })
-    .state('posts', {
-      url: '/posts',
-      templateUrl: '/partials/posts/post-list',
-      controller: 'PostListController'
     })
     .state('profile', {
       url: '/profile',

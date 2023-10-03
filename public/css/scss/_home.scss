@@ -421,7 +421,7 @@
 	.row {
 		height: 900px;
 		@include mq($S){
-			height: 360px;
+			height: 300px;
 		}
 	}
 	.headshot{
